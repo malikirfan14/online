@@ -1,0 +1,8 @@
+.env
+/vendor/
+.vscode/
+upload_25to26/
+uploads/
+upload/
+startbootstrap-sb-admin-2-gh-pages/
+student_reg/
