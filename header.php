@@ -477,7 +477,7 @@ if (isset($_SESSION['logname'])) {
 
 
 
-                                $query = "SELECT * FROM `student_reg_25to26` WHERE `cnic` = '$logname'";
+                                $query = "SELECT * FROM `student_reg_26to27` WHERE `cnic` = '$logname'";
 
                                 $result = mysqli_query($conn, $query);
 

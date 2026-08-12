@@ -39,7 +39,7 @@ require('configure.php');
 
      
 
-         $selectId = "SELECT `regNo` FROM `student_reg_25to26` ORDER BY `stdId` DESC LIMIT 1";
+         $selectId = "SELECT `regNo` FROM `student_reg_26to27` ORDER BY `stdId` DESC LIMIT 1";
 
          $result=mysqli_query($conn,$selectId);
 
@@ -109,7 +109,7 @@ require('configure.php');
 
     //  $submitDate = date('m/d/Y h:i:s a', time());
 
-    $select = "SELECT * FROM student_reg_25to26 WHERE cnic = '$cnic' OR email = '$email'";
+    $select = "SELECT * FROM student_reg_26to27 WHERE cnic = '$cnic' OR email = '$email'";
 
     $result=mysqli_query($conn,$select);
 
@@ -129,7 +129,7 @@ require('configure.php');
 
       {
 
-          $sql = "INSERT INTO student_reg_25to26 (name, fname, stdPhone, cnic, email, password, regNo)  VALUES ('$name', 
+          $sql = "INSERT INTO student_reg_26to27 (name, fname, stdPhone, cnic, email, password, regNo)  VALUES ('$name', 
 
           '$fname','$stdPhone', '$cnic', '$email','$password','$fregNo')";
 

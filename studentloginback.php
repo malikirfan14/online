@@ -60,7 +60,7 @@ require('configure.php');
 
     //  $submitDate = date('m/d/Y h:i:s a', time());
 
-    $select = "SELECT * FROM student_reg_25to26 WHERE `cnic` = '$record'   AND `password` = '$password' LIMIT 1" ;
+    $select = "SELECT * FROM student_reg_26to27 WHERE `cnic` = '$record'   AND `password` = '$password' LIMIT 1" ;
 
     //echo $record;
 
