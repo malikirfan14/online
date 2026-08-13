@@ -18,7 +18,7 @@ if ($conn === false) {
 } else {
     $logname = $_SESSION['logname'];
 
-    $sql = "SELECT * FROM `registration_25to26` WHERE `cnic` = '$logname'";
+    $sql = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {

@@ -41,9 +41,9 @@ session_start();
                     <div class="alert alert-warning text-center fade show" role="alert">
                     <!--<h6 class="text-danger"> <strong>🔔<br /> <br >Complete Your Online Application, Upload Required Documents & Challan !<br />-->
                     <h6 class="text-danger"> <strong>🔔<br /> <br >Complete Your Online Application, Upload Required Documents<br />
-                    <!--<br />Last Date to Apply for MBBS 29th December, 2023 (3:00 PM)<br />-->
+                    <!--<br />Last Date to Apply for MBBS 29th December, 2026 (3:00 PM)<br />-->
                     <br />MBBS Registration Closed<br />
-                    <!--<br />Only BDS Registration Open till 24th December 2023</strong> </h6>-->
+                    <!--<br />Only BDS Registration Open till 24th December 2026</strong> </h6>-->
                     <br />Only BDS Registration Open</strong> </h6>
                     <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
                     <!--    <span aria-hidden="true">Ã—</span>-->

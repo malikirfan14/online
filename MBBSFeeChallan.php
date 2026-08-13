@@ -205,7 +205,7 @@ $code = $_GET['code'];
                             <h6 style="font-size:12px;"> <strong>Program / Session </strong></h6>
                           </td>
                           <td class="col-md-3">
-                            <h6 style="font-size:12px;">MBBS / 2024-25 </h6>
+                            <h6 style="font-size:12px;">MBBS / 2026-27 </h6>
                           </td>
                         </tr>
   
@@ -488,7 +488,7 @@ $code = $_GET['code'];
                             <h6 style="font-size:12px;"> <strong>Program / Session </strong></h6>
                           </td>
                           <td class="col-md-3">
-                            <h6 style="font-size:12px;">MBBS / 2024-25 </h6>
+                            <h6 style="font-size:12px;">MBBS / 2026-27 </h6>
                           </td>
                         </tr>
   
@@ -771,7 +771,7 @@ $code = $_GET['code'];
                             <h6 style="font-size:12px;"> <strong>Program / Session </strong></h6>
                           </td>
                           <td class="col-md-3">
-                            <h6 style="font-size:12px;">MBBS / 2024-25 </h6>
+                            <h6 style="font-size:12px;">MBBS / 2026-27 </h6>
                           </td>
                         </tr>
   

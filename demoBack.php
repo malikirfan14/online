@@ -36,7 +36,7 @@ if ($conn === false) {
 
 } else {
 
-  $selectId = "SELECT `appId` FROM `registration_24to25` ORDER BY `id` DESC LIMIT 1";
+  $selectId = "SELECT `appId` FROM `registration_26to27` ORDER BY `id` DESC LIMIT 1";
 
   $result = mysqli_query($conn, $selectId);
 
@@ -186,7 +186,7 @@ if ($conn === false) {
 
 
 
-    $select = "SELECT * FROM `registration_24to25` WHERE cnic = '$cnic' AND program = 'BOTH' ";
+    $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$cnic' AND program = 'BOTH' ";
 
     $result = mysqli_query($conn, $select);
 
@@ -202,7 +202,7 @@ if ($conn === false) {
 
 
 
-      $sql = "INSERT INTO `registration_24to25`
+      $sql = "INSERT INTO `registration_26to27`
 
        ( name, fname, stdPhone, fatPhone, city,
 
@@ -230,7 +230,7 @@ if ($conn === false) {
 
 
 
-      //   	 $sql = "INSERT INTO `registration_24to25` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
+      //   	 $sql = "INSERT INTO `registration_26to27` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
 
       //   VALUES ('$name', 
 

@@ -10,7 +10,7 @@ if (isset($_SESSION['logname'])) {
         die("ERROR: Could not connect. " . mysqli_connect_error());
     } else {
         if (isset($_SESSION['logname']) != "") {
-            $query = "SELECT * FROM `registration_24to25` WHERE `cnic` = '$logname'";
+            $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
@@ -340,12 +340,12 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_24to25` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
         if ($result->num_rows > 0) {
             if (!empty($_FILES["mbbs"]["name"])) {
                 $newPicture = 'mbbs_' . basename($_FILES["mbbs"]["name"]);
-                $sql = "UPDATE `registration_24to25`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `mbbsChallanImage` = '$newPicture'
             WHERE `cnic` = '$name'";
             }
@@ -370,14 +370,14 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_24to25` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
 
         if ($result->num_rows > 0) {
             if (!empty($_FILES["bds"]["name"])) {
                 $newPicture = 'bds_' . basename($_FILES["bds"]["name"]);
 
-                $sql = "UPDATE `registration_24to25`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `bdsChallanImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
@@ -391,13 +391,13 @@ if (isset($_SESSION['logname'])) {
         ;
         $cnic = $_SESSION['logname'];
 
-        $sql = "SELECT mbbsChallanImage, bdsChallanImage,program FROM`registration_24to25` WHERE cnic = '$cnic' ";
+        $sql = "SELECT mbbsChallanImage, bdsChallanImage,program FROM`registration_26to27` WHERE cnic = '$cnic' ";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
             if ($row['program'] == 'BOTH') {
                 if (!empty($row['mbbsChallanImage']) && !empty($row['bdsChallanImage'])) {
-                    $updateSql = "UPDATE `registration_24to25` SET `isChallanDone` = 1 WHERE `cnic` = '$cnic'";
+                    $updateSql = "UPDATE `registration_26to27` SET `isChallanDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
                         sendEmail($program, $email, $name, $appId);
                     } else {
@@ -407,7 +407,7 @@ if (isset($_SESSION['logname'])) {
                 }
             } else if ($row['program'] == 'MBBS') {
                 if (!empty($row['mbbsChallanImage'])) {
-                    $updateSql = "UPDATE `registration_24to25` SET `isChallanDone` = 1 WHERE `cnic` = '$cnic'";
+                    $updateSql = "UPDATE `registration_26to27` SET `isChallanDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
                         sendEmail($program, $email, $name, $appId);
                     }
@@ -416,7 +416,7 @@ if (isset($_SESSION['logname'])) {
                 }
             } else if ($row['program'] == 'BDS') {
                 if (!empty($row['bdsChallanImage'])) {
-                    $updateSql = "UPDATE `registration_24to25` SET `isChallanDone` = 1 WHERE `cnic` = '$cnic'";
+                    $updateSql = "UPDATE `registration_26to27` SET `isChallanDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
                         sendEmail($program, $email, $name, $appId);
                     }
@@ -440,12 +440,12 @@ function sendEmail($program, $email, $name, $appId)
         $programDisplay = 'MBBS-BDS Both';
     }
 
-    $from = 'admissions24-25@watim.com.pk'; //Sender
+    $from = 'admissions26-27@watim.com.pk'; //Sender
     //$to = 'malikirfan14@gmail.com'; // Receiver   
     $to = $email; // Receiver  
     $subject = 'WATIM MEDICAL & DENTAL COLLEGE';
     $message = $name . "\r\n" . "\r\n" . 'Thankyou for your Online Registration.' . "\r\n" . "\r\n".
-        'Your Application Submitted Successfuly in ' . $programDisplay . ' Program for Session 2024-25 at "WATIM Medical & Dental College Rawalpindi"'. "\r\n" . "\r\n".
+        'Your Application Submitted Successfuly in ' . $programDisplay . ' Program for Session 2026-27 at "WATIM Medical & Dental College Rawalpindi"'. "\r\n" . "\r\n".
         'Your application id is : ' . $appId . "\r\n" . "\r\n".
         'For Updated Information Regarding Admissions Check College Website & Facebook Page Regularly. ' . "\r\n" . "\r\n" .
         'Follow us on Facebook: https://facebook.com/watimmedicalanddentalcollege' . "\r\n" . "\r\n" .

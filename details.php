@@ -17,7 +17,7 @@ if (isset($_SESSION['logname'])) {
         die("ERROR: Could not connect. " . mysqli_connect_error());
     } else {
         if (isset($_SESSION['logname']) != "") {
-            $query = "SELECT * FROM `registration_24to25` WHERE `cnic` = '$logname' LIMIT 1";
+            $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname' LIMIT 1";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {

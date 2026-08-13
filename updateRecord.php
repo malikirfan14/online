@@ -148,7 +148,7 @@ $cnic = $_REQUEST['cnic'];
 
  
 
-    // $select = "UPDATE `registration_24to25`  SET 
+    // $select = "UPDATE `registration_26to27`  SET 
 
     //         `fscmarks`='$fscmarks',
 
@@ -164,7 +164,7 @@ $cnic = $_REQUEST['cnic'];
 
     //         `cnic` = '$cnic'";
 
-     $select = "UPDATE `registration_24to25`  SET 
+     $select = "UPDATE `registration_26to27`  SET 
 
             `fscmarks`='$fscmarks',
 

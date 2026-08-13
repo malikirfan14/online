@@ -45,11 +45,11 @@ session_start();
                     <div class="alert alert-warning text-center fade show" role="alert">
                     <h6 class="text-danger"> <strong>🔔<br /> 
     
-                    <!--<br />Last Date to Apply for MBBS 29th December, 2023 (3:00 PM)<br />-->
+                    <!--<br />Last Date to Apply for MBBS 29th December, 2026 (3:00 PM)<br />-->
                     <!-- <br />Apply now against MBBS Vacant Sets as per Punjab Govt. Notification -->
                     <br />Register now for BDS. MBBS registration has been closed.    
                     </strong> </h6>
-                    <br />Session 2025-26
+                    <br />Session 2026-27
 				    <br />Apply NOW 
                     <br />Complete Your Online Application !<br />
                     <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->

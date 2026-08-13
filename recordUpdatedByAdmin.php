@@ -166,7 +166,7 @@ $address = $_REQUEST['address'];
 
  
 
-    $select = "UPDATE `registration_25to26`  SET 
+    $select = "UPDATE `registration_26to27`  SET 
 
             
 

@@ -41,7 +41,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
     $uhs_application_id = mysqli_real_escape_string($conn, $_GET['uhs_application_id']);
 
     $query = "SELECT name, father_name, aggregate, district
-              FROM uhs_students_25to26
+              FROM uhs_students_26to27
               WHERE application_id = '$uhs_application_id'
               LIMIT 1";
 
@@ -66,7 +66,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
 
 
 
-  $selectId = "SELECT `appId` FROM `registration_25to26` ORDER BY `id` DESC LIMIT 1";
+  $selectId = "SELECT `appId` FROM `registration_26to27` ORDER BY `id` DESC LIMIT 1";
 
   $result = mysqli_query($conn, $selectId);
 
@@ -122,7 +122,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
 
 
 
-    $session = "2025-2026";
+    $session = "2026-2027";
 
 
 
@@ -247,7 +247,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
     $cnic = $_SESSION['logname'];
 
 
-    $sql = "UPDATE `registration_25to26`  SET 
+    $sql = "UPDATE `registration_26to27`  SET 
 
 `fscStatus`='$fscStatus',
 
@@ -297,7 +297,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
  WHERE `cnic`='$cnic'";
 
 
-    //   	 $sql = "INSERT INTO `registration_24to25` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
+    //   	 $sql = "INSERT INTO `registration_26to27` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
 
     //   VALUES ('$name', 
 
@@ -337,7 +337,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
 
       // $subject = 'WATIM MEDICAL & DENTAL COLLEGE';
 
-      // $message = $_REQUEST['name'] . "\r\n" . "\r\n" . 'Thankyou for your Online Registration for Session 2024-25 at "WATIM Medical & Dental College Rawalpindi"' . "\r\n" .
+      // $message = $_REQUEST['name'] . "\r\n" . "\r\n" . 'Thankyou for your Online Registration for Session 2026-27 at "WATIM Medical & Dental College Rawalpindi"' . "\r\n" .
 
       //   'Your application id is : ' . $_SESSION['appId'] . "\r\n" .
 

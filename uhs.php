@@ -5,7 +5,7 @@ if (!isset($_SESSION['logname'])) {
   header("location:studentLogin.php");
 }
 
-$query = "SELECT * FROM `student_reg_24to25` WHERE `cnic` = '$logname'";
+$query = "SELECT * FROM `student_reg_26to27` WHERE `cnic` = '$logname'";
 
 $result = mysqli_query($conn, $query);
 
@@ -24,7 +24,7 @@ if (mysqli_num_rows($result) > 0) {
 } ?>
   <br>
   <p>
-    You registered through online portal for session 2024-25.
+    You registered through online portal for session 2026-27.
   </p>
   <p>
     Centralized Admission Policy is announced by University of Health Sciences (UHS).

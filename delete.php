@@ -64,7 +64,7 @@ $id =$_REQUEST['id'];
 
  
 
-    $select = "DELETE FROM `registration_24to25` WHERE `cnic` = '$cnic' AND `id` = '$id'";
+    $select = "DELETE FROM `registration_26to27` WHERE `cnic` = '$cnic' AND `id` = '$id'";
 
             
 

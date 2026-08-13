@@ -139,7 +139,7 @@ require('configure.php');
 
         
 
-              //   	 $sql = "INSERT INTO `registration_24to25` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
+              //   	 $sql = "INSERT INTO `registration_26to27` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
 
               //   VALUES ('$name', 
 
@@ -176,7 +176,7 @@ require('configure.php');
 
               
 
-              $from = 'admissions25-26@watim.com.pk'; //Sender
+              $from = 'admissions26-27@watim.com.pk'; //Sender
 
               $to = $email; // Receiver
 

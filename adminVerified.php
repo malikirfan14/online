@@ -13,7 +13,7 @@ if(isset($_SESSION['adminName'])) {
         // Calculate the offset_v for the SQL query
         $offset_v = ($page_v - 1) * $records_per_page_v;
 
-        $var_v = "SELECT * FROM `registration_25to26` WHERE isVerified ='1' LIMIT $offset_v, $records_per_page_v";
+        $var_v = "SELECT * FROM `registration_26to27` WHERE isVerified ='1' LIMIT $offset_v, $records_per_page_v";
         $connect = mysqli_query($conn, $var_v);
     }
 
@@ -177,7 +177,7 @@ if(isset($_SESSION['adminName'])) {
                         <ul class="pagination">
                             <?php
                             // Calculate the total number of pages
-                            $total_pages_query_v = "SELECT COUNT(*) as total FROM `registration_25to26` WHERE isVerified ='1' ";
+                            $total_pages_query_v = "SELECT COUNT(*) as total FROM `registration_26to27` WHERE isVerified ='1' ";
                             $result_v = mysqli_query($conn, $total_pages_query_v);
                             $total_records_v = mysqli_fetch_assoc($result_v)['total'];
                             $total_pages_v = ceil($total_records_v / $records_per_page_v);

@@ -24,7 +24,7 @@ $logname = $_SESSION['logname'];
     {
         
 
-  $query = "SELECT * FROM `registration_24to25` WHERE `cnic` = '$logname'";
+  $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
       $result=mysqli_query($conn,$query);
       if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result)){
@@ -156,7 +156,7 @@ $logname = $_SESSION['logname'];
                 </tr>
                 <tr>
                        <td class="col-md-3"><h6 style="font-size:12px;"> <strong>Program / Session </strong></h6></td>
-                 <td class="col-md-3"><h6 style="font-size:12px;">MBBS / 2024-25 </h6></td>
+                 <td class="col-md-3"><h6 style="font-size:12px;">MBBS / 2026-27 </h6></td>
                 </tr>
                 <tr>
                       <td class="col-md-3"><h6 style="font-size:12px;"> <strong>Fee</strong></h6></td>
@@ -293,7 +293,7 @@ $logname = $_SESSION['logname'];
                 </tr>
                 <tr>
                        <td class="col-md-3"><h6 style="font-size:12px;"> <strong>Program / Session </strong></h6></td>
-                 <td class="col-md-3"><h6 style="font-size:12px;">MBBS / 2024-25 </h6></td>
+                 <td class="col-md-3"><h6 style="font-size:12px;">MBBS / 2026-27 </h6></td>
                 </tr>
                 <tr>
                       <td class="col-md-3"><h6 style="font-size:12px;"> <strong>Fee</strong></h6></td>
@@ -430,7 +430,7 @@ $logname = $_SESSION['logname'];
                 </tr>
                 <tr>
                        <td class="col-md-3"><h6 style="font-size:12px;"> <strong>Program / Session </strong></h6></td>
-                 <td class="col-md-3"><h6 style="font-size:12px;">MBBS / 2024-25 </h6></td>
+                 <td class="col-md-3"><h6 style="font-size:12px;">MBBS / 2026-27 </h6></td>
                 </tr>
                 <tr>
                       <td class="col-md-3"><h6 style="font-size:12px;"> <strong>Fee</strong></h6></td>

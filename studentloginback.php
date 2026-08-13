@@ -96,7 +96,7 @@ require('configure.php');
 
           // exit(0);
 
-          $selectd = "SELECT * FROM `registration_25to26` WHERE `cnic` = '$record'" ;
+          $selectd = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$record'" ;
 
           // echo $record;
 
@@ -190,7 +190,7 @@ require('configure.php');
 
     //   {
 
-    //       $sql = "INSERT INTO student_reg_24to25 (name, fname, stdPhone, cnic, email, password, regNo)  VALUES ('$name', 
+    //       $sql = "INSERT INTO student_reg_26to27 (name, fname, stdPhone, cnic, email, password, regNo)  VALUES ('$name', 
 
     //       '$fname','$stdPhone', '$cnic', '$email','$password','$fregNo')";
 
@@ -200,7 +200,7 @@ require('configure.php');
 
         
 
-    //           //   	 $sql = "INSERT INTO `registration_24to25` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
+    //           //   	 $sql = "INSERT INTO `registration_26to27` (name, fname, stdPhone, fatPhone, city, email, fscStatus, fscmarks, comYear, mcat, program)
 
     //           //   VALUES ('$name', 
 

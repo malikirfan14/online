@@ -16,7 +16,7 @@ if(isset($_SESSION['adminName']))
 
     } else {
 
-        $var = "SELECT * FROM `registration_24to25`";
+        $var = "SELECT * FROM `registration_26to27`";
 
         $connect = mysqli_query($conn, $var);
 

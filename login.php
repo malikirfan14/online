@@ -48,11 +48,11 @@ session_start();
                     <div class="alert alert-warning text-center fade show" role="alert">
                     <h6 class="text-danger"> <strong>🔔
                     <!--<br /> Complete Your Application & Upload Your Challan / Documents!<br />-->
-                    <!--<br />Last Date to Apply for MBBS 29th December, 2022 (3:00 PM)<br />-->
-                    <!--<br />Last Date to Apply for BDS 1st February, 2023 (3:00 PM)<br />-->
+                    <!--<br />Last Date to Apply for MBBS 29th December, 2026 (3:00 PM)<br />-->
+                    <!--<br />Last Date to Apply for BDS 1st February, 2027 (3:00 PM)<br />-->
                     <!-- <br />Apply now against MBBS Vacant Sets as per Punjab Govt. Notification<br /> -->
                      <br />Register now for BDS. MBBS registration has been closed.<br />
-                    <br /><a class="small" href="/online/register.php">Register Now for Session 2025-2026 </a>
+                    <br /><a class="small" href="/online/register.php">Register Now for Session 2026-2027 </a>
                     </strong> </h6>
 
                     <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->

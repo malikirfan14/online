@@ -20,7 +20,7 @@ $cnic = $_REQUEST['cnic'];
 
 $id =$_REQUEST['id'];
 
- $query = mysqli_query($conn,"SELECT * FROM registration_25to26 WHERE cnic = '$cnic' AND `id` = '$id' LIMIT 1");
+ $query = mysqli_query($conn,"SELECT * FROM registration_26to27 WHERE cnic = '$cnic' AND `id` = '$id' LIMIT 1");
 
 
 

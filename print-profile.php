@@ -26,7 +26,7 @@ if (isset($_SESSION['logname'])) {
 
 $cnic = $_SESSION['logname'];
 
- $query = mysqli_query($conn,"SELECT * FROM registration_24to25 WHERE cnic = '$cnic' LIMIT 1");
+ $query = mysqli_query($conn,"SELECT * FROM registration_26to27 WHERE cnic = '$cnic' LIMIT 1");
 
 
 

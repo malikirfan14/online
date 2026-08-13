@@ -36,7 +36,7 @@ include('header.php');
 
       $term = $_REQUEST['term'];
 
-      $query = "SELECT * FROM `registration_24to25` Where  cnic = '$logname'";
+      $query = "SELECT * FROM `registration_26to27` Where  cnic = '$logname'";
 
   //    echo "OK";
 

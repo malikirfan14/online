@@ -37,7 +37,7 @@ if ($conn === false) {
 } else {
 
 
-  $selectId = "SELECT `appId` FROM `registration_25to26` ORDER BY `id` DESC LIMIT 1";
+  $selectId = "SELECT `appId` FROM `registration_26to27` ORDER BY `id` DESC LIMIT 1";
 
   $result = mysqli_query($conn, $selectId);
 
@@ -94,7 +94,7 @@ if ($conn === false) {
 
 
 
-    $session = "2025-2026";
+    $session = "2026-2027";
 
     $name = $_REQUEST['name'];
 
@@ -152,7 +152,7 @@ if ($conn === false) {
       }
     }
 
-    $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$cnic' ";
+    $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$cnic' ";
 
     $result = mysqli_query($conn, $select);
 
@@ -161,7 +161,7 @@ if ($conn === false) {
     if ($result->num_rows > 0) {
       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       
-      $sql = "UPDATE `registration_25to26`  SET     
+      $sql = "UPDATE `registration_26to27`  SET     
       `stdPhone`='$stdPhone', 
       `cnic_issue_date`='$cnic_issue_date',      
       `fatPhone`='$fatPhone',
@@ -191,7 +191,7 @@ if ($conn === false) {
         $profilePicture = basename($_FILES["profilePicture"]["name"]);
        
         // Add the profile picture to the SQL query
-        $sql = "INSERT INTO `registration_25to26`
+        $sql = "INSERT INTO `registration_26to27`
                 (name, fname, stdPhone, fatPhone, city, email, program, appId, cnic, dob,
                 cnic_issue_date, address, issueDate, dueDate, emergencyPhone, stdType, isPersonalInfoDone, profilePicture,gender)
                 VALUES
@@ -199,7 +199,7 @@ if ($conn === false) {
                 '$cnic_issue_date', '$address', '$issueDate', '$dueDate', '$emergencyPhone', '$stdType', 1, '$profilePicture','$gender')";
       } else {
         // If no file was uploaded, omit the profilePicture field from the query
-        $sql = "INSERT INTO `registration_25to26`
+        $sql = "INSERT INTO `registration_26to27`
                 (name, fname, stdPhone, fatPhone, city, email, program, appId, cnic, dob,
                 cnic_issue_date, address, issueDate, dueDate, emergencyPhone, stdType, isPersonalInfoDone,gender)
                 VALUES
@@ -239,7 +239,7 @@ if ($conn === false) {
 
       // $subject = 'WATIM MEDICAL & DENTAL COLLEGE';
 
-      // $message = $_REQUEST['name'] . "\r\n" . "\r\n" . 'Thankyou for your Online Registration for Session 2024-25 at "WATIM Medical & Dental College Rawalpindi"' . "\r\n" .
+      // $message = $_REQUEST['name'] . "\r\n" . "\r\n" . 'Thankyou for your Online Registration for Session 2026-27 at "WATIM Medical & Dental College Rawalpindi"' . "\r\n" .
 
       //   'Your application id is : ' . $_SESSION['appId'] . "\r\n" .
 

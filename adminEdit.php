@@ -28,7 +28,7 @@ if (isset($_SESSION['adminName'])) {
 
             $term = $_REQUEST['term'];
 
-            $query = "SELECT * FROM `registration_25to26` Where  cnic = '$cnic'";
+            $query = "SELECT * FROM `registration_26to27` Where  cnic = '$cnic'";
 
 
 
@@ -433,7 +433,7 @@ if (isset($_SESSION['adminName'])) {
                                                 <br>
                                                 <!-- Add JavaScript to open the image in a new window when clicked -->
                                                 <img id="preview1"
-                                                    src="<?php echo empty($row['matricImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['matricImage']; ?>"
+                                                    src="<?php echo empty($row['matricImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['matricImage']; ?>"
                                                     alt="matric image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                     onclick="openImage(this.src);">
                                                 <br>
@@ -464,7 +464,7 @@ if (isset($_SESSION['adminName'])) {
                                                 <br>
                                                 <!-- Add an onclick attribute to open the image in a new window -->
                                                 <img id="preview1"
-                                                    src="<?php echo empty($row['fscImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['fscImage']; ?>"
+                                                    src="<?php echo empty($row['fscImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['fscImage']; ?>"
                                                     alt="fsc image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                     onclick="openImage(this.src);">
                                                 <br>
@@ -481,7 +481,7 @@ if (isset($_SESSION['adminName'])) {
                                                 <br>
                                                 <!-- Add an onclick attribute to open the image in a new window -->
                                                 <img id="preview2"
-                                                    src="<?php echo empty($row['cnicFrontImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['cnicFrontImage']; ?>"
+                                                    src="<?php echo empty($row['cnicFrontImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['cnicFrontImage']; ?>"
                                                     alt="cnicf image" style="max-width: 320px; max-height: 500px; cursor: pointer;"
                                                     onclick="openImage(this.src, 'cnicf');"> <!-- Added image identifier "cnicf" -->
                                                 <br>
@@ -498,7 +498,7 @@ if (isset($_SESSION['adminName'])) {
                                                 <br>
                                                 <!-- Add an onclick attribute to open the image in a new window -->
                                                 <img id="preview3"
-                                                    src="<?php echo empty($row['cnicBackImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['cnicBackImage']; ?>"
+                                                    src="<?php echo empty($row['cnicBackImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['cnicBackImage']; ?>"
                                                     alt="cnicb image" style="max-width: 320px; max-height: 500px; cursor: pointer;"
                                                     onclick="openImage(this.src, 'cnicb');"> <!-- Added image identifier "cnicb" -->
                                                 <br>
@@ -516,7 +516,7 @@ if (isset($_SESSION['adminName'])) {
                                                 <br>
                                                 <!-- Add an onclick attribute to open the image in a new window -->
                                                 <img id="preview4"
-                                                    src="<?php echo empty($row['mdcatImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['mdcatImage']; ?>"
+                                                    src="<?php echo empty($row['mdcatImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['mdcatImage']; ?>"
                                                     alt="mdcat image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                     onclick="openImage(this.src, 'mdcat');"> <!-- Added image identifier "mdcat" -->
                                                 <br>
@@ -534,7 +534,7 @@ if (isset($_SESSION['adminName'])) {
                                                     <br>
                                                     <!-- Add an onclick attribute to open the image in a new window -->
                                                     <img id="preview5"
-                                                        src="<?php echo empty($row['passportIqamaImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']; ?>"
+                                                        src="<?php echo empty($row['passportIqamaImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']; ?>"
                                                         alt="passportIqama image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                         onclick="openImage(this.src, 'passportIqama');">
                                                     <!-- Added image identifier "passportIqama" -->
@@ -562,7 +562,7 @@ if (isset($_SESSION['adminName'])) {
                                                     <br>
                                                     <!-- Add an onclick attribute to open the image in a new window -->
                                                     <img id="preview6"
-                                                        src="<?php echo empty($row['mbbsChallanImage']) ? 'upload_25to26/documents/avatar.jpg' : 'uploads/challans/mbbs/' . $row['cnic'] . '/' . $row['mbbsChallanImage']; ?>"
+                                                        src="<?php echo empty($row['mbbsChallanImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads/challans/mbbs/' . $row['cnic'] . '/' . $row['mbbsChallanImage']; ?>"
                                                         alt="mbbsChallan image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                         onclick="openImage(this.src, 'mbbsChallan');">
                                                     <!-- Added image identifier "mbbsChallan" -->
@@ -582,7 +582,7 @@ if (isset($_SESSION['adminName'])) {
                                                     <br>
                                                     <!-- Add an onclick attribute to open the image in a new window -->
                                                     <img id="preview7"
-                                                        src="<?php echo empty($row['bdsChallanImage']) ? 'upload_25to26/documents/avatar.jpg' : 'uploads/challans/bds/' . $row['cnic'] . '/' . $row['bdsChallanImage']; ?>"
+                                                        src="<?php echo empty($row['bdsChallanImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads/challans/bds/' . $row['cnic'] . '/' . $row['bdsChallanImage']; ?>"
                                                         alt="bdsChallan image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                         onclick="openImage(this.src, 'bdsChallan');">
                                                     <!-- Added image identifier "bdsChallan" -->
@@ -675,7 +675,7 @@ if (isset($_SESSION['adminName'])) {
                     <?php
                     if (isset($_POST['verifyStudent'])) {
                         $cnic = $_GET['cnic'];
-                        $updateSql = "UPDATE `registration_25to26` SET `isVerified` = '1' WHERE `cnic` = '$cnic'";
+                        $updateSql = "UPDATE `registration_26to27` SET `isVerified` = '1' WHERE `cnic` = '$cnic'";
                         if (mysqli_query($conn, $updateSql)) {
                         }
                         echo "<script>

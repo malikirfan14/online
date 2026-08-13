@@ -10,7 +10,7 @@ if (isset($_SESSION['logname'])) {
         die("ERROR: Could not connect. " . mysqli_connect_error());
     } else {
         if (isset($_SESSION['logname']) != "") {
-            $query = "SELECT * FROM `registration_25to26` WHERE `cnic` = '$logname'";
+            $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
             $result = mysqli_query($conn, $query);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
@@ -34,7 +34,7 @@ if (isset($_SESSION['logname'])) {
                                                         <label for="fsc"><b>Fsc Marksheet:</b></label>
                                                         <br>
                                                         <img id="preview1"
-                                                            src="<?php echo empty($row['fscImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['fscImage']; ?>"
+                                                            src="<?php echo empty($row['fscImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['fscImage']; ?>"
                                                             alt="fsc image" style="max-width: 330px; max-height:320px ">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
@@ -55,7 +55,7 @@ if (isset($_SESSION['logname'])) {
                                                         <br>
                                                         <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
                                                         <img id="preview2"
-                                                            src="<?php echo empty($row['matricImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['matricImage']; ?>"
+                                                            src="<?php echo empty($row['matricImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['matricImage']; ?>"
                                                             alt="matric image" style="max-width: 330px; max-height:320px ">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
@@ -78,7 +78,7 @@ if (isset($_SESSION['logname'])) {
                                                         <br>
                                                         <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
                                                         <img id="preview3"
-                                                            src="<?php echo empty($row['mdcatImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['mdcatImage']; ?>"
+                                                            src="<?php echo empty($row['mdcatImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['mdcatImage']; ?>"
                                                             alt="mdcat image" style="max-width: 330px; max-height:320px ">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
@@ -101,7 +101,7 @@ if (isset($_SESSION['logname'])) {
                                                             <label><b>Passport/Iqama:</b></label>
                                                             <br>
                                                             <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
-                                                            <img id="preview6" src="' . (empty($row['passportIqamaImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']) . '"
+                                                            <img id="preview6" src="' . (empty($row['passportIqamaImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']) . '"
                                                                 alt="cnic image" style="max-width: 330px; max-height: 320px ">
                                                             <br>';
 
@@ -129,7 +129,7 @@ if (isset($_SESSION['logname'])) {
                                                         <label><b>CNIC Front:</b></label>
                                                         <br>
                                                         <img id="preview4"
-                                                            src="<?php echo empty($row['cnicFrontImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['cnicFrontImage']; ?>"
+                                                            src="<?php echo empty($row['cnicFrontImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['cnicFrontImage']; ?>"
                                                             alt="cnic image" style="max-width: 330px; max-height:320px ">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
@@ -152,7 +152,7 @@ if (isset($_SESSION['logname'])) {
                                                         <label><b>CNIC Back:</b></label>
                                                         <br>
                                                         <img id="preview5"
-                                                            src="<?php echo empty($row['cnicBackImage']) ? 'upload_25to26/documents/avatar.jpg' : 'upload_25to26/documents/' . $row['cnic'] . '/' . $row['cnicBackImage']; ?>"
+                                                            src="<?php echo empty($row['cnicBackImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['cnicBackImage']; ?>"
                                                             alt="cnic image" style="max-width: 330px; max-height:320px ">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
@@ -339,7 +339,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['fsc']["name"])) {
-                $folderName = "upload_25to26/documents/" . $name;
+                $folderName = "uploads_26to27/documents/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -353,12 +353,12 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
         if ($result->num_rows > 0) {
             if (!empty($_FILES["fsc"]["name"])) {
                 $newPicture = 'fsc_' . basename($_FILES["fsc"]["name"]);
-                $sql = "UPDATE `registration_25to26`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `fscImage` = '$newPicture'
             WHERE `cnic` = '$name'";
             }
@@ -373,7 +373,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['matric']["name"])) {
-                $folderName = "upload_25to26/documents/" . $name;
+                $folderName = "uploads_26to27/documents/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -383,14 +383,14 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
 
         if ($result->num_rows > 0) {
             if (!empty($_FILES["matric"]["name"])) {
                 $newPicture = 'matric_' . basename($_FILES["matric"]["name"]);
 
-                $sql = "UPDATE `registration_25to26`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `matricImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
@@ -406,7 +406,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['mdcat']["name"])) {
-                $folderName = "upload_25to26/documents/" . $name;
+                $folderName = "uploads_26to27/documents/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -420,14 +420,14 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
 
         if ($result->num_rows > 0) {
             if (!empty($_FILES["mdcat"]["name"])) {
                 $newPicture = 'mdcat_' . basename($_FILES["mdcat"]["name"]);
 
-                $sql = "UPDATE `registration_25to26`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `mdcatImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
@@ -444,7 +444,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['cnicf']["name"])) {
-                $folderName = "upload_25to26/documents/" . $name;
+                $folderName = "uploads_26to27/documents/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -458,14 +458,14 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
 
         if ($result->num_rows > 0) {
             if (!empty($_FILES["cnicf"]["name"])) {
                 $newPicture = 'cnicf_' . basename($_FILES["cnicf"]["name"]);
 
-                $sql = "UPDATE `registration_25to26`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `cnicFrontImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
@@ -481,7 +481,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['cnicb']["name"])) {
-                $folderName = "upload_25to26/documents/" . $name;
+                $folderName = "uploads_26to27/documents/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -495,14 +495,14 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
 
         if ($result->num_rows > 0) {
             if (!empty($_FILES["cnicb"]["name"])) {
                 $newPicture = 'cnicb_' . basename($_FILES["cnicb"]["name"]);
 
-                $sql = "UPDATE `registration_25to26`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `cnicBackImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
@@ -519,7 +519,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['passiqama']["name"])) {
-                $folderName = "upload_25to26/documents/" . $name;
+                $folderName = "uploads_26to27/documents/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -533,14 +533,14 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        $select = "SELECT * FROM `registration_25to26` WHERE cnic = '$name' ";
+        $select = "SELECT * FROM `registration_26to27` WHERE cnic = '$name' ";
         $result = mysqli_query($conn, $select);
 
         if ($result->num_rows > 0) {
             if (!empty($_FILES["passiqama"]["name"])) {
                 $newPicture = 'passiqama_' . basename($_FILES["passiqama"]["name"]);
 
-                $sql = "UPDATE `registration_25to26`  SET 
+                $sql = "UPDATE `registration_26to27`  SET 
             `passportIqamaImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
@@ -554,7 +554,7 @@ if (isset($_SESSION['logname'])) {
     } else if (isset($_POST['submit'])) {
         ;
         $cnic = $_SESSION['logname'];
-        $sql = "SELECT stdType, fscImage, matricImage, mdcatImage, cnicFrontImage, cnicBackImage,passportIqamaImage FROM`registration_25to26` WHERE cnic = '$cnic' ";
+        $sql = "SELECT stdType, fscImage, matricImage, mdcatImage, cnicFrontImage, cnicBackImage,passportIqamaImage FROM`registration_26to27` WHERE cnic = '$cnic' ";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             $row = mysqli_fetch_assoc($result);
@@ -563,7 +563,7 @@ if (isset($_SESSION['logname'])) {
             if ($row['stdType'] == 'Overseas/Foreign') {
                 //if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage']) && !empty($row['cnicFrontImage']) && !empty($row['cnicBackImage']) && !empty($row['passportIqamaImage'])) {
                 if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage']) && !empty($row['passportIqamaImage'])) {
-                $updateSql = "UPDATE `registration_25to26` SET `isDocumentsDone` = 1 WHERE `cnic` = '$cnic'";
+                $updateSql = "UPDATE `registration_26to27` SET `isDocumentsDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
                     }
                 } else {
@@ -572,7 +572,7 @@ if (isset($_SESSION['logname'])) {
             } else {
                 //if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage']) && !empty($row['cnicFrontImage']) && !empty($row['cnicBackImage'])) {
                 if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage'])) {
-                    $updateSql = "UPDATE `registration_25to26` SET `isDocumentsDone` = 1 WHERE `cnic` = '$cnic'";
+                    $updateSql = "UPDATE `registration_26to27` SET `isDocumentsDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
                     }
                 } else {
