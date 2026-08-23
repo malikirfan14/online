@@ -200,11 +200,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
 
 
 
-    if ($mcatr && $testType == 'MDCAT' && $mcat_passing_year == 2025) {
+    if ($mcatr && $testType == 'MDCAT' && ($mcat_passing_year == 2025 || $mcat_passing_year == 2026)) {
       $mdPer = $mcatr * 50 / 180;
       $aggregatePer = $aggregatePer + $mdPer;
     }
-    if ($mcatr && $testType == 'MDCAT' && $mcat_passing_year == 2024 || $mcat_passing_year == 2023 || $mcat_passing_year == 2022) {
+    if ($mcatr && $testType == 'MDCAT' && ($mcat_passing_year == 2024 || $mcat_passing_year == 2023 || $mcat_passing_year == 2022)) {
       $mdPer = $mcatr * 50 / 200;
       $aggregatePer = $aggregatePer + $mdPer;
     }

@@ -248,9 +248,13 @@ include('header.php');
                                                      <select  onchange="yearCheck(this);" class="mt-3" id="comYear"  name="comYear" required  >
                                                       <option value = "0000" > -- select Year of completion -- </option>
                                                           <!--<option value="0000" placeholder="select">&nbsp;</option>-->
-                                                           <option name="comYear">2020</option>
+                                                      <option name="comYear">2020</option>
                                                       <option name="comYear">2021</option>
                                                       <option name="comYear">2022</option>
+                                                      <option name="comYear">2023</option>
+                                                      <option name="comYear">2024</option>
+                                                      <option name="comYear">2025</option>
+                                                      <option name="comYear">2026</option>
                                                      </select>
                                             </div>
                                         </div>

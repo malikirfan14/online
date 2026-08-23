@@ -94,6 +94,7 @@ if (isset($_SESSION['logname'])) {
                                                <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <select class="form-control form-control-lg" class="mt-3" id="mcat_passing_year" name="mcat_passing_year" required>
                                                     <option selected disabled value=""> -- Select MDCAT Passing Year -- </option>
+                                                    <option value="2026" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2026' ? 'selected' : ''; ?>>2026</option>
                                                     <option value="2025" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2025' ? 'selected' : ''; ?>>2025</option>
                                                     <option value="2024" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2024' ? 'selected' : ''; ?>>2024</option>
                                                     <option value="2023" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2023' ? 'selected' : ''; ?>>2023</option>
@@ -133,6 +134,7 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-12 mb-3 mb-sm-0"> 
                                                 <select class="form-control form-control-lg" class="mt-3" id="ucatYear" name="ucatYear">
                                                     <option selected disabled value=""> -- Select UCAT Passing year -- </option>
+                                                    <option name="ucatYear" <?php echo $row['ucatYear'] == '2026' ? 'selected' : ''; ?>>2026</option>
                                                     <option name="ucatYear" <?php echo $row['ucatYear'] == '2025' ? 'selected' : ''; ?>>2025</option>
                                                     <option name="ucatYear" <?php echo $row['ucatYear'] == '2024' ? 'selected' : ''; ?>>2024</option>
                                                     <option name="ucatYear" <?php echo $row['ucatYear'] == '2023' ? 'selected' : ''; ?>>2023</option>
@@ -165,6 +167,7 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-12 mb-3 mb-sm-0"> 
                                                 <select class="form-control form-control-lg" class="mt-3" id="mcatYear" name="mcatYear" >
                                                     <option selected disabled value=""> -- Select MCAT Passing year -- </option>
+                                                    <option name="mcatYear" <?php echo $row['mcatYear'] == '2026' ? 'selected' : ''; ?>>2026</option>
                                                     <option name="mcatYear" <?php echo $row['mcatYear'] == '2025' ? 'selected' : ''; ?>>2025</option>
                                                     <option name="mcatYear" <?php echo $row['mcatYear'] == '2024' ? 'selected' : ''; ?>>2024</option>
                                                     <option name="mcatYear" <?php echo $row['mcatYear'] == '2023' ? 'selected' : ''; ?>>2023</option>
@@ -220,6 +223,7 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-6 mb-3" id="ifselect" style="display: none;">
                                                 <select class="form-control form-control-lg" onchange="yearCheck(this.value);" class="mt-3" id="comYear" name="comYear">
                                                     <option selected disabled value="">  -- Select year of completion -- </option>
+                                                    <option name="comYear" <?php echo $row['comYear'] == '2026' ? 'selected' : ''; ?>>2026</option>
                                                     <option name="comYear" <?php echo $row['comYear'] == '2025' ? 'selected' : ''; ?>>2025</option>
                                                     <option name="comYear" <?php echo $row['comYear'] == '2024' ? 'selected' : ''; ?>>2024</option>
                                                     <option name="comYear" <?php echo $row['comYear'] == '2023' ? 'selected' : ''; ?>>2023</option>
@@ -808,7 +812,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // function to set marks based on year
     function updateTotalMarks() {
-        if (yearSelect.value === '2025') {
+        if (yearSelect.value === '2025' || yearSelect.value === '2026') {
             marksInput.value = '180';
         } else if (yearSelect.value === '2024' || yearSelect.value === '2023') {
             marksInput.value = '200';
