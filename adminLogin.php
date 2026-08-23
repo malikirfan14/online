@@ -92,7 +92,7 @@ session_start();
 
                                     <div class="text-center">
 
-                                        <h1 class="h4 text-gray-900 mb-4">Student Reg 24-25 Panel</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Student Reg 2026-27 Panel</h1>
 
                                     </div>
 

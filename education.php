@@ -662,6 +662,9 @@ if (isset($_SESSION['logname'])) {
     function yesnoCheck(value, isUpdate = false) {
         if (value == "Completed") {
 
+        
+            document.getElementById('fscMarksOutOf').setAttribute('required', '');
+
             document.getElementById("ifYes").style.display = "block";
             document.getElementById("ifselect").style.display = "block";
             document.getElementById("ifFScYes").style.display = "block";
@@ -687,6 +690,8 @@ if (isset($_SESSION['logname'])) {
             }
         }
         else {
+
+            document.getElementById('fscMarksOutOf').removeAttribute('required');
 
             var elementFscMarks = document.forms['educationForm'].elements['fscmarks'];
             if (elementFscMarks) {

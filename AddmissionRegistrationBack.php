@@ -134,7 +134,7 @@ if ($conn === false) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (!empty($_FILES["profilePicture"]["name"])) {
-        $folderName = "uploads/profiles/" . $cnic;
+        $folderName = "uploads_26to27/profiles/" . $cnic;
         if (!file_exists($folderName)) {
           mkdir($folderName, 0777, true);
         }

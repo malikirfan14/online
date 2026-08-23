@@ -562,7 +562,7 @@ if (isset($_SESSION['adminName'])) {
                                                     <br>
                                                     <!-- Add an onclick attribute to open the image in a new window -->
                                                     <img id="preview6"
-                                                        src="<?php echo empty($row['mbbsChallanImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads/challans/mbbs/' . $row['cnic'] . '/' . $row['mbbsChallanImage']; ?>"
+                                                        src="<?php echo empty($row['mbbsChallanImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/challans/mbbs/' . $row['cnic'] . '/' . $row['mbbsChallanImage']; ?>"
                                                         alt="mbbsChallan image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                         onclick="openImage(this.src, 'mbbsChallan');">
                                                     <!-- Added image identifier "mbbsChallan" -->
@@ -582,7 +582,7 @@ if (isset($_SESSION['adminName'])) {
                                                     <br>
                                                     <!-- Add an onclick attribute to open the image in a new window -->
                                                     <img id="preview7"
-                                                        src="<?php echo empty($row['bdsChallanImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads/challans/bds/' . $row['cnic'] . '/' . $row['bdsChallanImage']; ?>"
+                                                        src="<?php echo empty($row['bdsChallanImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/challans/bds/' . $row['cnic'] . '/' . $row['bdsChallanImage']; ?>"
                                                         alt="bdsChallan image" style="max-width: 500px; max-height: 500px; cursor: pointer;"
                                                         onclick="openImage(this.src, 'bdsChallan');">
                                                     <!-- Added image identifier "bdsChallan" -->

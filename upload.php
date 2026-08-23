@@ -27,7 +27,7 @@ if ($_FILES && $_FILES['img']) {
             $zip->addFromString($_FILES['img']['name'][$i], file_get_contents($_FILES['img']['tmp_name'][$i]));
             
             // moving files to the target folder.
-            move_uploaded_file($_FILES['img']['tmp_name'][$i], './uploads/' . $newname);
+            move_uploaded_file($_FILES['img']['tmp_name'][$i], './uploads_26to27/' . $newname);
         }
         $zip->close();
         

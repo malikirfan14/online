@@ -168,17 +168,17 @@ if (isset($_SESSION['logname'])) {
 
                                 <option selected disabled value="">-- Select Program -- </option>
 
-                                <!-- <option value="MBBS" name="program"
+                                <option value="MBBS" name="program"
 
-                                    <?php echo $row['program'] == 'MBBS' ? 'selected' : ''; ?>>Only MBBS</option> -->
+                                    <?php echo $row['program'] == 'MBBS' ? 'selected' : ''; ?>>Only MBBS</option>
 
                                 <option value="BDS" name="program"
 
-                                    <?php echo $row['program'] == 'BDS' ? 'selected' : ''; ?>>BDS</option>
+                                    <?php echo $row['program'] == 'BDS' ? 'selected' : ''; ?>>Only BDS</option>
 
-                                <!-- <option value="BOTH" name="program"
+                                <option value="BOTH" name="program"
 
-                                    <?php echo $row['program'] == 'BOTH' ? 'selected' : ''; ?>>MBBS & BDS</option> -->
+                                    <?php echo $row['program'] == 'BOTH' ? 'selected' : ''; ?>>MBBS & BDS</option>
                                 
                                  
                       
@@ -190,7 +190,7 @@ if (isset($_SESSION['logname'])) {
 
                             <div class="profile-container">
 
-                                <img id="preview" src="<?php echo empty($row['profilePicture']) ? 'uploads/profiles/avatar.jpg' : 'uploads/profiles/' . $row['cnic'] . '/' . $row['profilePicture']; ?>"
+                                <img id="preview" src="<?php echo empty($row['profilePicture']) ? 'uploads_26to27/profiles/avatar.jpg' : 'uploads_26to27/profiles/' . $row['cnic'] . '/' . $row['profilePicture']; ?>"
 
                                     alt="Profile Picture">
 

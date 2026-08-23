@@ -150,7 +150,7 @@ if (isset($_SESSION['logname'])) {
                                                         <label for="mbbs"><b>Upload MBBS Challan:</b></label>
                                                         <br>
                                                         <img id="preview7"
-                                                            src="<?php echo empty($row['mbbsChallanImage']) ? 'uploads/challans/avatar.jpg' : 'uploads/challans/mbbs/' . $row['cnic'] . '/' . $row['mbbsChallanImage']; ?>"
+                                                            src="<?php echo empty($row['mbbsChallanImage']) ? 'uploads_26to27/challans/avatar.jpg' : 'uploads_26to27/challans/mbbs/' . $row['cnic'] . '/' . $row['mbbsChallanImage']; ?>"
                                                             alt="mbbs image" style="max-width: 330px; max-height: 320px">
                                                         <br>
                                                         <br>
@@ -173,7 +173,7 @@ if (isset($_SESSION['logname'])) {
                                                         <label><b>Upload BDS Challan:</b></label>
                                                         <br>
                                                         <img id="preview8"
-                                                            src="<?php echo empty($row['bdsChallanImage']) ? 'uploads/challans/avatar.jpg' : 'uploads/challans/bds/' . $row['cnic'] . '/' . $row['bdsChallanImage']; ?>"
+                                                            src="<?php echo empty($row['bdsChallanImage']) ? 'uploads_26to27/challans/avatar.jpg' : 'uploads_26to27/challans/bds/' . $row['cnic'] . '/' . $row['bdsChallanImage']; ?>"
                                                             alt="bds image" style="max-width: 330px; max-height: 320px">
                                                         <br>
                                                         <br>
@@ -330,7 +330,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['mbbs']["name"])) {
-                $folderName = "uploads/challans/mbbs/" . $name;
+                $folderName = "uploads_26to27/challans/mbbs/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }
@@ -360,7 +360,7 @@ if (isset($_SESSION['logname'])) {
             $name = $_SESSION['logname'];
 
             if (!empty($_FILES['bds']["name"])) {
-                $folderName = "uploads/challans/bds/" . $name;
+                $folderName = "uploads_26to27/challans/bds/" . $name;
                 if (!file_exists($folderName)) {
                     mkdir($folderName, 0755, true);
                 }

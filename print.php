@@ -272,7 +272,7 @@ $id =$_REQUEST['id'];
         </div>
     </div>
         <div class="col col-sm-2 justify-content-center text-center " style=" border: 1px solid black; border-collapse: collapse; alig-item : center;">
-            <img id="preview" src="<?php echo empty($row['profilePicture']) ? 'uploads/profiles/avatar.jpg' : 'uploads/profiles/' . $row['cnic'] . '/' . $row['profilePicture']; ?>" alt="Profile Picture">
+            <img id="preview" src="<?php echo empty($row['profilePicture']) ? 'uploads_26to27/profiles/avatar.jpg' : 'uploads_26to27/profiles/' . $row['cnic'] . '/' . $row['profilePicture']; ?>" alt="Profile Picture">
         </div>
 </div>
 

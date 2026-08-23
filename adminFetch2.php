@@ -107,7 +107,7 @@ if(isset($_SESSION['adminName']))
 
 <td>
     <?php 
-        $folder1 = 'uploads/challans/mbbs/'.$row['cnic'];
+        $folder1 = 'uploads_26to27/challans/mbbs/'.$row['cnic'];
         // $folder2 = 'challanBDS/'.$row['cnic'];
         // $folder3 = 'challanMBBS/'.$row['cnic'];
         if(is_dir($folder1) || is_dir($folder2) || is_dir($folder3))
@@ -126,7 +126,7 @@ if(isset($_SESSION['adminName']))
 
 <td>
     <?php 
-        $folder1 = 'uploads/challans/bds/'.$row['cnic'];
+        $folder1 = 'uploads_26to27/challans/bds/'.$row['cnic'];
         // $folder2 = 'challanBDS/'.$row['cnic'];
         // $folder3 = 'challanMBBS/'.$row['cnic'];
         if(is_dir($folder1) || is_dir($folder2) || is_dir($folder3))
@@ -145,7 +145,7 @@ if(isset($_SESSION['adminName']))
 
 <td>
     <?php 
-        $folder1 = 'uploads/documents/'.$row['cnic'];
+        $folder1 = 'uploads_26to27/documents/'.$row['cnic'];
         if(is_dir($folder1))
         {
         echo '
