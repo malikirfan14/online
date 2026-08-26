@@ -247,7 +247,7 @@ if (mysqli_num_rows($result) > 0) {
 </button>
 
 <button type="button"  class="btn btn-danger" style="color : White; float : left; margin-top : 25px; margin-right : 10px; margin-bottom : 50px;">
-    <a href="registration.php" style="color : White; padding-right:5px; padding-left:5px ">Update Personal info or Result's</a>
+    <a href="registration.php" style="color : White; padding-right:5px; padding-left:5px ">Update Personal info or Results</a>
 </button>
 
 <button type="button"  class="btn btn-danger" style="color : White; float : left; margin-top : 25px; margin-right : 10px; margin-bottom : 50px;">
