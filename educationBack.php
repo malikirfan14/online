@@ -136,8 +136,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
 
     $marksOutOf = $_REQUEST['marksOutOf'];
 
-    $fscMarksOutOf = $_REQUEST['fscMarksOutOf'];
-    $fscMarksOutOf  = !empty($_POST['fscMarksOutOf']) ? intval($_POST['fscMarksOutOf']) : 0;
+    $fscMarksOutOf = $_REQUEST['fscMarksOutOf'] != '' ? $_REQUEST['fscMarksOutOf'] : 0;
 
     $mcat = $_REQUEST['mcat'] != '' ? $_REQUEST['mcat'] : '0';
 

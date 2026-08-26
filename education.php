@@ -244,8 +244,8 @@ if (isset($_SESSION['logname'])) {
                                                     placeholder="F.Sc / A Level's Obtained Marks" name="fscmarks">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0" id="ifFScYes" style="display: none;">
-                                                <select class="form-control form-control-lg" id="fscMarksOutOf" name="fscMarksOutOf" required>
-                                                    <option selected disabled value="">-- F.Sc / A Level's Total Marks-- </option>8
+                                                <select class="form-control form-control-lg" id="fscMarksOutOf" name="fscMarksOutOf">
+                                                    <option selected disabled value="">-- F.Sc / A Level's Total Marks-- </option>
                                                     <option name="fscMarksOutOf" <?php echo $row['fscMarksOutOf'] == '1200' ? 'selected' : ''; ?> >1200</option>
                                                     <option name="fscMarksOutOf" <?php echo $row['fscMarksOutOf'] == '1100' ? 'selected' : ''; ?> >1100</option>
                                                 </select>
