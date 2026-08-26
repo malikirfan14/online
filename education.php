@@ -97,7 +97,6 @@ if (isset($_SESSION['logname'])) {
                                                     <option value="2026" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2026' ? 'selected' : ''; ?>>2026</option>
                                                     <option value="2025" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2025' ? 'selected' : ''; ?>>2025</option>
                                                     <option value="2024" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2024' ? 'selected' : ''; ?>>2024</option>
-                                                    <option value="2023" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2023' ? 'selected' : ''; ?>>2023</option>
                                                 </select></div>
                                                 <!--Total marks 200/180-->
                                                  <div class="col-sm-6 mb-3 mb-sm-0">
