@@ -2,25 +2,11 @@
 
 error_reporting(0);
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 
 if (isset($_SESSION['logname'])) {
 
-
-
-
-
-
-
     $logname = $_SESSION['logname'];
-
-
-
-    //require('configure.php');
-
-    //include('linkss.php');
-
-    //include('header.php');
 
     if ($conn === false) {
 
@@ -30,19 +16,9 @@ if (isset($_SESSION['logname'])) {
 
         if (isset($_SESSION['logname']) != "") {
 
-
-
-
-
-
-
-
-
             $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
 
             $result = mysqli_query($conn, $query);
-
-
 
             if (mysqli_num_rows($result) <= 0) {
 
@@ -52,76 +28,36 @@ if (isset($_SESSION['logname'])) {
 
             }
 
-
-
             if (mysqli_num_rows($result) > 0) {
 
                 while ($row = mysqli_fetch_array($result)) {
 
                     $profilePicture = $row['profilePicture'];
 
-
-
-
-
                     ?>
 
-<style>
-
-    .mycss {
-
-  font-family: "Lucida Console", "Courier New", monospace;
-
-  font-size: 13px;
-
-  padding:0 0 0 10px;
-
-  color: grey;
-
-}
-
-
-
-</style>                    
-
-
-
 <!-- End of Topbar -->
-
-
 
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
 
-
-
     <!-- Page Heading -->
 
     <h1 class="h3 mb-4 text-gray-800">Personal Info</h1>
 
-
-
     <div class="row">
 
-
-
         <div class="col-lg-12">
-
-
 
             <!-- Circle Buttons -->
 
             <div class="container">
 
-
-
-                <form id="rform" class="user" action="AddmissionRegistrationBack.php" enctype="multipart/form-data" method="post">
+                <form id="rform" name="rform" class="user" action="AddmissionRegistrationBack.php" enctype="multipart/form-data" method="post">
                     <?php if (isset($_GET['edit'])): ?>
                         <input type="hidden" name="edit" value="1">
                     <?php endif; ?>
-
-
 
                     <div class="form-group row" style="margin-left:10px;">
 
@@ -136,8 +72,6 @@ if (isset($_SESSION['logname'])) {
                     </div>
 
                     <div class="form-group row">
-
-
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
 
@@ -156,8 +90,6 @@ if (isset($_SESSION['logname'])) {
                                 <option value="Open_Merit" name="stdType"
 
                                     <?php echo $row['stdType'] == 'Open_Merit' ? 'selected' : ''; ?>>Open Merit</option>
-
-
 
                             </select>
 
@@ -182,12 +114,10 @@ if (isset($_SESSION['logname'])) {
                                 <option value="BOTH" name="program"
 
                                     <?php echo $row['program'] == 'BOTH' ? 'selected' : ''; ?>>MBBS & BDS</option>
-                                
-                                 
-                      
+
                             </select>
 
-                        </div>                   
+                        </div>
 
                         <div style="margin-left: 0%; margin-top: 4%;">
 
@@ -206,7 +136,6 @@ if (isset($_SESSION['logname'])) {
 
                                 <div class="required-message" style="color: red; font-size: 12px; display: none;">Please choose a profile picture.</div>
                                 <?php endif; ?>
-                            
 
                             </div>
 
@@ -214,11 +143,7 @@ if (isset($_SESSION['logname'])) {
 
                     </div>
 
-
-
                     <div class="form-group row">
-
-
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <label class="form-label-custom">Student Name</label>
@@ -238,8 +163,6 @@ if (isset($_SESSION['logname'])) {
 
                         <div class="form-group row">
 
-
-
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label class="form-label-custom">Email Address</label>
                                 <input value="<?php echo $row['email']; ?>" type="email"
@@ -257,8 +180,6 @@ if (isset($_SESSION['logname'])) {
 
                         <div class="form-group row">
 
-
-
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label class="form-label-custom">Student Phone Number</label>
                                 <input
@@ -273,13 +194,9 @@ if (isset($_SESSION['logname'])) {
                                     name="city" required>
                             </div>
 
-
-
                         </div>
 
                         <div class="form-group row">
-
-
 
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label class="form-label-custom">Father Phone Number</label>
@@ -300,11 +217,7 @@ if (isset($_SESSION['logname'])) {
 
                         </div>
 
-
-
                         <div class="form-group row">
-
-
 
                             <div class="col-sm-6 mb-3 mb-sm-0 "><label class="form-label-custom">Date of Birth</label>
 
@@ -314,7 +227,7 @@ if (isset($_SESSION['logname'])) {
 
                                     placeholder="Date of birth" name="dob" required>
 
-                            </div>                              
+                            </div>
 
                             <div class="col-sm-6"><label class="form-label-custom">CNIC Issue Date</label>
 
@@ -327,8 +240,6 @@ if (isset($_SESSION['logname'])) {
                             </div>
 
                         </div>
-
-
 
                         <div class="form-group">
                             <label class="form-label-custom">Current Residential Address (Full)</label>
@@ -347,41 +258,15 @@ if (isset($_SESSION['logname'])) {
 
                             <label for="male">Male</label>
 
-                            
-
                             <!-- Add some margin to separate the buttons -->
 
                             <span style="margin-right: 50px;"></span>
-
-                            
 
                             <input type="radio" id="female" name="gender" value="Female" <?php if ($row['gender'] === 'Female') echo 'checked'; ?>>
 
                             <label for="female">Female</label>
 
                         </div>
-
-                        <!-- <img id="preview" src="profile/<?php echo $row['cnic'] . '/' . $row['profilePicture']; ?>" alt="Profile Picture" style="max-width: 200px;"><br><br>
-
-                        <label for="profilePicture">Profile Picture:</label>
-
-                        <input type="file" name="profilePicture" id="profilePicture" accept="image/*" onchange="previewImage()"><br><br> -->
-
-                        <!-- <img id="preview" src="#" alt="Preview" style="max-width: 200px; display: none;"><br><br> -->
-
-                        
-
-
-
-
-
-
-
-                        
-
-
-
-
 
                         <script>
 
@@ -397,13 +282,9 @@ if (isset($_SESSION['logname'])) {
 
                             var file = fileInput.files[0];
 
-
-
                             if (file) {
 
                                 var reader = new FileReader();
-
-
 
                                 reader.onload = function(e) {
 
@@ -413,8 +294,6 @@ if (isset($_SESSION['logname'])) {
 
                                 };
 
-
-
                                 reader.readAsDataURL(file);
 
                             }
@@ -423,121 +302,17 @@ if (isset($_SESSION['logname'])) {
 
                     </script>
 
-                        
-
-
-
-                        <!-- <div class="form-group">
-
-                                            <input type="text" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="MDCAT Passing Year"
-
-                                             onfocus="(this.type='month')" onblur="(this.type='text')" name="mcat_passing_year" >
-
-                                        </div> -->
-
-
-
-                        <!-- <div class="form-group row">
-
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-
-                                                <input type="text" class="form-control form-control-user"
-
-                                                    id="exampleInputPassword" placeholder="MDCAT Roll Number"
-
-                                                    name="mcat" >
-
-                                            </div>
-
-                                            <div class="col-sm-6">
-
-                                                <input type="number" class="form-control form-control-user"
-
-                                                    id="exampleRepeatPassword" placeholder="MDCAT Marks" min="90" max="210" name="mcatr" >
-
-                                                    
-
-                                            </div>
-
-                                        </div> -->
-
-
-
-                        <!-- <div class="form-group row" >
-
-                                            <div class="col-sm-6 mb-3  mb-sm-0" >
-
-                                                <input type="text" class="form-control form-control-user"
-
-                                                    id="exampleInputPassword" placeholder="Matric Marks" name="matricMarks"  required >
-
-                                            </div> -->
-
-
-
-                        <!--          <select class="mt-3" id="marksOutOf"  name="marksOutOf"  required  >-->
-
-                        <!--          <option selected disabled value = "" > -- Out Off -- </option>-->
-
-                        <!--            <option name="marksOutOf">850</option>-->
-
-                        <!--            <option name="marksOutOf">900</option>-->
-
-                        <!--            <option name="marksOutOf">1050</option>-->
-
-                        <!--            <option name="marksOutOf">1100</option>-->
-
-
-
-                        <!--<option value="0000" placeholder="select">&nbsp;</option>-->
-
-                        <!--         </select>-->
-
-                        <!--</div>-->
-
                     </div>
 
-
-
-                    <!--<div class="form-group">-->
-
-                    <!--    <input type="text" class="form-control form-control-user"-->
-
                     <!--        id="exampleInputPassword" placeholder="Select Program " readonly>-->
-
-                    <!--    <div class="row mt-3">-->
-
-                    <!--        <div class="col-sm-4">-->
-
-                    <!--            <label class="radio-inline">-->
-
-                    <!--                <input type="radio" id="stdType" value="Overseas/Foreign" name="stdType"-->
 
                     <!--                    required> Overseas/Foreign-->
 
                     <!--            </label>-->
 
-                    <!--        </div>-->
-
-                    <!--        <div class="col-sm-4">-->
-
-                    <!--            <label class="radio-inline">-->
-
-                    <!--                <input type="radio" id="stdType" value="Open Merit" name="stdType"-->
-
                     <!--                    required> Open Merit-->
 
                     <!--            </label>-->
-
-                    <!--        </div>-->
-
-
-
-                    <!--    </div>-->
-
-                    <!--</div>-->
-
-
 
                     <?php if ($row['isVerified'] != '1'): ?>
                         <button type="submit" class="btn btn-primary btn-user btn-block" id="submitButton">
@@ -557,27 +332,15 @@ if (isset($_SESSION['logname'])) {
 
             </div> <!-- ./container -->
 
-
-
             <!-- Brand Buttons -->
-
-
 
         </div>
 
-
-
     </div>
-
-
 
 </div>
 
-
-
 <!-- /.container-fluid -->
-
-
 
 <style>
 
@@ -589,17 +352,11 @@ if (isset($_SESSION['logname'])) {
 
                             }
 
-
-
                             .custom-file-input {
 
                                 display: none;
 
                             }
-
-
-
-
 
                             .custom-button {
 
@@ -639,26 +396,6 @@ if (isset($_SESSION['logname'])) {
 
                         </style>
 
-
-
-<!-- Bootstrap core JavaScript-->
-
-<script src="vendor/jquery/jquery.min.js"></script>
-
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-
-<!-- Core plugin JavaScript-->
-
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-
-
-<!-- Custom scripts for all pages-->
-
-<script src="js/sb-admin-2.min.js"></script>
-
 <script type="text/javascript">
 
     function preventBack() {
@@ -683,13 +420,9 @@ if (isset($_SESSION['logname'])) {
 
         var fileInput = document.getElementById("profilePicture");
 
-        var requiredMessage = document.querySelector(".required-message");  
-
-        // Check if either a new file has been selected or there is a profile picture in the database
+        var requiredMessage = document.querySelector(".required-message");
 
         var profilePicture = "<?php echo $profilePicture; ?>";
-
-       
 
         if (!profilePicture &&  fileInput.files.length === 0 ) {
 
@@ -709,13 +442,9 @@ if (isset($_SESSION['logname'])) {
 
 <script>
 
-    
-
     function Filevalidationreg() {
 
         const fi = document.getElementById('profilePicture');
-
-        // Check if any file is selected.
 
         if (fi.files.length > 0) {
 
@@ -724,8 +453,6 @@ if (isset($_SESSION['logname'])) {
                 const fsize = fi.files.item(i).size;
 
                 console.log("I am file size ..  " + fsize);
-
-                // const file = Math.round((fsize / 1024));
 
                 // The size of the file.
 
@@ -753,25 +480,9 @@ if (isset($_SESSION['logname'])) {
 
     }
 
-
-
-
-
     function stdOpenTypeCheck(that) {
 
         if (that.value == "Open_Merit") {
-
-            //  document.getElementById("passIqamaNo").removeAttribute("required");
-
-            // document.getElementById("instituteName").removeAttribute("required");
-
-            // document.getElementById("instituteCity").removeAttribute("required");
-
-            // document.getElementById("residentialCountry").removeAttribute("required");
-
-            // document.getElementById("visaStatus").removeAttribute("required");
-
-            //alert("check");
 
             //   passIqamaNo
 
@@ -794,8 +505,6 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("visaStatus").style.display = "none";
 
             if (document.getElementById("passIqamaNo1").value == "") {
-
-                // alert('select me');
 
                 document.getElementById("passIqamaNo1").removeAttribute("required");
 
@@ -824,16 +533,6 @@ if (isset($_SESSION['logname'])) {
                 document.getElementById("visaStatus1").removeAttribute("required");
 
             }
-
-            // document.forms['rform'].elements['passIqamaNo'].value = "0000";
-
-            // document.forms['rform'].elements['instituteName'].value = "0000";
-
-            // document.forms['rform'].elements['instituteCity'].value = "0000";
-
-            // document.forms['rform'].elements['residentialCountry'].value = "0000";
-
-            // document.forms['rform'].elements['visaStatus'].value = "0000";
 
         } else {
 
@@ -859,8 +558,6 @@ if (isset($_SESSION['logname'])) {
 
             if (document.getElementById("passIqamaNo1").value == "") {
 
-                // alert('select me');
-
                 document.getElementById("passIqamaNo1").removeAttribute("required");
 
             }
@@ -889,29 +586,13 @@ if (isset($_SESSION['logname'])) {
 
             }
 
-            // document.getElementById("passIqamaNo").removeAttribute("required");
-
-            // document.getElementById("instituteName").removeAttribute("required");
-
-            // document.getElementById("instituteCity").removeAttribute("required");
-
-            // document.getElementById("residentialCountry").removeAttribute("required");
-
-            // document.getElementById("visaStatus").removeAttribute("required");
-
-            //  edName.removeAttribute("required");
-
         }
 
     }
 
-
-
     function stdTypeCheck(that) {
 
         if (that.value == "Overseas/Foreign") {
-
-            //alert("check");
 
             //   passIqamaNo
 
@@ -933,21 +614,7 @@ if (isset($_SESSION['logname'])) {
 
             document.getElementById("visaStatus").style.display = "block";
 
-            //   cont a = document.getElementById("passIqamaNo");
-
-            // document.forms['rform'].elements['passIqamaNo'].value = "";
-
-            // document.forms['rform'].elements['instituteName'].value = "";
-
-            // document.forms['rform'].elements['instituteCity'].value = "";
-
-            // document.forms['rform'].elements['residentialCountry'].value = "";
-
-            // document.forms['rform'].elements['visaStatus'].value = "";
-
             if (document.getElementById("passIqamaNo1").value == "") {
-
-                // alert('select me');
 
                 document.getElementById("passIqamaNo1").setAttribute('required', '');
 
@@ -979,19 +646,7 @@ if (isset($_SESSION['logname'])) {
 
         }
 
-        // if(document.forms['rform'].elements['fscmarks'].value = "test")
-
-        //   if(document.forms['rform'].elements['fscmarks'].value = "")
-
-        //         // if( document.ifYes.fscmarks.value == "" )
-
         //           {
-
-        //              alert( "Please provide your Father Name!" );
-
-        //              document.StudentRegistration.fscmarks.focus() ;
-
-        //              return false;
 
         //           }
 
@@ -1021,117 +676,29 @@ if (isset($_SESSION['logname'])) {
 
     }
 
-    // function yesnoCheck(that) {
-
-    //     if (that.value == "Completed") {
-
-    //             document.getElementById("ifYes").style.display = "block";
-
-    //             document.getElementById("ifselect").style.display = "block";
-
-    //             document.forms['rform'].elements['comYear'].value = "0000";
-
-    //             document.forms['rform'].elements['fscmarks'].value = "";
-
-    //             if(document.forms['rform'].elements['fscmarks'].value == "")
-
-    //             {   var elementFscMarks = document.forms['rform'].elements['fscmarks'];
-
-    //                 elementFscMarks.required = true;                   
+    //             {
 
     //             }
 
-    //             if(document.forms['rform'].elements['comYear'].value == "0000")
-
-    //             {
-
-    //                 var comYear = document.forms['rform'].elements['comYear'];
-
-    //                 comYear.required = true; 
-
-    //             }                             
-
     //         }
-
-    //         // if(document.forms['rform'].elements['fscmarks'].value = "test")
-
-    //     //   if(document.forms['rform'].elements['fscmarks'].value = "")
-
-    //     //         // if( document.ifYes.fscmarks.value == "" )
 
     //     //           {
 
-    //     //              alert( "Please provide your Father Name!" );
-
-    //     //              document.StudentRegistration.fscmarks.focus() ;
-
-    //     //              return false;
-
     //     //           }
 
-    //      else {
+    //             }
 
-    //             var elementFscMarks = document.forms['rform'].elements['fscmarks'];           
-
-    //             if(elementFscMarks){                   
-
-    //                 elementFscMarks.required = false;
-
-    //                 elementFscMarks.value = "0000";
-
-    //             } 
-
-    //             var comYear = document.forms['rform'].elements['comYear'];           
-
-    //             if(comYear){                  
-
-    //                 comYear.required = false;
-
-    //                 comYear.value = "0000";
-
-    //             } 
-
-    //             document.getElementById("ifYes").style.display = "none";       
-
-    //             document.getElementById("ifselect").style.display = "none";                  
+    //             }
 
     //     }
 
     // }
 
-    //    function yearCheck(that){
-
-    //     if (that.value == "2021") {
-
     //         {
-
-    //         document.getElementById("show1").style.display = "block";
-
-    //         document.getElementById("show2").style.display = "block";
-
-    //         document.getElementById("show3").style.display = "block";
-
-    //             if(document.forms['rform'].elements['[physics]'].value == "")
-
-    //         {
-
-    //                 document.getElementById("physics").attributes["required"] ="true"; 
 
     //         }
 
-    //            if(document.forms['rform'].elements['chemistry'].value == "")
-
     //         {
-
-    //                 document.getElementById("chemistry").attributes["required"] ="true"; 
-
-    //         }
-
-    //            if(document.forms['rform'].elements['biology'].value == "")
-
-    //         {
-
-    //                 document.getElementById("biology").attributes["required"] ="true"; 
 
     //         }
 
@@ -1142,8 +709,6 @@ if (isset($_SESSION['logname'])) {
     // }
 
 </script>
-
-
 
 <script type="text/javascript">
 
@@ -1169,48 +734,16 @@ if (isset($_SESSION['logname'])) {
 
 </script>
 
-
-
 <script type="text/javascript">
 
     // get selectbox
 
     //     //commented the below line becasue options are harcoded in select year tag
 
-    // var selectBox = document.getElementById('comYear');
-
-    // // loop through years
-
-    // for (var i = 2022; i >= 2020; i--) {
-
-    //     // create option element
-
-    //     var option = document.createElement('option');
-
-    //     // add value and text name
-
-    //     option.value = i;
-
-    //     option.innerHTML = i;
-
-    //     // add the option element to the selectbox
-
-    //     selectBox.appendChild(option);
-
-    // }
-
 </script>
-
-
 
 <?php
 
-
-
-
-
 }
-
-
 
 ?>

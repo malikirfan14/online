@@ -1,11 +1,9 @@
 <?php
 error_reporting(0);
-session_start();
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 if (isset($_SESSION['logname'])) {
     $logname = $_SESSION['logname'];
-    // require('configure.php');
-    // include('linkss.php');
-    // include('header.php');
+
     if ($conn === false) {
         die("ERROR: Could not connect. " . mysqli_connect_error());
     } else {
@@ -14,13 +12,7 @@ if (isset($_SESSION['logname'])) {
             $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
             $result = mysqli_query($conn, $query);
 
-            // if (mysqli_num_rows($result) <= 0) {
-            //     $query = "SELECT * FROM `student_reg_26to27` WHERE `cnic` = '$logname'";
-            //     $result = mysqli_query($conn, $query);
             // }
-
-
-
 
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
@@ -28,7 +20,7 @@ if (isset($_SESSION['logname'])) {
                     $fscStatus = $row['fscStatus'];
                     $testType = $row['testType'];
                     $comYear = $row['comYear'];
-                    
+
                     ?>
                     <!-- End of Topbar -->
                     <!-- Begin Page Content -->
@@ -50,7 +42,7 @@ if (isset($_SESSION['logname'])) {
                             <div class="col-lg-12">
                                 <!-- Circle Buttons -->
                                 <div class="container">
-                                    <form id="educationForm" class="user" action="educationBack.php">
+                                    <form id="educationForm" name="educationForm" class="user" action="educationBack.php">
                                          <?php if (isset($_GET['edit'])): ?>
                                              <input type="hidden" name="edit" value="1">
                                          <?php endif; ?>
@@ -90,8 +82,8 @@ if (isset($_SESSION['logname'])) {
                                                     <option selected disabled value="">-- Visa Status-- </option>
                                                     <option name="visaStatus" <?php echo $row['visaStatus'] == 'Valid' ? 'selected' : ''; ?> >Valid</option>
                                                     <option name="visaStatus" <?php echo $row['visaStatus'] == 'Expired' ? 'selected' : ''; ?>>Expired</option>
-                                                </select>                                            
-                                            </div>                       
+                                                </select>
+                                            </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <select class="form-control form-control-lg" onchange="testTypeChange(this.value);"
                                                  name="testType" id="testType" style="display: none;">
@@ -100,7 +92,7 @@ if (isset($_SESSION['logname'])) {
                                                     <option name="testType" <?php echo $row['testType'] == 'UCAT' ? 'selected' : ''; ?>>UCAT</option>
                                                     <option name="testType" <?php echo $row['testType'] == 'MCAT' ? 'selected' : ''; ?>>MCAT</option>
                                                 </select>
-                                            </div>                                   
+                                            </div>
                                         </div>
                                         <div id="mdcatDiv" style="display:none;">
                                             <div class="form-group row">
@@ -114,17 +106,17 @@ if (isset($_SESSION['logname'])) {
                                                 </select></div>
                                                  <div class="col-sm-6 mb-3 mb-sm-0">
                                                     <label class="form-label-custom">Total Entry Test Marks</label>
-                                                     <input type="text" 
-            class="form-control form-control-lg" 
-            id="total_marks" 
-            name="total_marks" 
-            placeholder="Total Marks" 
-            readonly 
+                                                     <input type="text"
+            class="form-control form-control-lg"
+            id="total_marks"
+            name="total_marks"
+            placeholder="Total Marks"
+            readonly
             value="<?php echo htmlspecialchars($row['total_marks'] ?? ''); ?>">
                                                  </div>
-                                                
-                                            </div>                                            
-                                            
+
+                                            </div>
+
                                             <div class="form-group row" id="extraFields">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                                     <label class="form-label-custom">MDCAT Roll Number</label>
@@ -141,12 +133,9 @@ if (isset($_SESSION['logname'])) {
                                             </div>
                                         </div>
 
-
-
-
                                     <div id="ucatDiv" style="display:none">
                                         <div class="form-group row">
-                                            <div class="col-sm-12 mb-3 mb-sm-0"> 
+                                            <div class="col-sm-12 mb-3 mb-sm-0">
                                                 <label class="form-label-custom">UCAT Passing Year</label>
                                                 <select class="form-control form-control-lg" class="mt-3" id="ucatYear" name="ucatYear">
                                                     <option selected disabled value=""> -- Select UCAT Passing year -- </option>
@@ -182,7 +171,7 @@ if (isset($_SESSION['logname'])) {
                                     </div>
                                     <div id="mcatDiv" style="display:none">
                                         <div class="form-group row">
-                                            <div class="col-sm-12 mb-3 mb-sm-0"> 
+                                            <div class="col-sm-12 mb-3 mb-sm-0">
                                                 <label class="form-label-custom">MCAT Passing Year</label>
                                                 <select class="form-control form-control-lg" class="mt-3" id="mcatYear" name="mcatYear" >
                                                     <option selected disabled value=""> -- Select MCAT Passing year -- </option>
@@ -295,101 +284,8 @@ if (isset($_SESSION['logname'])) {
                                                     placeholder="Physics marks" name="physics">
                                             </div>
                                         </div>
-                                        
-                                        <!-- <div class="form-group row mt-3">
-                                            <div class="col-sm-12">
-                                                <label><strong>Did you apply for MBBS Admisssion through UHS ?</strong></label><br>
-                                                <label><a target="_blank" href="https://www.uhs.edu.pk/finalommbbsmlprivate25.php">Click here to find UHS ID</a></label><br>
 
-                                                <label class="mr-3">
-                                                    <input type="radio" name="uhs_applied" value="yes" 
-                                                        onclick="toggleUhsSection('yes')" <?php echo (!empty($row['uhs_application_id'])) ? 'checked' : ''; ?>> Yes
-                                                </label>
-
-                                                <label>
-                                                    <input type="radio" name="uhs_applied" value="no" 
-                                                        onclick="toggleUhsSection('no')" <?php echo (empty($row['uhs_application_id'])) ? 'checked' : ''; ?>> No
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row" id="uhsSection" style="display:<?php echo (!empty($row['uhs_application_id'])) ? 'flex' : 'none'; ?>;">
-                                            <div class="col-sm-4 mb-3">
-                                                <input type="text"
-                                                    class="form-control form-control-user"
-                                                    id="uhs_application_id"
-                                                    name="uhs_application_id"
-                                                    placeholder="UHS Application (User) ID (423456)"
-                                                    maxlength="6"
-                                                    value="<?php echo $row['uhs_application_id']; ?>"
-                                                    oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                                            </div>
-                                            <div class="col-sm-2">
-                                                <button type="button" class="btn btn-info btn-user btn-block" onclick="fetchUhsData('add')">
-                                                    Get Details
-                                                </button>
-                                            </div>
-                                        </div>
-                                   
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label id="uhsMsg"></label>
-                                            </div>
-                                        </div> -->
                                                                                 <!-- UHS DATA DISPLAY -->
-                                        <!-- <div class="form-group row" id="uhsDataSection" style="display:none;">
-                                            <div class="col-sm-6 mb-3">
-                                                <input type="text" id="uhs_name" class="form-control form-control-user" placeholder="Student Name" readonly>
-                                            </div>
-
-                                            <div class="col-sm-6 mb-3">
-                                                <input type="text" id="uhs_father_name" class="form-control form-control-user" placeholder="Father Name" readonly>
-                                            </div> -->
-
-                                            <!-- <div class="col-sm-6 mb-3">
-                                                <input type="text" id="uhs_mobile" class="form-control form-control-user" placeholder="Mobile" readonly>
-                                            </div>
-
-                                            <div class="col-sm-6 mb-3">
-                                                <input type="text" id="uhs_email" class="form-control form-control-user" placeholder="Email" readonly>
-                                            </div> -->
-
-                                            <!-- <div class="col-sm-6 mb-3">
-                                                <input type="text" id="uhs_aggregate" class="form-control form-control-user" placeholder="Aggregate" readonly>
-                                            </div>
-
-                                            <div class="col-sm-6 mb-3">
-                                                <input type="text" id="uhs_district" class="form-control form-control-user" placeholder="District" readonly>
-                                            </div>
-                                        </div>
-
-                                    <div class="form-group mt-3">
-                                        <label><strong>Are you already admitted in any other college (Under UHS)?</strong></label><br>
-                                        <label class="mr-3">
-                                            <input type="radio" name="already_admitted" value="yes" <?php echo (!empty($row['uhs_college'])) ? 'checked' : ''; ?>> Yes
-                                        </label>
-                                        <label>
-                                            <input type="radio" name="already_admitted" value="no" <?php echo (empty($row['uhs_college'])) ? 'checked' : ''; ?>> No
-                                        </label>
-                                    </div>
-
-                                    <div class="form-group mt-3 row" id="uhsCollegeDiv" style="display:<?php echo (!empty($row['uhs_college'])) ? 'block' : 'none'; ?>;">
-                                        <div class="col-sm-6 mb-3">   
-                                            <label>College Name:</label>
-                                            <select name="uhs_college" id="uhs_college" class="form-control form-control-lg">
-                                                <option value="">-- Select College --</option>
-                                                <?php
-                                                $q = mysqli_query($conn, "SELECT name FROM uhs_colleges ORDER BY name");
-                                                while ($c_row = mysqli_fetch_assoc($q)) {
-                                                    $selected = ($row['uhs_college'] == $c_row['name']) ? 'selected' : '';
-                                                    echo "<option value='{$c_row['name']}' $selected>{$c_row['name']}</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div> -->
-
-
 
                                         <?php if ($row['isVerified'] != '1'): ?>
                                         <button type="submit" id="submitBtn" class="btn btn-primary btn-user btn-block">
@@ -411,18 +307,6 @@ if (isset($_SESSION['logname'])) {
 }
 ?>
 
-
-
-
-<!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
 <script type="text/javascript">
     function preventBack() { window.history.forward(); }
     setTimeout("preventBack()", -0);
@@ -434,14 +318,14 @@ if (isset($_SESSION['logname'])) {
         var yearSelect = document.getElementById("mcat_passing_year");
         var elementMcat = document.forms['educationForm'].elements['mcat'];
         var elementMcatr = document.forms['educationForm'].elements['mcatr'];
-        
+
         if (!elementMcat || !elementMcatr) return;
-        
+
         var stdType = "<?php echo $stdType; ?>";
         var testTypeSelect = document.getElementById("testType");
         var isLocal = (stdType !== 'Overseas/Foreign');
         var isMdcatSelected = (testTypeSelect && testTypeSelect.value === 'MDCAT');
-        
+
         if (isLocal || isMdcatSelected) {
             if (yearSelect && yearSelect.value === "2026") {
                 elementMcat.required = false;
@@ -465,8 +349,7 @@ if (isset($_SESSION['logname'])) {
     $(document).ready(function () {
         var stdType = "<?php echo $stdType; ?>";
         stdTypeCheck(stdType);
-        
-        
+
         var fscStatus = "<?php echo $fscStatus; ?>";
         if (fscStatus == 'Completed') {
             yesnoCheck('Completed', true);
@@ -476,24 +359,22 @@ if (isset($_SESSION['logname'])) {
         if (comYear == "2021") {
             yearCheck(comYear, true);
         }
-          
+
         var testType = "<?php echo $testType; ?>";
         testTypeChange(testType);
-        
+
         updateMcatRequiredStatus();
-        
+
         fetchUhsData('view');
     });
 
-
     function stdOpenTypeCheck(that) {
-        if (that.value == "Open_Merit") {           
+        if (that.value == "Open_Merit") {
             document.getElementById("passIqamaNo").style.display = "none";
             document.getElementById("instituteName").style.display = "none";
             document.getElementById("instituteCity").style.display = "none";
             document.getElementById("residentialCountry").style.display = "none";
             document.getElementById("visaStatus").style.display = "none";
-
 
             if (document.getElementById("passIqamaNo1").value == "") {
                 document.getElementById("passIqamaNo1").removeAttribute("required");
@@ -516,7 +397,7 @@ if (isset($_SESSION['logname'])) {
             if (document.getElementById("visaStatus1").value == "") {
 
                 document.getElementById("visaStatus1").removeAttribute("required");
-            }    
+            }
         }
 
         else {
@@ -530,7 +411,6 @@ if (isset($_SESSION['logname'])) {
 
             document.forms['educationForm'].elements['visaStatus'].value = "0000";
 
-
             document.getElementById("passIqamaNo").style.display = "none";
 
             document.getElementById("instituteName").style.display = "none";
@@ -540,7 +420,6 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("residentialCountry").style.display = "none";
 
             document.getElementById("visaStatus").style.display = "none";
-
 
             if (document.getElementById("passIqamaNo1").value == "") {
                 document.getElementById("passIqamaNo1").removeAttribute("required");
@@ -567,11 +446,8 @@ if (isset($_SESSION['logname'])) {
         }
     }
 
-
-
-
     function stdTypeCheck(value) {
-        if (value == "Overseas/Foreign") {      
+        if (value == "Overseas/Foreign") {
             document.getElementById("passIqamaNo").style.display = "block";
             document.getElementById("instituteName").style.display = "block";
             document.getElementById("instituteCity").style.display = "block";
@@ -604,7 +480,7 @@ if (isset($_SESSION['logname'])) {
             if (document.getElementById("testType").value == "") {
                 document.getElementById("testType").setAttribute('required', '');
             }
-        }       
+        }
         else {
             document.forms['educationForm'].elements['passIqamaNo'].value = "0000";
 
@@ -629,7 +505,7 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("testType").style.display = "none";
 
             document.getElementById("mdcatDiv").style.display = "block";
-           
+
             updateMcatRequiredStatus();
         }
     }
@@ -647,7 +523,6 @@ if (isset($_SESSION['logname'])) {
         var elementMcatObtainedMarks = document.forms['educationForm'].elements['mcatObtainedMarks'];
         var elementMcatTotalMarks = document.forms['educationForm'].elements['mcatTotalMarks'];
 
-
         if (value == "MDCAT") {
             document.getElementById("mdcatDiv").style.display = "block";
             document.getElementById("ucatDiv").style.display = "none";
@@ -655,14 +530,13 @@ if (isset($_SESSION['logname'])) {
 
             updateMcatRequiredStatus();
 
-            elementUcatYear.required = false;        
-            elementUcatObtainedMarks.required = false;      
+            elementUcatYear.required = false;
+            elementUcatObtainedMarks.required = false;
             elementUcatTotalMarks.required = false;
 
             elementMcatYear.required = false;
             elementMcatObtainedMarks.required = false;
             elementMcatTotalMarks.required = false;
-
 
             elementUcatObtainedMarks.value='';
             elementUcatTotalMarks.value='';
@@ -675,18 +549,16 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("ucatDiv").style.display = "block";
             document.getElementById("mcatDiv").style.display = "none";
 
-
-            elementMcat.required = false;    
+            elementMcat.required = false;
             elementMcatr.required = false;
 
-            elementUcatYear.required = true;        
-            elementUcatObtainedMarks.required = true;      
+            elementUcatYear.required = true;
+            elementUcatObtainedMarks.required = true;
             elementUcatTotalMarks.required = true;
 
             elementMcatYear.required = false;
             elementMcatObtainedMarks.required = false;
             elementMcatTotalMarks.required = false;
-
 
             elementMcat.value='';
             elementMcatr.value='';
@@ -697,13 +569,13 @@ if (isset($_SESSION['logname'])) {
         else if (value == "MCAT") {
             document.getElementById("mdcatDiv").style.display = "none";
             document.getElementById("ucatDiv").style.display = "none";
-            document.getElementById("mcatDiv").style.display = "block"; 
-            
-            elementMcat.required = false;    
+            document.getElementById("mcatDiv").style.display = "block";
+
+            elementMcat.required = false;
             elementMcatr.required = false;
 
-            elementUcatYear.required = false;        
-            elementUcatObtainedMarks.required = false;      
+            elementUcatYear.required = false;
+            elementUcatObtainedMarks.required = false;
             elementUcatTotalMarks.required = false;
 
             elementMcatYear.required = true;
@@ -712,7 +584,7 @@ if (isset($_SESSION['logname'])) {
 
             elementMcat.value='';
             elementMcatr.value='';
-            
+
             elementUcatObtainedMarks.value='';
             elementUcatTotalMarks.value='';
         }
@@ -721,13 +593,11 @@ if (isset($_SESSION['logname'])) {
     function yesnoCheck(value, isUpdate = false) {
         if (value == "Completed") {
 
-        
             document.getElementById('fscMarksOutOf').setAttribute('required', '');
 
             document.getElementById("ifYes").style.display = "block";
             document.getElementById("ifselect").style.display = "block";
             document.getElementById("ifFScYes").style.display = "block";
-            
 
             var comYear = document.forms['educationForm'].elements['comYear'];
             if (comYear) {
@@ -771,7 +641,7 @@ if (isset($_SESSION['logname'])) {
             var elementPhysics = document.forms['educationForm'].elements['physics'];
             elementPhysics.required = false;
             var elementChemistry = document.forms['educationForm'].elements['chemistry'];
-            elementChemistry.required = false; 
+            elementChemistry.required = false;
             var elementBiology = document.forms['educationForm'].elements['biology'];
             elementBiology.required = false;
 
@@ -780,7 +650,6 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("show3").style.display = "none";
         }
     }
-
 
     function yearCheck(value, isUpdate = false) {
         var elementPhysics = document.forms['educationForm'].elements['physics'];
@@ -793,8 +662,8 @@ if (isset($_SESSION['logname'])) {
 
                 elementPhysics.required = true;
                 elementChemistry.required = true;
-                elementBiology.required = true; 
-                
+                elementBiology.required = true;
+
                 if(isUpdate == false){
                     elementPhysics.value = "";
                     elementChemistry.value = "";
@@ -804,7 +673,7 @@ if (isset($_SESSION['logname'])) {
         else{
                 document.getElementById("show1").style.display = "none";
                 document.getElementById("show2").style.display = "none";
-                document.getElementById("show3").style.display = "none"; 
+                document.getElementById("show3").style.display = "none";
 
                 elementPhysics.required = false;
                 elementChemistry.required = false;
@@ -839,20 +708,14 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
     <!--Total marks 200/180-->
-    
+
     <script>
-    //const yearSelect = document.getElementById('mcat_passing_year');
-  //  const marksSelect = document.getElementById('total_marks');
 
     // Auto-update total marks based on selected year
 //    yearSelect.addEventListener('change', function() {
-    //    if (this.value === '2025') {
-          //  marksSelect.value = '180';
-        //} else {
-      //      marksSelect.value = '200';
+
     //    }
-  //  });
-  
+
    const yearSelect = document.getElementById('mcat_passing_year');
     const marksInput = document.getElementById('total_marks');
 
@@ -874,16 +737,15 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener('DOMContentLoaded', updateTotalMarks);
 </script>
 
-
 <script>
-function toggleUhsSection(val) {   
+function toggleUhsSection(val) {
 document.getElementById('uhsSection').style.display =
         (val === 'yes') ? 'flex' : 'none';
 
     document.getElementById('uhsMsg').innerHTML = '';
 
     if (val === 'yes') {
-       
+
         var uhsId = document.getElementById('uhs_application_id').value.trim();
         if(uhsId) {
             document.getElementById('uhsDataSection').style.display = 'flex';
@@ -911,7 +773,6 @@ function fetchUhsData(mode) {
         return;
     }
 
-    //msg.className = 'text-info';
     msg.innerHTML = 'Fetching record...';
 
     var xhr = new XMLHttpRequest();
@@ -931,8 +792,7 @@ function fetchUhsData(mode) {
                 // Fill UI fields
                 document.getElementById('uhs_name').value = res.data.name;
                 document.getElementById('uhs_father_name').value = res.data.father_name;
-                //document.getElementById('uhs_mobile').value = res.data.mobile;
-                //document.getElementById('uhs_email').value = res.data.email;
+
                 document.getElementById('uhs_aggregate').value = res.data.aggregate;
                 document.getElementById('uhs_district').value = res.data.district;
 
@@ -944,7 +804,6 @@ function fetchUhsData(mode) {
                 msg.className = 'text-danger';
                 msg.innerHTML = res.message;
 
-                // Hide if not found
                 document.getElementById('uhsDataSection').style.display = 'none';
                 document.getElementById('submitBtn').disabled = true;
             }

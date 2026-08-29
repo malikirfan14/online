@@ -1,11 +1,9 @@
 <?php
 error_reporting(0);
-session_start();
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 if (isset($_SESSION['logname'])) {
     $logname = $_SESSION['logname'];
-    //require('configure.php');
-    //include('linkss.php');
-    //include('header.php');
+
     if ($conn === false) {
         die("ERROR: Could not connect. " . mysqli_connect_error());
     } else {
@@ -15,8 +13,6 @@ if (isset($_SESSION['logname'])) {
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
                     ?>
-
-
 
                     <div class="container">
                         <h1 class="h3 mb-4 text-gray-800">Upload Documents</h1>
@@ -28,7 +24,7 @@ if (isset($_SESSION['logname'])) {
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <input type="text" name="name" value=" <?php echo $_SESSION['logname']; ?> "
-                                                    class="form-control" readonly style="display:none;">                                             
+                                                    class="form-control" readonly style="display:none;">
                                                 <form action="" method="post" enctype="multipart/form-data">
                                                     <div class="form-container0">
                                                         <label for="fsc" class="form-label-custom">Fsc Marksheet</label>
@@ -53,7 +49,7 @@ if (isset($_SESSION['logname'])) {
 
                                                         <label class="form-label-custom">Matric Marksheet</label>
                                                         <br>
-                                                        <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
+
                                                         <img id="preview2"
                                                             src="<?php echo empty($row['matricImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['matricImage']; ?>"
                                                             alt="matric image" style="max-width: 330px; max-height:320px ">
@@ -76,7 +72,7 @@ if (isset($_SESSION['logname'])) {
 
                                                         <label class="form-label-custom"><?php echo $row['stdType'] == 'Overseas/Foreign' ? "MDCAT / UCAT / MCAT Result" : "MDCAT Result" ?></label>
                                                         <br>
-                                                        <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
+
                                                         <img id="preview3"
                                                             src="<?php echo empty($row['mdcatImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['mdcatImage']; ?>"
                                                             alt="mdcat image" style="max-width: 330px; max-height:320px ">
@@ -100,12 +96,11 @@ if (isset($_SESSION['logname'])) {
                                                         <div class="form-container5">
                                                             <label class="form-label-custom">Passport/Iqama</label>
                                                             <br>
-                                                            <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
+
                                                             <img id="preview6" src="' . (empty($row['passportIqamaImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']) . '"
                                                                 alt="cnic image" style="max-width: 330px; max-height: 320px ">
                                                             <br>';
 
-                                                    // Check if isVerified is not equal to '1' to display the Choose Image label
                                                     if ($row['isVerified'] !== '1') {
                                                         echo '
                                                             <label class="custom-button" for="passiqama">Choose Image</label>
@@ -121,51 +116,9 @@ if (isset($_SESSION['logname'])) {
                                                 ?>
                                             </div>
 
-
-                                            <!-- <div class="col-md-6">
-                                                <form action="" method="post" enctype="multipart/form-data">
-                                                    <div class="form-container3">
-
-                                                        <label><b>CNIC Front:</b></label>
-                                                        <br>
-                                                        <img id="preview4"
-                                                            src="<?php echo empty($row['cnicFrontImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['cnicFrontImage']; ?>"
-                                                            alt="cnic image" style="max-width: 330px; max-height:320px ">
-                                                        <br>
-                                                        <?php if ($row['isVerified'] != '1'): ?>
-                                                        <label class="custom-button" for="cnicf">Choose Image</label>
-                                                        <?php endif; ?>
-                                                        <input type="file" name="cnicf" id="cnicf" class="custom-file-input"
-                                                            accept="image/*" onchange="Filevalidation('preview4', 'cnicf','3')"
-                                                            style="display: none;">
-
-                                                    </div>
-                                                </form>
-                                            </div> -->
                                         </div>
 
                                         <div class="row" style="margin-top:50px">
-                                            <!-- <div class="col-md-6">
-                                                <form action="" method="post" enctype="multipart/form-data">
-                                                    <div class="form-container4">
-
-                                                        <label><b>CNIC Back:</b></label>
-                                                        <br>
-                                                        <img id="preview5"
-                                                            src="<?php echo empty($row['cnicBackImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['cnicBackImage']; ?>"
-                                                            alt="cnic image" style="max-width: 330px; max-height:320px ">
-                                                        <br>
-                                                        <?php if ($row['isVerified'] != '1'): ?>
-                                                        <label class="custom-button" for="cnicb">Choose Image</label>
-                                                        <?php endif; ?>
-                                                        <input type="file" name="cnicb" id="cnicb" class="custom-file-input"
-                                                            accept="image/*" onchange="Filevalidation('preview5', 'cnicb','4')"
-                                                            style="display: none;">
-
-                                                    </div>
-                                                </form>
-                                            </div> -->
-                                           
 
                                         </div>
 
@@ -238,8 +191,6 @@ if (isset($_SESSION['logname'])) {
             margin-top: 20px;
         }
 
-
-
         /* Stylish file input button (hidden) */
         .custom-file-input {
             display: none;
@@ -301,6 +252,60 @@ if (isset($_SESSION['logname'])) {
     <script src="js/demo/chart-pie-demo.js"></script>
 
     <script>
+        function showUploadSuccessToast(inputId) {
+            var docNames = {
+                'fsc': 'F.Sc Marksheet',
+                'matric': 'Matric Marksheet',
+                'mdcat': 'Entry Test Result Card',
+                'cnicf': 'CNIC Front Side',
+                'cnicb': 'CNIC Back Side',
+                'passiqama': 'Passport / Iqama Document'
+            };
+            var docName = docNames[inputId] || 'Document';
+
+            var toastContainer = document.getElementById('toast-container-custom');
+            if (!toastContainer) {
+                toastContainer = document.createElement('div');
+                toastContainer.id = 'toast-container-custom';
+                toastContainer.style.position = 'fixed';
+                toastContainer.style.top = '20px';
+                toastContainer.style.right = '20px';
+                toastContainer.style.zIndex = '9999';
+                document.body.appendChild(toastContainer);
+            }
+
+            var toast = document.createElement('div');
+            toast.style.background = '#1cc88a';
+            toast.style.color = '#ffffff';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '6px';
+            toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+            toast.style.marginBottom = '10px';
+            toast.style.fontFamily = 'inherit';
+            toast.style.fontSize = '14px';
+            toast.style.fontWeight = 'bold';
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            toast.style.transform = 'translateY(-20px)';
+            toast.innerHTML = '<i class="fas fa-check-circle mr-2"></i> ' + docName + ' uploaded successfully!';
+
+            toastContainer.appendChild(toast);
+
+            setTimeout(function() {
+                toast.style.opacity = '1';
+                toast.style.transform = 'translateY(0)';
+            }, 50);
+
+            setTimeout(function() {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(-20px)';
+                setTimeout(function() {
+                    if (toast.parentNode) {
+                        toastContainer.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
 
         function previewImage(previewId, inputId, containerId) {
             var preview = document.getElementById(previewId);
@@ -314,7 +319,6 @@ if (isset($_SESSION['logname'])) {
                     preview.src = e.target.result;
                     preview.style.display = 'block';
 
-                    // Remove the existing "Upload" button if it exists
                     var existingUploadButton = document.getElementById('uploadButton_' + inputId);
                     if (existingUploadButton) {
                         existingUploadButton.parentNode.removeChild(existingUploadButton);
@@ -326,7 +330,54 @@ if (isset($_SESSION['logname'])) {
                     uploadButton.name = 'uploadButton_' + inputId;
                     uploadButton.className = 'custom-button';
                     uploadButton.textContent = 'Upload';
-                    uploadButton.type = "submit";
+                    uploadButton.type = "button";
+
+                    uploadButton.onclick = function() {
+                        var formData = new FormData();
+                        formData.append(inputId, file);
+                        formData.append('uploadButton_' + inputId, '1');
+
+                        var urlParams = new URLSearchParams(window.location.search);
+                        if (urlParams.has('edit')) {
+                            formData.append('edit', '1');
+                        }
+
+                        uploadButton.textContent = 'Uploading...';
+                        uploadButton.disabled = true;
+
+                        $.ajax({
+                            url: window.location.href,
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                try {
+                                    var data = JSON.parse(response);
+                                    if (data.status === 'success') {
+                                        if (uploadButton.parentNode) {
+                                            uploadButton.parentNode.removeChild(uploadButton);
+                                        }
+                                        showUploadSuccessToast(inputId);
+                                    } else {
+                                        alert('Upload failed: ' + data.message);
+                                        uploadButton.textContent = 'Upload';
+                                        uploadButton.disabled = false;
+                                    }
+                                } catch(e) {
+                                    if (uploadButton.parentNode) {
+                                        uploadButton.parentNode.removeChild(uploadButton);
+                                    }
+                                    showUploadSuccessToast(inputId);
+                                }
+                            },
+                            error: function() {
+                                alert('Upload failed. Please try again.');
+                                uploadButton.textContent = 'Upload';
+                                uploadButton.disabled = false;
+                            }
+                        });
+                    };
 
                     // Append the "Upload" button to the form container
                     document.querySelector('.form-container' + containerId).appendChild(uploadButton);
@@ -337,15 +388,22 @@ if (isset($_SESSION['logname'])) {
         }
     </script>
 
-
     <?php
-
-
 
     $redirectUrl = (isset($_REQUEST['edit']) && $_REQUEST['edit'] == '1') ? 'registration.php?edit=1&step=3' : 'registration.php';
 
+    function handleUploadRedirect($redirectUrl) {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            echo json_encode(['status' => 'success', 'message' => 'Document uploaded successfully']);
+            exit;
+        } else {
+            echo "<script>window.location.href='$redirectUrl';</script>";
+            exit;
+        }
+    }
+
     if (isset($_POST['uploadButton_fsc'])) {
-        // echo "<script>alert('fsedfsdfgsdfgsdfgsdgc.')</script>" ;
+
         if (isset($_FILES['fsc']) && $_FILES['fsc']["error"] === UPLOAD_ERR_OK) {
             $name = $_SESSION['logname'];
 
@@ -360,7 +418,7 @@ if (isset($_SESSION['logname'])) {
 
                 if (move_uploaded_file($_FILES['fsc']["tmp_name"], $targetFile)) {
                     // File uploaded successfully
-                    // echo "File uploaded and saved as: $targetFile";
+
                 }
             }
         }
@@ -369,15 +427,13 @@ if (isset($_SESSION['logname'])) {
         if ($result->num_rows > 0) {
             if (!empty($_FILES["fsc"]["name"])) {
                 $newPicture = 'fsc_' . basename($_FILES["fsc"]["name"]);
-                $sql = "UPDATE `registration_26to27`  SET 
+                $sql = "UPDATE `registration_26to27`  SET
             `fscImage` = '$newPicture'
             WHERE `cnic` = '$name'";
             }
             mysqli_query($conn, $sql);
         }
-        echo "<script>
-
-        window.location.href='$redirectUrl';</script>";
+        handleUploadRedirect($redirectUrl);
     } else if (isset($_POST['uploadButton_matric'])) {
 
         if (isset($_FILES['matric']) && $_FILES['matric']["error"] === UPLOAD_ERR_OK) {
@@ -401,16 +457,14 @@ if (isset($_SESSION['logname'])) {
             if (!empty($_FILES["matric"]["name"])) {
                 $newPicture = 'matric_' . basename($_FILES["matric"]["name"]);
 
-                $sql = "UPDATE `registration_26to27`  SET 
+                $sql = "UPDATE `registration_26to27`  SET
             `matricImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
             }
             mysqli_query($conn, $sql);
         }
-        echo "<script>
-
-        window.location.href='$redirectUrl';</script>";
+        handleUploadRedirect($redirectUrl);
     } else if (isset($_POST['uploadButton_mdcat'])) {
 
         if (isset($_FILES['mdcat']) && $_FILES['mdcat']["error"] === UPLOAD_ERR_OK) {
@@ -427,7 +481,7 @@ if (isset($_SESSION['logname'])) {
 
                 if (move_uploaded_file($_FILES['mdcat']["tmp_name"], $targetFile)) {
                     // File uploaded successfully
-                    // echo "File uploaded and saved as: $targetFile";
+
                 }
             }
         }
@@ -438,18 +492,15 @@ if (isset($_SESSION['logname'])) {
             if (!empty($_FILES["mdcat"]["name"])) {
                 $newPicture = 'mdcat_' . basename($_FILES["mdcat"]["name"]);
 
-                $sql = "UPDATE `registration_26to27`  SET 
+                $sql = "UPDATE `registration_26to27`  SET
             `mdcatImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
             }
             mysqli_query($conn, $sql);
         }
-        echo "<script>
-
-        window.location.href='$redirectUrl';</script>";
+        handleUploadRedirect($redirectUrl);
     } else if (isset($_POST['uploadButton_cnicf'])) {
-
 
         if (isset($_FILES['cnicf']) && $_FILES['cnicf']["error"] === UPLOAD_ERR_OK) {
             $name = $_SESSION['logname'];
@@ -465,7 +516,7 @@ if (isset($_SESSION['logname'])) {
 
                 if (move_uploaded_file($_FILES['cnicf']["tmp_name"], $targetFile)) {
                     // File uploaded successfully
-                    // echo "File uploaded and saved as: $targetFile";
+
                 }
             }
         }
@@ -476,16 +527,14 @@ if (isset($_SESSION['logname'])) {
             if (!empty($_FILES["cnicf"]["name"])) {
                 $newPicture = 'cnicf_' . basename($_FILES["cnicf"]["name"]);
 
-                $sql = "UPDATE `registration_26to27`  SET 
+                $sql = "UPDATE `registration_26to27`  SET
             `cnicFrontImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
             }
             mysqli_query($conn, $sql);
         }
-        echo "<script>
-
-            window.location.href='$redirectUrl';</script>";
+        handleUploadRedirect($redirectUrl);
     } else if (isset($_POST['uploadButton_cnicb'])) {
 
         if (isset($_FILES['cnicb']) && $_FILES['cnicb']["error"] === UPLOAD_ERR_OK) {
@@ -502,7 +551,7 @@ if (isset($_SESSION['logname'])) {
 
                 if (move_uploaded_file($_FILES['cnicb']["tmp_name"], $targetFile)) {
                     // File uploaded successfully
-                    // echo "File uploaded and saved as: $targetFile";
+
                 }
             }
         }
@@ -513,16 +562,14 @@ if (isset($_SESSION['logname'])) {
             if (!empty($_FILES["cnicb"]["name"])) {
                 $newPicture = 'cnicb_' . basename($_FILES["cnicb"]["name"]);
 
-                $sql = "UPDATE `registration_26to27`  SET 
+                $sql = "UPDATE `registration_26to27`  SET
             `cnicBackImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
             }
             mysqli_query($conn, $sql);
         }
-        echo "<script>
-
-            window.location.href='$redirectUrl';</script>";
+        handleUploadRedirect($redirectUrl);
 
     } else if (isset($_POST['uploadButton_passiqama'])) {
 
@@ -540,7 +587,7 @@ if (isset($_SESSION['logname'])) {
 
                 if (move_uploaded_file($_FILES['passiqama']["tmp_name"], $targetFile)) {
                     // File uploaded successfully
-                    // echo "File uploaded and saved as: $targetFile";
+
                 }
             }
         }
@@ -551,16 +598,14 @@ if (isset($_SESSION['logname'])) {
             if (!empty($_FILES["passiqama"]["name"])) {
                 $newPicture = 'passiqama_' . basename($_FILES["passiqama"]["name"]);
 
-                $sql = "UPDATE `registration_26to27`  SET 
+                $sql = "UPDATE `registration_26to27`  SET
             `passportIqamaImage` = '$newPicture'
             WHERE `cnic` = '$name'";
 
             }
             mysqli_query($conn, $sql);
         }
-        echo "<script>
-
-            window.location.href='$redirectUrl';</script>";
+        handleUploadRedirect($redirectUrl);
 
     } else if (isset($_POST['submit'])) {
         ;
@@ -570,9 +615,8 @@ if (isset($_SESSION['logname'])) {
         if ($result) {
             $row = mysqli_fetch_assoc($result);
 
-
             if ($row['stdType'] == 'Overseas/Foreign') {
-                //if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage']) && !empty($row['cnicFrontImage']) && !empty($row['cnicBackImage']) && !empty($row['passportIqamaImage'])) {
+
                 if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage']) && !empty($row['passportIqamaImage'])) {
                 $updateSql = "UPDATE `registration_26to27` SET `isDocumentsDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
@@ -581,7 +625,7 @@ if (isset($_SESSION['logname'])) {
                     echo "<script>alert('Please upload all required documents.')</script>";
                 }
             } else {
-                //if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage']) && !empty($row['cnicFrontImage']) && !empty($row['cnicBackImage'])) {
+
                 if (!empty($row['fscImage']) && !empty($row['matricImage']) && !empty($row['mdcatImage'])) {
                     $updateSql = "UPDATE `registration_26to27` SET `isDocumentsDone` = 1 WHERE `cnic` = '$cnic'";
                     if (mysqli_query($conn, $updateSql)) {
@@ -601,8 +645,7 @@ if (isset($_SESSION['logname'])) {
 ?>
 
 <script>
-    // $(document).ready(function() {
-    //     document.getElementById('img1').change(function(){
+
     Filevalidation = (previewId, inputId, containerId) => {
         const fi = document.getElementById(inputId);
         const fi2 = document.getElementById(inputId);
@@ -610,12 +653,12 @@ if (isset($_SESSION['logname'])) {
         const fi4 = document.getElementById(inputId);
         const fi5 = document.getElementById(inputId);
         const fi6 = document.getElementById(inputId);
-        // Check if any file is selected.
+
         if (fi.files.length > 0) {
             for (const i = 0; i <= fi.files.length - 1; i++) {
                 const fsize = fi.files.item(i).size;
                 console.log("I am file size ..  " + fsize);
-                // const file = Math.round((fsize / 1024));
+
                 // The size of the file.
                 if (fsize > 1000000) {
                     alert(
@@ -630,12 +673,12 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        // Check if any file is selected.
+
         if (fi2.files.length > 0) {
             for (const i = 0; i <= fi2.files.length - 1; i++) {
                 const fsize2 = fi2.files.item(i).size;
                 console.log("I am file size ..  " + fsize2);
-                // const file = Math.round((fsize / 1024));
+
                 // The size of the file.
                 if (fsize2 > 1000000) {
                     alert(
@@ -654,7 +697,7 @@ if (isset($_SESSION['logname'])) {
             for (const i = 0; i <= fi3.files.length - 1; i++) {
                 const fsize3 = fi3.files.item(i).size;
                 console.log("I am file size ..  " + fsize3);
-                // const file = Math.round((fsize / 1024));
+
                 // The size of the file.
                 if (fsize3 > 1000000) {
                     alert(
@@ -669,12 +712,12 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        // Check if any file is selected.
+
         if (fi4.files.length > 0) {
             for (const i = 0; i <= fi4.files.length - 1; i++) {
                 const fsize4 = fi4.files.item(i).size;
                 console.log("I am file size ..  " + fsize4);
-                // const file = Math.round((fsize / 1024));
+
                 // The size of the file.
                 if (fsize4 > 1000000) {
                     alert(
@@ -689,12 +732,12 @@ if (isset($_SESSION['logname'])) {
                 }
             }
         }
-        // Check if any file is selected.
+
         if (fi5.files.length > 0) {
             for (const i = 0; i <= fi5.files.length - 1; i++) {
                 const fsize5 = fi5.files.item(i).size;
                 console.log("I am file size ..  " + fsize5);
-                // const file = Math.round((fsize / 1024));
+
                 // The size of the file.
                 if (fsize5 > 1000000) {
                     alert(
@@ -713,7 +756,7 @@ if (isset($_SESSION['logname'])) {
             for (const i = 0; i <= fi6.files.length - 1; i++) {
                 const fsize5 = fi6.files.item(i).size;
                 console.log("I am file size ..  " + fsize5);
-                // const file = Math.round((fsize / 1024));
+
                 // The size of the file.
                 if (fsize5 > 1000000) {
                     alert(
