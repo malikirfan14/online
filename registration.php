@@ -108,21 +108,26 @@ if ($conn === false) {
            $("#progressPercentage").text(100);
            $(".progress").css("width", 100 + "%");
             
-           $(".step:eq(" + (0) + ")").addClass("completed");
-           $(".step:eq(" + (1) + ")").addClass("completed");
-       //     $(".step:eq(" + (2) + ")").addClass("completed");
-           $(".step:eq(" + (3) + ")").addClass("completed");
+           $(".step:eq(0)").addClass("completed");
+           $(".step:eq(1)").addClass("completed");
+           $(".step:eq(2)").addClass("completed");
            
-          
-           $(".step-content.active").removeClass("active");
-           $(".step-content:eq(" + (3) + ")").addClass("active");
-
-           currentStep = 3;
-
-                    // ✅ Redirect to student profile after a short delay (e.g., 1 second)
-            setTimeout(function () {
-                window.location.href = "studentProfile.php"; // <-- change this to your actual profile URL
-            }, 1000); // 1000 milliseconds = 1 second
+           var urlParams = new URLSearchParams(window.location.search);
+           if (urlParams.has('edit')) {
+               // In edit mode: show step 1 (Personal Info) and do not redirect
+               $(".step-content.active").removeClass("active");
+               $(".step-content:eq(0)").addClass("active");
+               currentStep = 1;
+           } else {
+               $(".step-content.active").removeClass("active");
+               $(".step-content:eq(2)").addClass("active");
+               currentStep = 3;
+               
+               // ✅ Redirect to student profile after a short delay (e.g., 1 second)
+               setTimeout(function () {
+                   window.location.href = "studentProfile.php"; // <-- change this to your actual profile URL
+               }, 1000); // 1000 milliseconds = 1 second
+           }
         } 
         else if (isEducationDone == 1) {
             

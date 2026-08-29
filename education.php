@@ -115,12 +115,12 @@ if (isset($_SESSION['logname'])) {
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                                     <input value="<?php echo $row['mcat']; ?>" type="text"
                                                         class="form-control form-control-user" id="mcat" placeholder="MDCAT Roll Number "
-                                                        name="mcat" required>
+                                                        name="mcat" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <input value="<?php echo $row['mcatr']; ?>" type="number"
                                                         class="form-control form-control-user" id="mcatr" placeholder="MDCAT Marks" min="72"
-                                                        max="200" name="mcatr" required>
+                                                        max="200" name="mcatr" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
                                                 </div>
                                             </div>
                                         </div>
@@ -399,6 +399,37 @@ if (isset($_SESSION['logname'])) {
 </script>
 <script>
 
+    function updateMcatRequiredStatus() {
+        var yearSelect = document.getElementById("mcat_passing_year");
+        var elementMcat = document.forms['educationForm'].elements['mcat'];
+        var elementMcatr = document.forms['educationForm'].elements['mcatr'];
+        
+        if (!elementMcat || !elementMcatr) return;
+        
+        var stdType = "<?php echo $stdType; ?>";
+        var testTypeSelect = document.getElementById("testType");
+        var isLocal = (stdType !== 'Overseas/Foreign');
+        var isMdcatSelected = (testTypeSelect && testTypeSelect.value === 'MDCAT');
+        
+        if (isLocal || isMdcatSelected) {
+            if (yearSelect && yearSelect.value === "2026") {
+                elementMcat.required = false;
+                elementMcatr.required = false;
+                elementMcat.removeAttribute("required");
+                elementMcatr.removeAttribute("required");
+            } else {
+                elementMcat.required = true;
+                elementMcatr.required = true;
+                elementMcat.setAttribute("required", "required");
+                elementMcatr.setAttribute("required", "required");
+            }
+        } else {
+            elementMcat.required = false;
+            elementMcatr.required = false;
+            elementMcat.removeAttribute("required");
+            elementMcatr.removeAttribute("required");
+        }
+    }
 
     $(document).ready(function () {
         var stdType = "<?php echo $stdType; ?>";
@@ -417,6 +448,8 @@ if (isset($_SESSION['logname'])) {
           
         var testType = "<?php echo $testType; ?>";
         testTypeChange(testType);
+        
+        updateMcatRequiredStatus();
         
         fetchUhsData('view');
     });
@@ -566,10 +599,7 @@ if (isset($_SESSION['logname'])) {
 
             document.getElementById("mdcatDiv").style.display = "block";
            
-            var elementMcat = document.forms['educationForm'].elements['mcat'];
-            var elementMcatr = document.forms['educationForm'].elements['mcatr'];
-            elementMcat.required = true;    
-            elementMcatr.required = true;
+            updateMcatRequiredStatus();
         }
     }
 
@@ -592,8 +622,7 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("ucatDiv").style.display = "none";
             document.getElementById("mcatDiv").style.display = "none";
 
-            elementMcat.required = true;    
-            elementMcatr.required = true;
+            updateMcatRequiredStatus();
 
             elementUcatYear.required = false;        
             elementUcatObtainedMarks.required = false;      
@@ -772,27 +801,9 @@ if (isset($_SESSION['logname'])) {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const yearSelect = document.getElementById("mcat_passing_year");
-    const extraFields = document.getElementById("extraFields");
-
-    // function toggleFields() {
-    //     if (yearSelect.value === "2025") {
-    //         extraFields.style.display = "none";
-    //         // remove required if hidden
-    //         document.getElementById("mcat").removeAttribute("required");
-    //         document.getElementById("mcatr").removeAttribute("required");
-    //     } else {
-    //         extraFields.style.display = "flex"; // use flex since it's row
-    //         // make fields required again
-    //         document.getElementById("mcat").setAttribute("required", "required");
-    //         document.getElementById("mcatr").setAttribute("required", "required");
-    //     }
-    // }
-
-    // run once when page loads (to handle pre-selected value)
-    toggleFields();
-
-    // run whenever user changes year
-    yearSelect.addEventListener("change", toggleFields);
+    if (yearSelect) {
+        yearSelect.addEventListener("change", updateMcatRequiredStatus);
+    }
 });
 </script>
 
