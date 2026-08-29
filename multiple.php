@@ -31,7 +31,7 @@ if (isset($_SESSION['logname'])) {
                                                     class="form-control" readonly style="display:none;">                                             
                                                 <form action="" method="post" enctype="multipart/form-data">
                                                     <div class="form-container0">
-                                                        <label for="fsc"><b>Fsc Marksheet:</b></label>
+                                                        <label for="fsc" class="form-label-custom">Fsc Marksheet</label>
                                                         <br>
                                                         <img id="preview1"
                                                             src="<?php echo empty($row['fscImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['fscImage']; ?>"
@@ -51,7 +51,7 @@ if (isset($_SESSION['logname'])) {
                                                 <form action="" method="post" enctype="multipart/form-data">
                                                     <div class="form-container1">
 
-                                                        <label><b>Matric Marksheet:</b></label>
+                                                        <label class="form-label-custom">Matric Marksheet</label>
                                                         <br>
                                                         <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
                                                         <img id="preview2"
@@ -74,7 +74,7 @@ if (isset($_SESSION['logname'])) {
                                                 <form action="" method="post" enctype="multipart/form-data">
                                                     <div class="form-container2">
 
-                                                        <label><b><?php echo $row['stdType'] == 'Overseas/Foreign' ? "MDCAT / UCAT / MCAT Result" : "MDCAT Result" ?>:</b></label>
+                                                        <label class="form-label-custom"><?php echo $row['stdType'] == 'Overseas/Foreign' ? "MDCAT / UCAT / MCAT Result" : "MDCAT Result" ?></label>
                                                         <br>
                                                         <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
                                                         <img id="preview3"
@@ -98,7 +98,7 @@ if (isset($_SESSION['logname'])) {
                                                     echo '
                                                     <form action="" method="post" enctype="multipart/form-data">
                                                         <div class="form-container5">
-                                                            <label><b>Passport/Iqama:</b></label>
+                                                            <label class="form-label-custom">Passport/Iqama</label>
                                                             <br>
                                                             <!-- <img id="preview1" src="#" alt="Preview" style="max-width: 330px; display: none;"> -->
                                                             <img id="preview6" src="' . (empty($row['passportIqamaImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']) . '"
@@ -194,6 +194,15 @@ if (isset($_SESSION['logname'])) {
     } ?>
 
     <style>
+        .form-label-custom {
+            display: block;
+            font-family: inherit;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #495057;
+            margin-bottom: 2px;
+            padding-left: 10px;
+        }
         /* Container for the form */
         img {
             margin-bottom:10px;
@@ -333,6 +342,8 @@ if (isset($_SESSION['logname'])) {
 
 
 
+    $redirectUrl = (isset($_REQUEST['edit']) && $_REQUEST['edit'] == '1') ? 'registration.php?edit=1&step=3' : 'registration.php';
+
     if (isset($_POST['uploadButton_fsc'])) {
         // echo "<script>alert('fsedfsdfgsdfgsdfgsdgc.')</script>" ;
         if (isset($_FILES['fsc']) && $_FILES['fsc']["error"] === UPLOAD_ERR_OK) {
@@ -366,7 +377,7 @@ if (isset($_SESSION['logname'])) {
         }
         echo "<script>
 
-        window.location.href='registration.php';</script>";
+        window.location.href='$redirectUrl';</script>";
     } else if (isset($_POST['uploadButton_matric'])) {
 
         if (isset($_FILES['matric']) && $_FILES['matric']["error"] === UPLOAD_ERR_OK) {
@@ -399,7 +410,7 @@ if (isset($_SESSION['logname'])) {
         }
         echo "<script>
 
-        window.location.href='registration.php';</script>";
+        window.location.href='$redirectUrl';</script>";
     } else if (isset($_POST['uploadButton_mdcat'])) {
 
         if (isset($_FILES['mdcat']) && $_FILES['mdcat']["error"] === UPLOAD_ERR_OK) {
@@ -436,7 +447,7 @@ if (isset($_SESSION['logname'])) {
         }
         echo "<script>
 
-        window.location.href='registration.php';</script>";
+        window.location.href='$redirectUrl';</script>";
     } else if (isset($_POST['uploadButton_cnicf'])) {
 
 
@@ -474,7 +485,7 @@ if (isset($_SESSION['logname'])) {
         }
         echo "<script>
 
-            window.location.href='registration.php';</script>";
+            window.location.href='$redirectUrl';</script>";
     } else if (isset($_POST['uploadButton_cnicb'])) {
 
         if (isset($_FILES['cnicb']) && $_FILES['cnicb']["error"] === UPLOAD_ERR_OK) {
@@ -511,7 +522,7 @@ if (isset($_SESSION['logname'])) {
         }
         echo "<script>
 
-            window.location.href='registration.php';</script>";
+            window.location.href='$redirectUrl';</script>";
 
     } else if (isset($_POST['uploadButton_passiqama'])) {
 
@@ -549,7 +560,7 @@ if (isset($_SESSION['logname'])) {
         }
         echo "<script>
 
-            window.location.href='registration.php';</script>";
+            window.location.href='$redirectUrl';</script>";
 
     } else if (isset($_POST['submit'])) {
         ;

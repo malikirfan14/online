@@ -367,7 +367,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'fetch_uhs') {
 
       // }
 
-      echo "<script> window.location.href='registration.php';</script>";
+      if (isset($_REQUEST['edit']) && $_REQUEST['edit'] == '1') {
+          echo "<script> window.location.href='registration.php?edit=1&step=3';</script>";
+      } else {
+          echo "<script> window.location.href='registration.php';</script>";
+      }
 
       // echo $program;
 

@@ -269,7 +269,11 @@ if ($conn === false) {
 
       // }
 
-      echo "<script> window.location.href='registration.php';</script>";
+      if (isset($_REQUEST['edit']) && $_REQUEST['edit'] == '1') {
+          echo "<script> window.location.href='registration.php?edit=1&step=2';</script>";
+      } else {
+          echo "<script> window.location.href='registration.php';</script>";
+      }
 
       // echo $program;
 

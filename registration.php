@@ -114,10 +114,21 @@ if ($conn === false) {
            
            var urlParams = new URLSearchParams(window.location.search);
            if (urlParams.has('edit')) {
-               // In edit mode: show step 1 (Personal Info) and do not redirect
+               var stepVal = urlParams.get('step');
+               var stepIndex = 0; // default to step 1 (index 0)
+               if (stepVal === '2') {
+                   stepIndex = 1;
+               } else if (stepVal === '3') {
+                   stepIndex = 2;
+               }
+               
                $(".step-content.active").removeClass("active");
-               $(".step-content:eq(0)").addClass("active");
-               currentStep = 1;
+               $(".step-content:eq(" + stepIndex + ")").addClass("active");
+               currentStep = stepIndex + 1;
+               
+               // Adjust active highlight on step tabs
+               $(".step").removeClass("active");
+               $(".step:eq(" + stepIndex + ")").addClass("active");
            } else {
                $(".step-content.active").removeClass("active");
                $(".step-content:eq(2)").addClass("active");
@@ -208,6 +219,15 @@ if ($conn === false) {
     });
 </script>
 <style>
+    .form-label-custom {
+        display: block;
+        font-family: inherit;
+        font-size: 13.5px;
+        font-weight: 700;
+        color: #495057;
+        margin-bottom: 2px;
+        padding-left: 10px;
+    }
     .form-control-lg{
         height: 48px;
         font-size: 1rem;

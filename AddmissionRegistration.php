@@ -117,6 +117,9 @@ if (isset($_SESSION['logname'])) {
 
 
                 <form id="rform" class="user" action="AddmissionRegistrationBack.php" enctype="multipart/form-data" method="post">
+                    <?php if (isset($_GET['edit'])): ?>
+                        <input type="hidden" name="edit" value="1">
+                    <?php endif; ?>
 
 
 
@@ -138,8 +141,8 @@ if (isset($_SESSION['logname'])) {
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
 
+                            <label class="form-label-custom">Student Type</label>
                             <select class="form-control form-control-lg" id="stdType" name="stdType" required
-
                                 >
 
                                 <option selected disabled value="">-- Select Student Type -- </option>
@@ -162,8 +165,8 @@ if (isset($_SESSION['logname'])) {
 
                         <div class="col-sm-6 mb-3 mb-sm-0">
 
+                            <label class="form-label-custom">Applied Program</label>
                             <select class="form-control form-control-lg" id="program" name="program" required
-
                                 >
 
                                 <option selected disabled value="">-- Select Program -- </option>
@@ -213,64 +216,20 @@ if (isset($_SESSION['logname'])) {
 
 
 
-                    <!-- <div class="form-group">
-
-                    <input type="text" class="form-control form-control-user"
-
-                        id="exampleInputPassword" placeholder="Select student type" readonly>
-
-                    <div class="row mt-3">
-
-                        <div class="col-sm-4">
-
-                            <label class="radio-inline">
-
-                                <input onchange="stdTypeCheck(this);" type="radio" id="stdType" value="Overseas/Foreign" name="stdType"
-
-                                    required> Overseas / Foreign
-
-                            </label>
-
-                        </div>
-
-                        <div class="col-sm-4"> 
-
-                            <label class="radio-inline">
-
-                                <input onchange="stdOpenTypeCheck(this);" type="radio" id="stdType" value="Open_Merit" name="stdType"
-
-                                    required> Open Merit
-
-                            </label>
-
-                        </div>
-
-
-
-                    </div>
-
-            </div> -->
-
-
-
                     <div class="form-group row">
 
+
+
                         <div class="col-sm-6 mb-3 mb-sm-0">
-
+                            <label class="form-label-custom">Student Name</label>
                             <input value="<?php echo $row['name']; ?>" type="text"
-
                                 class="form-control form-control-user" id="exampleFirstName" name="name" readonly>
-
                         </div>
-
                         <div class="col-sm-6">
-
+                            <label class="form-label-custom">Father / Guardian Name</label>
                             <input value="<?php echo $row['fname']; ?>" type="text"
-
                                 class="form-control form-control-user" id="exampleLastName" placeholder="Father Name"
-
                                 name="fname" required readonly>
-
                         </div>
 
                     </div>
@@ -279,96 +238,64 @@ if (isset($_SESSION['logname'])) {
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6 mb-3 mb-sm-0">
 
+
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="form-label-custom">Email Address</label>
                                 <input value="<?php echo $row['email']; ?>" type="email"
-
                                     class="form-control form-control-user" id="exampleInputEmail"
-
                                     placeholder="Email Address" name="email" readonly>
-
                             </div>
-
                             <div class="col-sm-6">
-
+                                <label class="form-label-custom">CNIC Number</label>
                                 <input value="<?php echo $row['cnic']; ?>" type="text"
-
                                     class="form-control form-control-user" id="exampleInputEmail" placeholder="Cnic"
-
                                     name="cnic" readonly>
-
                             </div>
 
                         </div>
 
                         <div class="form-group row">
 
-                            <div class="col-sm-6 mb-3 mb-sm-0">
 
+
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label class="form-label-custom">Student Phone Number</label>
                                 <input
-
-                                    value="<?php echo $row['stdPhone'];
-
-                                                                                                                                                                                                                                    ?>"
-
+                                    value="<?php echo $row['stdPhone']; ?>"
                                     type="number" class="form-control form-control-user" id="exampleInputPassword"
-
                                     placeholder="Student number" name="stdPhone" required>
-
                             </div>
-
                             <div class="col-sm-6">
-
+                                <label class="form-label-custom">City</label>
                                 <input value="<?php echo $row['city']; ?>" type="text"
-
                                     class="form-control form-control-user" id="exampleInputPassword" placeholder="City"
-
                                     name="city" required>
-
                             </div>
 
 
 
                         </div>
-
-                        <!--  -->
-
-                        <!--</div>-->
-
-
 
                         <div class="form-group row">
 
 
 
                             <div class="col-sm-6 mb-3 mb-sm-0">
-
+                                <label class="form-label-custom">Father Phone Number</label>
                                 <input value="<?php echo $row['fatPhone']; ?>" type="TYPE"
-
                                     class="form-control form-control-user" id="exampleRepeatPassword"
-
                                     placeholder="Father Phone number" name="fatPhone" maxlength="11"
-
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-
                                     required>
-
-
-
                             </div>
-
                             <div class="col-sm-6">
-
+                                <label class="form-label-custom">Emergency Phone Number</label>
                                 <input value="<?php echo $row['emergencyPhone']; ?>" type="TYPE"
-
                                     class="form-control form-control-user" id="exampleRepeatPassword"
-
                                     placeholder="Emergency Phone number" name="emergencyPhone" maxlength="11"
-
                                     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-
                                     required>
-
                             </div>
 
                         </div>
@@ -379,19 +306,7 @@ if (isset($_SESSION['logname'])) {
 
 
 
-                            <!--<div class="col-sm-6">-->
-
-                            <!--    <input value="<?php echo $row['dob']; ?>" type="text"-->
-
-                            <!--        class="form-control form-control-user" id="exampleRepeatPassword"-->
-
-                            <!--        placeholder="Date of birth" name="dob" onfocus="(this.type='date')"-->
-
-                            <!--        onblur="(this.type='text')" required>-->
-
-                            <!--</div>-->
-
-                            <div class="col-sm-6 mb-3 mb-sm-0 "><p class="mycss">Date of Birth</p>
+                            <div class="col-sm-6 mb-3 mb-sm-0 "><label class="form-label-custom">Date of Birth</label>
 
                                 <input value="<?php echo $row['dob']; ?>" type="date"
 
@@ -401,19 +316,7 @@ if (isset($_SESSION['logname'])) {
 
                             </div>                              
 
-                            <!--<div class="col-sm-6 mb-3 mb-sm-0">-->
-
-                            <!--    <input value="<?php echo $row['cnic_issue_date']; ?>" type="text"-->
-
-                            <!--        class="form-control form-control-user" id="exampleInputPassword"-->
-
-                            <!--        placeholder="CNIC Issue Date" onfocus="(this.type='date')"-->
-
-                            <!--        onblur="(this.type='text')" name="cnic_issue_date" required>-->
-
-                            <!--</div>-->
-
-                            <div class="col-sm-6"><p class="mycss">CNIC Issue Date</p>
+                            <div class="col-sm-6"><label class="form-label-custom">CNIC Issue Date</label>
 
                                 <input value="<?php echo $row['cnic_issue_date']; ?>" type="date"
 
@@ -428,13 +331,10 @@ if (isset($_SESSION['logname'])) {
 
 
                         <div class="form-group">
-
+                            <label class="form-label-custom">Current Residential Address (Full)</label>
                             <input value="<?php echo $row['address']; ?>" type="text"
-
                                 class="form-control form-control-user" id="exampleInputPassword" placeholder="Current Residential Address (Full)"
-
                                 name="address" required>
-
                         </div>
 
                         <div class="form-group">

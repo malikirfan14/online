@@ -32,6 +32,17 @@ if (isset($_SESSION['logname'])) {
                     ?>
                     <!-- End of Topbar -->
                     <!-- Begin Page Content -->
+                    <style>
+                    .form-label-custom {
+                        display: block;
+                        font-family: inherit;
+                        font-size: 13.5px;
+                        font-weight: 700;
+                        color: #495057;
+                        margin-bottom: 2px;
+                        padding-left: 10px;
+                    }
+                    </style>
                     <div class="container-fluid">
                         <!-- Page Heading -->
                         <h1 class="h3 mb-4 text-gray-800">Student Education Form</h1>
@@ -40,14 +51,19 @@ if (isset($_SESSION['logname'])) {
                                 <!-- Circle Buttons -->
                                 <div class="container">
                                     <form id="educationForm" class="user" action="educationBack.php">
+                                         <?php if (isset($_GET['edit'])): ?>
+                                             <input type="hidden" name="edit" value="1">
+                                         <?php endif; ?>
 
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="passIqamaNo" style="display: none;">
+                                                <label class="form-label-custom">Passport No. / Iqama No.</label>
                                                 <input value="<?php echo $row['passIqamaNo']; ?>" type="text" class="form-control form-control-user" id="passIqamaNo1"
                                                     placeholder="Passport No. / Iqama No." name="passIqamaNo">
                                             </div>
 
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="instituteName" style="display: none;">
+                                                <label class="form-label-custom">F.Sc / A Level's Institute Full Name</label>
                                                 <input value="<?php echo $row['instituteName']; ?>" type="text" class="form-control form-control-user" id="instituteName1"
                                                     placeholder="F.Sc / A Level's Institute Full Name" name="instituteName">
                                             </div>
@@ -56,18 +72,20 @@ if (isset($_SESSION['logname'])) {
                                         <div class="form-group row">
 
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="instituteCity" style="display: none;">
+                                                <label class="form-label-custom">F.Sc / A Level's Study Institute Country Name</label>
                                                 <input value="<?php echo $row['instituteCity']; ?>" type="text" class="form-control form-control-user" id="instituteCity1"
                                                     placeholder="F.Sc / A Level's Study Institute Country Name" name="instituteCity">
                                             </div>
 
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="residentialCountry" style="display: none;">
+                                                <label class="form-label-custom">Residential Country  / Country of Stay</label>
                                                 <input value="<?php echo $row['residentialCountry']; ?>" type="text" class="form-control form-control-user" id="residentialCountry1"
                                                     placeholder="Residential Country  / Country of Stay" name="residentialCountry">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="visaStatus" style="display: none;">
-
+                                                <label class="form-label-custom">Visa Status</label>
                                                 <select class="form-control form-control-lg" id="visaStatus1" name="visaStatus">
                                                     <option selected disabled value="">-- Visa Status-- </option>
                                                     <option name="visaStatus" <?php echo $row['visaStatus'] == 'Valid' ? 'selected' : ''; ?> >Valid</option>
@@ -86,41 +104,39 @@ if (isset($_SESSION['logname'])) {
                                         </div>
                                         <div id="mdcatDiv" style="display:none;">
                                             <div class="form-group row">
-                                                <!--<input value="MDCAT 2023" type="text" class="form-control form-control-user"-->
-                                                <!--    id="mcat_passing_year" placeholder="MDCAT 2023" name="mcat_passing_year" readonly>-->
-                                            <!--</div>-->
-                                            <!--<div class="col-sm-12 mb-3 mb-sm-0"> -->
-                                              
                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label class="form-label-custom">MDCAT Passing Year</label>
                                                 <select class="form-control form-control-lg" class="mt-3" id="mcat_passing_year" name="mcat_passing_year" required>
                                                     <option selected disabled value=""> -- Select MDCAT Passing Year -- </option>
                                                     <option value="2026" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2026' ? 'selected' : ''; ?>>2026</option>
                                                     <option value="2025" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2025' ? 'selected' : ''; ?>>2025</option>
                                                     <option value="2024" name="mcat_passing_year" <?php echo $row['mcat_passing_year'] == '2024' ? 'selected' : ''; ?>>2024</option>
                                                 </select></div>
-                                                <!--Total marks 200/180-->
                                                  <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <input type="text" 
-           class="form-control form-control-lg" 
-           id="total_marks" 
-           name="total_marks" 
-           placeholder="Total Marks" 
-           readonly 
-           value="<?php echo htmlspecialchars($row['total_marks'] ?? ''); ?>">
-                                                </div>
+                                                    <label class="form-label-custom">Total Entry Test Marks</label>
+                                                     <input type="text" 
+            class="form-control form-control-lg" 
+            id="total_marks" 
+            name="total_marks" 
+            placeholder="Total Marks" 
+            readonly 
+            value="<?php echo htmlspecialchars($row['total_marks'] ?? ''); ?>">
+                                                 </div>
                                                 
                                             </div>                                            
                                             
                                             <div class="form-group row" id="extraFields">
                                                 <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label class="form-label-custom">MDCAT Roll Number</label>
                                                     <input value="<?php echo $row['mcat']; ?>" type="text"
-                                                        class="form-control form-control-user" id="mcat" placeholder="MDCAT Roll Number "
-                                                        name="mcat" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
+                                                         class="form-control form-control-user" id="mcat" placeholder="MDCAT Roll Number "
+                                                         name="mcat" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
                                                 </div>
                                                 <div class="col-sm-6">
+                                                    <label class="form-label-custom">MDCAT Marks</label>
                                                     <input value="<?php echo $row['mcatr']; ?>" type="number"
-                                                        class="form-control form-control-user" id="mcatr" placeholder="MDCAT Marks" min="72"
-                                                        max="200" name="mcatr" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
+                                                         class="form-control form-control-user" id="mcatr" placeholder="MDCAT Marks" min="72"
+                                                         max="200" name="mcatr" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
                                                 </div>
                                             </div>
                                         </div>
@@ -131,6 +147,7 @@ if (isset($_SESSION['logname'])) {
                                     <div id="ucatDiv" style="display:none">
                                         <div class="form-group row">
                                             <div class="col-sm-12 mb-3 mb-sm-0"> 
+                                                <label class="form-label-custom">UCAT Passing Year</label>
                                                 <select class="form-control form-control-lg" class="mt-3" id="ucatYear" name="ucatYear">
                                                     <option selected disabled value=""> -- Select UCAT Passing year -- </option>
                                                     <option name="ucatYear" <?php echo $row['ucatYear'] == '2026' ? 'selected' : ''; ?>>2026</option>
@@ -150,11 +167,13 @@ if (isset($_SESSION['logname'])) {
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3  mb-sm-0">
+                                                <label class="form-label-custom">UCAT Obtained Marks</label>
                                                 <input value="<?php echo $row['ucatObtainedMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="ucatObtainedMarks" placeholder="UCAT Obtained Marks"
                                                     name="ucatObtainedMarks">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label class="form-label-custom">UCAT Total Marks</label>
                                                 <input value="<?php echo $row['ucatTotalMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="ucatTotalMarks" placeholder="UCAT Total Marks"
                                                     name="ucatTotalMarks">
@@ -164,6 +183,7 @@ if (isset($_SESSION['logname'])) {
                                     <div id="mcatDiv" style="display:none">
                                         <div class="form-group row">
                                             <div class="col-sm-12 mb-3 mb-sm-0"> 
+                                                <label class="form-label-custom">MCAT Passing Year</label>
                                                 <select class="form-control form-control-lg" class="mt-3" id="mcatYear" name="mcatYear" >
                                                     <option selected disabled value=""> -- Select MCAT Passing year -- </option>
                                                     <option name="mcatYear" <?php echo $row['mcatYear'] == '2026' ? 'selected' : ''; ?>>2026</option>
@@ -183,11 +203,13 @@ if (isset($_SESSION['logname'])) {
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3  mb-sm-0">
+                                                <label class="form-label-custom">MCAT Obtained Marks</label>
                                                 <input value="<?php echo $row['mcatObtainedMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="mcatObtainedMarks" placeholder="MCAT Obtained Marks"
                                                     name="mcatObtainedMarks" >
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label class="form-label-custom">MCAT Total Marks</label>
                                                 <input value="<?php echo $row['mcatTotalMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="mcatTotalMarks" placeholder="MCAT Total Marks"
                                                     name="mcatTotalMarks" >
@@ -197,11 +219,13 @@ if (isset($_SESSION['logname'])) {
 
                                     <div class="form-group row">
                                             <div class="col-sm-6 mb-3  mb-sm-0">
+                                                <label class="form-label-custom">Matric / O Level's Obtained Marks</label>
                                                 <input value="<?php echo $row['matricMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="matricMarks" placeholder="Matric / O Level's Obtained Marks"
                                                     name="matricMarks" required>
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label class="form-label-custom">Matric / O Level's Total Marks</label>
                                                 <select class="form-control form-control-lg" id="marksOutOf" name="marksOutOf" required>
                                                     <option selected disabled value="">-- Matric / O Level's Total Marks-- </option>
                                                     <option name="marksOutOf" <?php echo $row['marksOutOf'] == '850' ? 'selected' : ''; ?> >850</option>
@@ -213,6 +237,7 @@ if (isset($_SESSION['logname'])) {
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label class="form-label-custom">F.Sc / A Level's Result Status</label>
                                                 <select class="form-control form-control-lg" onchange="yesnoCheck(this.value);" name="fscStatus" required>
                                                     <option selected disabled value=""> -- F.Sc / A Level's Result Status -- </option>
                                                     <option name="fscStatus" <?php echo $row['fscStatus'] == 'Is Awaited' ? 'selected' : ''; ?>>Is Awaited</option>
@@ -220,6 +245,7 @@ if (isset($_SESSION['logname'])) {
                                                 </select>
                                             </div>
                                             <div class="col-sm-6 mb-3" id="ifselect" style="display: none;">
+                                                <label class="form-label-custom">F.Sc / A Level's Year of Completion</label>
                                                 <select class="form-control form-control-lg" onchange="yearCheck(this.value);" class="mt-3" id="comYear" name="comYear">
                                                     <option selected disabled value="">  -- Select year of completion -- </option>
                                                     <option name="comYear" <?php echo $row['comYear'] == '2026' ? 'selected' : ''; ?>>2026</option>
@@ -239,10 +265,12 @@ if (isset($_SESSION['logname'])) {
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="ifYes" style="display: none;">
+                                                <label class="form-label-custom">F.Sc / A Level's Obtained Marks</label>
                                                 <input value="<?php echo $row['fscmarks']; ?>" type="text" class="form-control form-control-user" id="fscmarks"
                                                     placeholder="F.Sc / A Level's Obtained Marks" name="fscmarks">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0" id="ifFScYes" style="display: none;">
+                                                <label class="form-label-custom">F.Sc / A Level's Total Marks</label>
                                                 <select class="form-control form-control-lg" id="fscMarksOutOf" name="fscMarksOutOf">
                                                     <option selected disabled value="">-- F.Sc / A Level's Total Marks-- </option>
                                                     <option name="fscMarksOutOf" <?php echo $row['fscMarksOutOf'] == '1200' ? 'selected' : ''; ?> >1200</option>
@@ -252,14 +280,17 @@ if (isset($_SESSION['logname'])) {
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-4 mb-3  mb-sm-0" id="show1" style="display: none;">
+                                                <label class="form-label-custom">Biology Marks</label>
                                                 <input type="text" value="<?php echo $row['biology']; ?>" class="form-control form-control-user" id="biology"
                                                     placeholder="Biology marks" name="biology">
                                             </div>
                                             <div class="col-sm-4 mb-3  mb-sm-0" id="show2" style="display: none;">
+                                                <label class="form-label-custom">Chemistry Marks</label>
                                                 <input type="text" value="<?php echo $row['chemistry']; ?>" class="form-control form-control-user" id="chemistry"
                                                     placeholder="Chemistry marks" name="chemistry">
                                             </div>
                                             <div class="col-sm-4 mb-3  mb-sm-0" id="show3" style="display: none;">
+                                                <label class="form-label-custom">Physics Marks</label>
                                                 <input type="text" value="<?php echo $row['physics']; ?>" class="form-control form-control-user" id="physics"
                                                     placeholder="Physics marks" name="physics">
                                             </div>
