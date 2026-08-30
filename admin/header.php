@@ -451,7 +451,118 @@ if ($res_v) {
                 transform: translateY(0);
             }
         }
+
+        /* --- Mobile Responsive Layout Styles --- */
+        .admin-mobile-header {
+            display: none !important;
+        }
+
+        .sidebar-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(15, 23, 42, 0.6); /* Slate dark matching admin theme */
+            backdrop-filter: blur(4px);
+            z-index: 1040;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .sidebar-backdrop.show-backdrop {
+            display: block;
+            opacity: 1;
+        }
+
+        @media (max-width: 991.98px) {
+            body {
+                flex-direction: column !important;
+            }
+
+            #admin-wrapper {
+                flex-direction: column !important;
+            }
+
+            .admin-mobile-header {
+                display: flex !important;
+                background-color: var(--primary-bg);
+                color: #ffffff;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+
+            .sidebar {
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                z-index: 1050;
+                transform: translateX(-100%);
+                transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .sidebar.show-sidebar {
+                transform: translateX(0) !important;
+            }
+
+            #admin-content {
+                padding: 1.25rem !important;
+            }
+
+            .topbar {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 15px !important;
+                padding: 1rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .topbar-title-section {
+                text-align: center;
+            }
+
+            .search-container {
+                max-width: 100% !important;
+            }
+
+            /* Adjust stats cards */
+            .row.mb-4 > div {
+                margin-bottom: 1rem;
+            }
+            .row.mb-4 > div:last-child {
+                margin-bottom: 0;
+            }
+            
+            /* Form columns */
+            .form-group.row > div {
+                margin-bottom: 1rem;
+            }
+            .form-group.row > div:last-child {
+                margin-bottom: 0;
+            }
+            
+            /* Banner alignments */
+            .admin-card.p-4.mb-4 .text-md-end {
+                text-align: left !important;
+                margin-top: 1rem;
+            }
+            .admin-card.p-4.mb-4 button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="admin-wrapper">
+        <!-- Mobile View Header Bar -->
+        <div class="admin-mobile-header d-flex d-lg-none align-items-center justify-content-between p-3 position-sticky top-0" style="z-index: 1040; width: 100%;">
+            <button class="btn btn-outline-light border-0" id="adminSidebarToggle">
+                <i class="fa-solid fa-bars fa-lg"></i>
+            </button>
+            <div class="brand-text fw-bold" style="font-size: 1.1rem; letter-spacing: 0.5px;">WMDC Admin</div>
+            <div style="width: 40px;"></div> <!-- Balanced spacer -->
+        </div>
+
+        <!-- Sidebar Mobile Backdrop -->
+        <div class="sidebar-backdrop" id="sidebarBackdrop"></div>

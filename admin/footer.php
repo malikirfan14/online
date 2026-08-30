@@ -29,6 +29,34 @@
                 myModal.show();
             }
         }
+
+        // Mobile Sidebar Drawer Toggle logic
+        document.addEventListener("DOMContentLoaded", function() {
+            var toggleBtn = document.getElementById("adminSidebarToggle");
+            var sidebar = document.querySelector(".sidebar");
+            var backdrop = document.getElementById("sidebarBackdrop");
+
+            if (toggleBtn && sidebar && backdrop) {
+                toggleBtn.addEventListener("click", function() {
+                    sidebar.classList.add("show-sidebar");
+                    backdrop.classList.add("show-backdrop");
+                });
+
+                backdrop.addEventListener("click", function() {
+                    sidebar.classList.remove("show-sidebar");
+                    backdrop.classList.remove("show-backdrop");
+                });
+
+                // Close sidebar on link click (for smooth experience)
+                var sidebarLinks = sidebar.querySelectorAll(".sidebar-link");
+                sidebarLinks.forEach(function(link) {
+                    link.addEventListener("click", function() {
+                        sidebar.classList.remove("show-sidebar");
+                        backdrop.classList.remove("show-backdrop");
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
