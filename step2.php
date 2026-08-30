@@ -1,7 +1,0 @@
-<?php
-session_start();
-if (!isset($_SESSION['logname'])) {
-    header("location:studentLogin.php");
-}
-?>
-<div>This is step 2 page</div>
