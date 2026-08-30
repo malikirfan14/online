@@ -38,7 +38,7 @@ session_start();
 
     <!-- Custom fonts for this template-->
 
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <link
 
@@ -50,7 +50,7 @@ session_start();
 
     <!-- Custom styles for this template-->
 
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 
 
@@ -96,7 +96,7 @@ session_start();
 
                                     </div>
 
-                                    <form class="user" action="adminLoginBack.php">
+                                    <form class="user" action="login-backend.php">
 
                                         <div class="form-group">
 
@@ -190,21 +190,21 @@ session_start();
 
     <!-- Bootstrap core JavaScript-->
 
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 
     <!-- Core plugin JavaScript-->
 
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
 
     <!-- Custom scripts for all pages-->
 
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
 
 

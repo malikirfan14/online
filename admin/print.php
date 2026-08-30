@@ -12,7 +12,7 @@ if (isset($_SESSION['adminName'])) {
 
     error_reporting(0);
 
-    require('configure.php');
+    require('../configure.php');
 
 
 
@@ -42,7 +42,7 @@ $id =$_REQUEST['id'];
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <link rel="icon" type="image/x-icon" href="img/icon.ico">
+      <link rel="icon" type="image/x-icon" href="../img/icon.ico">
 
   
 
@@ -116,7 +116,7 @@ $id =$_REQUEST['id'];
 
         <div class="col col-sm-2">   
 
-               <img src="img/medlogo.png" class="float-left"/>
+               <img src="../img/medlogo.png" class="float-left"/>
 
                   
 
@@ -134,7 +134,7 @@ $id =$_REQUEST['id'];
 
         <div class="col col-sm-2">
 
-          <img src="img/denlogo.png" class="float-right"/>
+          <img src="../img/denlogo.png" class="float-right"/>
 
         </div>
 
@@ -272,7 +272,7 @@ $id =$_REQUEST['id'];
         </div>
     </div>
         <div class="col col-sm-2 justify-content-center text-center " style=" border: 1px solid black; border-collapse: collapse; alig-item : center;">
-            <img id="preview" src="<?php echo empty($row['profilePicture']) ? 'uploads_26to27/profiles/avatar.jpg' : 'uploads_26to27/profiles/' . $row['cnic'] . '/' . $row['profilePicture']; ?>" alt="Profile Picture">
+            <img id="preview" src="<?php echo empty($row['profilePicture']) ? '../uploads_26to27/profiles/avatar.jpg' : '../uploads_26to27/profiles/' . $row['cnic'] . '/' . $row['profilePicture']; ?>" alt="Profile Picture">
         </div>
 </div>
 

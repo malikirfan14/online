@@ -8,7 +8,7 @@ session_start();
 // $_SESSION['appId'] =  mt_rand(100000,999999)+120025;
 
 $fregNo = "";
-require('configure.php');
+require('../configure.php');
 // Check connection
 if ($conn === false) {
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -39,11 +39,11 @@ if ($conn === false) {
 // echo "I AM HERE ";
 // die();
             echo "<script>
-          window.location.href='adminFetch.php';</script>";
+          window.location.href='unverified.php';</script>";
         } else{
 
             echo "<script>alert('Login Failed! Please make sure that you enter the correct details');
-        window.location.href='adminLogin.php';</script>";
+        window.location.href='login.php';</script>";
         } 
     } 
 }
