@@ -1,0 +1,85 @@
+/* Centralized Responsive Overrides for Mobile Viewports */
+
+/* General Responsive Helpers */
+.responsive-img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Table Responsiveness */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Wizard Steps Responsiveness */
+@media (max-width: 768px) {
+    .wizard-steps {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+
+    .step {
+        margin: 0 !important;
+        border-radius: 8px !important;
+        padding: 10px 15px !important;
+        font-size: 14px !important;
+        text-align: left !important;
+    }
+
+    .step::before {
+        content: "• ";
+        font-weight: bold;
+    }
+
+    .wizard-container {
+        padding: 12px !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+
+    .wizard-content {
+        padding: 12px !important;
+    }
+}
+
+/* General Layout Optimization for Small Screen Devices */
+@media (max-width: 576px) {
+
+    .container,
+    .container-fluid {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .card-body {
+        padding: 12px !important;
+    }
+
+    /* Stack Form Groups and Buttons */
+    .form-group.row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .form-group.row>div {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom: 12px !important;
+    }
+
+    .form-group.row>div:last-child {
+        margin-bottom: 0 !important;
+    }
+
+    /* Style Choose buttons */
+    .custom-button {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+    }
+}

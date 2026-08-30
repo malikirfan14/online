@@ -174,111 +174,56 @@ if (isset($_SESSION['logname'])) {
 
 
 
-                            <table class="table table-light" style="margin-bottom : 20px;">
-
-                                <thead>
-
-                                    
-
-
-
-                                    
-
-                                    <tr style="font-size: 16px;">
-
-                                        <!--<th scope="col">#</th>-->
-
-                                        <th scope="col">Student Name</th>
-
-                                        <th scope="col">Father / Guardian</th>
-
-                                        <th scope="col">CNIC</th>
-
-                                        <th scope="col">Contact</th>
-
-                                        <th scope="col">Applied Program</th>
-
-                                        <!--<th scope="col">Approximate Aggregate</th>-->
-
-
-
+                            <div class="table-responsive">
+                                <table class="table table-light" style="margin-bottom : 20px;">
+                                    <thead>
+                                        <tr style="font-size: 16px;">
+                                            <th scope="col">Student Name</th>
+                                            <th scope="col">Father / Guardian</th>
+                                            <th scope="col">CNIC</th>
+                                            <th scope="col">Contact</th>
+                                            <th scope="col">Applied Program</th>
                                         </tr>
+                                    </thead>  
+                                    <tbody>
+                                        <tr>
+                                            <td><?php echo htmlspecialchars($stdName); ?></td>
+                                            <td><?php echo htmlspecialchars($stdFname); ?> </td>
+                                            <td><?php echo htmlspecialchars($stdCnic); ?></td>
+                                            <td><?php echo htmlspecialchars($stdPhone); ?></td>
+                                            <td>
+                                                <?php
+                                                $query = "SELECT * FROM `registration_26to27` WHERE `cnic`= '$logname' AND (SELECT `cnic` FROM `student_reg_26to27` WHERE `cnic` = '$logname')";
+                                                $result = mysqli_query($conn, $query);
+                                                $aggregatePer = '';
+                                                if (mysqli_num_rows($result) > 0) {
+                                                    if ($rowf = mysqli_fetch_array($result)) {
+                                                        echo htmlspecialchars($rowf['program']);
+                                                        $aggregatePer = $rowf['aggregatePer'];
+                                                    }
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                                </thead>  
+                            <div class="button-group-container d-flex flex-wrap mt-4" style="gap: 10px; margin-bottom: 50px;">
+                                <?php if ($aggregatePer !== ''): ?>
+                                <button type="button" class="btn btn-danger" style="color: White;">
+                                    <span style="color: White; padding-right:5px; padding-left:5px;"><i class="fa fa-calculator" style="padding-right:10px"></i><?php echo htmlspecialchars($aggregatePer); ?>% Approximate Aggregate</span>
+                                </button>
+                                <?php endif; ?>
 
-                                 <tbody>
+                                <button type="button" class="btn btn-primary" style="color: White;">
+                                    <a href="registration.php?edit=1" style="color: White; padding-right:5px; padding-left:5px; text-decoration: none;"><i class="fa fa-edit" style="padding-right:10px"></i>Update Personal info or Results</a>
+                                </button>
 
-                                        <td><?php echo $stdName; ?></td>
-
-                                        <td><?php echo $stdFname; ?> </td>
-
-                                        <td><?php echo $stdCnic ?></td>
-
-                                        <td><?php echo $stdPhone ?></td>
-
-                                        <?php
-
-
-
-$query = "SELECT * FROM `registration_26to27` WHERE `cnic`= '$logname' AND (SELECT `cnic` FROM `student_reg_26to27` WHERE `cnic` = '$logname')";
-
-$result = mysqli_query($conn, $query);
-
-if (mysqli_num_rows($result) > 0) {
-
-    while ($rowf = mysqli_fetch_array($result)) {
-
-
-
-?>
-
- <td>
-
- <?php echo $rowf['program'];?>
-
- </td>
-
-
-
-
-<button type="button" class="btn btn-danger" style="color : White; float : left; margin-top : 25px; margin-right : 10px; margin-bottom : 50px;">
-    <a style="color : White; padding-right:5px; padding-left:5px "><i class="fa" style="padding-right:0px">
-    </i><?php echo $rowf['aggregatePer']; ?>%  Approximate Aggregate</a>
-</button>
-
-<button type="button"  class="btn btn-danger" style="color : White; float : left; margin-top : 25px; margin-right : 10px; margin-bottom : 50px;">
-    <a href="registration.php?edit=1" style="color : White; padding-right:5px; padding-left:5px ">Update Personal info or Results</a>
-</button>
-
-<button type="button"  class="btn btn-danger" style="color : White; float : left; margin-top : 25px; margin-right : 10px; margin-bottom : 50px;">
-    <a href="logout.php" style="color : White; padding-right:5px; padding-left:5px ">Logout</a>
-</button>
-
-
-
- <!--<td>-->
-
-      <?php  $rowf['aggregatePer'];
-
-    }
-
- } ?>
-
- <!--</td>-->
-
-                                      
-
-
-
-                                 </tbody>
-
-                                      
-
-                              
-
-
-
-                            </table>
+                                <button type="button" class="btn btn-secondary" style="color: White;">
+                                    <a href="logout.php" style="color: White; padding-right:5px; padding-left:5px; text-decoration: none;"><i class="fa fa-sign-out-alt" style="padding-right:10px"></i>Logout</a>
+                                </button>
+                            </div>
 
                             <br>
 

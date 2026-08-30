@@ -14,9 +14,8 @@ include('header.php');
 ?>
 		
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-8 col-lg-6">
 					<div class="card">
 						<div class="card-header  text-center bg-primary text-white text-uppercase">
 							Upload Submitted BDS & MBBS Challan
@@ -49,7 +48,6 @@ include('header.php');
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-3"></div>
 			</div>
 		</div>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script></body>

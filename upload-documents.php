@@ -29,9 +29,9 @@ if (isset($_SESSION['logname'])) {
                                                     <div class="form-container0">
                                                         <label for="fsc" class="form-label-custom">Fsc Marksheet</label>
                                                         <br>
-                                                        <img id="preview1"
+                                                        <img id="preview1" class="responsive-img"
                                                             src="<?php echo empty($row['fscImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['fscImage']; ?>"
-                                                            alt="fsc image" style="max-width: 330px; max-height:320px ">
+                                                            alt="fsc image" style="max-width: 330px; max-height:320px;">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
                                                         <label class="custom-button" for="fsc">Choose Image</label>
@@ -50,9 +50,9 @@ if (isset($_SESSION['logname'])) {
                                                         <label class="form-label-custom">Matric Marksheet</label>
                                                         <br>
 
-                                                        <img id="preview2"
+                                                        <img id="preview2" class="responsive-img"
                                                             src="<?php echo empty($row['matricImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['matricImage']; ?>"
-                                                            alt="matric image" style="max-width: 330px; max-height:320px ">
+                                                            alt="matric image" style="max-width: 330px; max-height:320px;">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
                                                         <label class="custom-button" for="matric">Choose Image</label>
@@ -73,9 +73,9 @@ if (isset($_SESSION['logname'])) {
                                                         <label class="form-label-custom"><?php echo $row['stdType'] == 'Overseas/Foreign' ? "MDCAT / UCAT / MCAT Result" : "MDCAT Result" ?></label>
                                                         <br>
 
-                                                        <img id="preview3"
+                                                        <img id="preview3" class="responsive-img"
                                                             src="<?php echo empty($row['mdcatImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['mdcatImage']; ?>"
-                                                            alt="mdcat image" style="max-width: 330px; max-height:320px ">
+                                                            alt="mdcat image" style="max-width: 330px; max-height:320px;">
                                                         <br>
                                                         <?php if ($row['isVerified'] != '1'): ?>
                                                         <label class="custom-button" for="mdcat">Choose Image</label>
@@ -97,8 +97,8 @@ if (isset($_SESSION['logname'])) {
                                                             <label class="form-label-custom">Passport/Iqama</label>
                                                             <br>
 
-                                                            <img id="preview6" src="' . (empty($row['passportIqamaImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']) . '"
-                                                                alt="cnic image" style="max-width: 330px; max-height: 320px ">
+                                                            <img id="preview6" class="responsive-img" src="' . (empty($row['passportIqamaImage']) ? 'uploads_26to27/documents/avatar.jpg' : 'uploads_26to27/documents/' . $row['cnic'] . '/' . $row['passportIqamaImage']) . '"
+                                                                alt="cnic image" style="max-width: 330px; max-height: 320px;">
                                                             <br>';
 
                                                     if ($row['isVerified'] !== '1') {

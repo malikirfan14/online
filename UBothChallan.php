@@ -13,11 +13,9 @@ if (isset($_SESSION['logname'])) {
 
 		<div class="container">
 
-			<div class="row">
+			<div class="row justify-content-center">
 
-				<div class="col-sm-3"></div>
-
-				<div class="col-sm-6">
+				<div class="col-12 col-md-8 col-lg-6">
 
 					<div class="card">
 
@@ -82,8 +80,6 @@ if (isset($_SESSION['logname'])) {
 					</div>
 
 				</div>
-
-				<div class="col-sm-3"></div>
 
 			</div>
 

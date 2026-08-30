@@ -111,8 +111,8 @@ $logname = $_SESSION['logname'];
     <!-- Custom styles for this template-->
 
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-
+    <!-- Custom responsive overrides -->
+    <link href="css/responsive-custom.css" rel="stylesheet">
 
 </head>
 
