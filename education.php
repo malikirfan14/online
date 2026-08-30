@@ -42,7 +42,7 @@ if (isset($_SESSION['logname'])) {
                             <div class="col-lg-12">
                                 <!-- Circle Buttons -->
                                 <div class="container">
-                                    <form id="educationForm" name="educationForm" class="user" action="educationBack.php">
+                                    <form id="educationForm" name="educationForm" class="user" action="education-back.php">
                                          <?php if (isset($_GET['edit'])): ?>
                                              <input type="hidden" name="edit" value="1">
                                          <?php endif; ?>

@@ -206,7 +206,7 @@ $logname = $_SESSION['logname'];
 
                         <h6 class="collapse-header">Addmission Components:</h6>
 
-                        <a class="collapse-item" href="AddmissionRegistration.php">Apply Now</a>
+                        <a class="collapse-item" href="registration.php">Apply Now</a>
 
                         <a class="collapse-item" href="cards.html">Update Form</a>
 
@@ -828,7 +828,7 @@ $logname = $_SESSION['logname'];
 
               <button type="button" class="btn btn-danger" style = "color : White; float : right; margin-top : 22px; margin-right : 10px">
 
-                <a href="AddmissionRegistration.php" style = "color : White; padding-right:5px; padding-left:5px "><i class = "fa fa-home" style = "padding-right:10px">
+                <a href="registration.php" style = "color : White; padding-right:5px; padding-left:5px "><i class = "fa fa-home" style = "padding-right:10px">
 
                          
 

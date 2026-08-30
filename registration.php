@@ -147,7 +147,7 @@ if ($conn === false) {
         <div class="wizard-content">
             <!-- Step 1: Personal Info -->
             <div class="step-content active">
-                <?php include('AddmissionRegistration.php'); ?>
+                <?php include('personal-info.php'); ?>
             </div>
             
             <!-- Step 2: Education Results -->
@@ -157,7 +157,7 @@ if ($conn === false) {
             
             <!-- Step 3: Document Uploads -->
             <div class="step-content">
-                <?php include('multiple.php'); ?>
+                <?php include('upload-documents.php'); ?>
             </div>
         </div>
     </div>

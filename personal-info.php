@@ -54,7 +54,7 @@ if (isset($_SESSION['logname'])) {
 
             <div class="container">
 
-                <form id="rform" name="rform" class="user" action="AddmissionRegistrationBack.php" enctype="multipart/form-data" method="post">
+                <form id="rform" name="rform" class="user" action="personal-info-back.php" enctype="multipart/form-data" method="post">
                     <?php if (isset($_GET['edit'])): ?>
                         <input type="hidden" name="edit" value="1">
                     <?php endif; ?>

@@ -82,7 +82,7 @@ if(isset($_SESSION['logname'])){
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Addmission Components:</h6>
-                        <a class="collapse-item" href="AddmissionRegistration.php">Apply Now</a>
+                        <a class="collapse-item" href="registration.php">Apply Now</a>
                         <a class="collapse-item" href="cards.html">Update Form</a>
                     </div>
                 </div>
