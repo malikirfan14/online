@@ -246,7 +246,7 @@ if ($conn === false) {
 
     
 
-        echo "<script> window.location.href='studentProfile.php';</script>";
+        echo "<script> window.location.href='profile.php';</script>";
 
 
 

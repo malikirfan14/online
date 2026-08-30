@@ -119,7 +119,7 @@ if (isset($_SESSION['logname'])) {
 
             <li class="nav-item">
 
-                <a class="nav-link" href="studentProfile.php">
+                <a class="nav-link" href="profile.php">
 
                     <i class="fa fa-user"></i>
 
@@ -159,7 +159,7 @@ if (isset($_SESSION['logname'])) {
 
             <!--<li class="nav-item">-->
 
-            <!--    <a class="nav-link" href="studentProfile.php">-->
+            <!--    <a class="nav-link" href="profile.php">-->
 
             <!--        <i class="fa fa-download"></i>-->
 
@@ -207,9 +207,9 @@ if (isset($_SESSION['logname'])) {
 
                     <a class="collapse-item" href="getChallanForm.php">Get challan Form
 
-                    <a class="collapse-item" href="studentProfile.php">Profile</a>
+                    <a class="collapse-item" href="profile.php">Profile</a>
 
-                    <a class="collapse-item" href="studentProfile.php">Download Challan</a>
+                    <a class="collapse-item" href="profile.php">Download Challan</a>
 
                     <a class="collapse-item" href="updateResult.php">Update Record</a>
 
@@ -516,7 +516,7 @@ if (isset($_SESSION['logname'])) {
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
 
-                                <a class="dropdown-item" href="studentProfile.php">
+                                <a class="dropdown-item" href="profile.php">
 
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
 

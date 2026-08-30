@@ -136,7 +136,7 @@ require('configure.php');
 
 
 
-        // window.location.href='studentProfile.php';</script>";
+        // window.location.href='profile.php';</script>";
 
  
 

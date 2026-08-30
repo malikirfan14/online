@@ -129,7 +129,7 @@ if (isset($_SESSION['logname'])) {
         //     move_uploaded_file($file_tmp4, $location . $file4);
         //     move_uploaded_file($file_tmp5, $location . $file5);
         //     echo "<script>
-        // window.location.href='studentProfile.php';</script>";
+        // window.location.href='profile.php';</script>";
         }
         
         else if(file_exists($location))
@@ -138,7 +138,7 @@ if (isset($_SESSION['logname'])) {
         { 
               move_uploaded_file($file_tmp1, $location . $file1);
                     echo "<script>
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
             
         }
         
@@ -146,7 +146,7 @@ if (isset($_SESSION['logname'])) {
         { 
               move_uploaded_file($file_tmp2, $location . $file2);
                     echo "<script>
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
             
         }
         
@@ -154,7 +154,7 @@ if (isset($_SESSION['logname'])) {
         { 
               move_uploaded_file($file_tmp3, $location . $file3);
                     echo "<script>
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
             
         }
         
@@ -162,7 +162,7 @@ if (isset($_SESSION['logname'])) {
         { 
               move_uploaded_file($file_tmp4, $location . $file4);
                     echo "<script>
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
             
         }
          if(!file_exists($location. $file5))
@@ -178,7 +178,7 @@ if (isset($_SESSION['logname'])) {
         else if(file_exists($location. $file2) AND file_exists($location. $file2) AND file_exists($location. $file2) AND file_exists($location. $file2) AND file_exists($location. $file2))
         {
             echo "<script>alert('Files uploaded successfully');
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
         }
         
         

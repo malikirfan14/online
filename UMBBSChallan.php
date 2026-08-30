@@ -194,7 +194,7 @@ if(isset($_POST['submit']))
 
         echo "<script>
 
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
 
     }
 

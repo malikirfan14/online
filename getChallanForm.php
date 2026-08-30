@@ -242,7 +242,7 @@ $logname = $_SESSION['logname'];
 
                         <!--<a class="collapse-item" href="utilities-color.html">Get challan Form</a>-->
 
-                        <a class="collapse-item" href="studentProfile.php">Profile</a>
+                        <a class="collapse-item" href="profile.php">Profile</a>
 
                         <a class="collapse-item" href="utilities-animation.html">Update Result</a>
 

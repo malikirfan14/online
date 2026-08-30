@@ -205,7 +205,7 @@ if ($conn === false) {
                 
                 // Complete flow, redirecting to student profile page
                 setTimeout(function () {
-                    window.location.href = "studentProfile.php";
+                    window.location.href = "profile.php";
                 }, 1000);
             }
         } 

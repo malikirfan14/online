@@ -100,7 +100,7 @@ if(isset($_SESSION['logname'])){
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Student Profile:</h6>
                         <!--<a class="collapse-item" href="getChallanForm.php">Get challan Form</a>-->
-                        <a class="collapse-item" href="studentProfile.php">Profile</a>
+                        <a class="collapse-item" href="profile.php">Profile</a>
                         <a class="collapse-item" href="updateResult.php">Update Result</a>
                         <a class="collapse-item" href="#">Other</a>
                     </div>

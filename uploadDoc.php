@@ -99,7 +99,7 @@ if(isset($_POST['submit']))
         move_uploaded_file($file_tmp1, $location.$file1);
 		move_uploaded_file($file_tmp2, $location.$file2);
         echo "<script>
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
     }
 
     else{

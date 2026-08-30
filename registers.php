@@ -130,7 +130,7 @@ if ($conn === false) {
             currentStep = 2;
                 // ✅ Redirect to student profile after a short delay (e.g., 1 second)
     //setTimeout(function () {
-     //   window.location.href = "studentProfile.php"; // <-- change this to your actual profile URL
+     //   window.location.href = "profile.php"; // <-- change this to your actual profile URL
    // }, 1000); // 1000 milliseconds = 1 second
         }
         else if (isPersonalInfoDone == 1) {

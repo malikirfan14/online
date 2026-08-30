@@ -93,7 +93,7 @@ if(isset($_POST['submit']))
         mkdir($location);
         move_uploaded_file($file_tmp1, $location.$file1);
         echo "<script>
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
     }
 
     else{

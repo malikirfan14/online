@@ -68,7 +68,7 @@
             </p>
 	    	    <?php 
 	    	      echo "<script>alert('File Uploaded successfully');
-        window.location.href='studentProfile.php';</script>";
+        window.location.href='profile.php';</script>";
             }
             ?>
 		    	<form action="" method="post" enctype="multipart/form-data">
