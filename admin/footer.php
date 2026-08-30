@@ -4,11 +4,11 @@
     <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true" style="z-index: 1060;">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content bg-transparent border-0">
-                <div class="modal-header border-0 p-0 position-relative" style="height: 0;">
-                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 shadow-lg" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1070;"></button>
-                </div>
                 <div class="modal-body text-center p-0">
-                    <img id="modalPreviewImage" src="" alt="Preview Document" class="img-fluid rounded shadow-lg" style="max-height: 85vh; border: 4px solid white; display: inline-block;">
+                    <div class="position-relative d-inline-block">
+                        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 shadow-lg" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1070;"></button>
+                        <img id="modalPreviewImage" src="" alt="Preview Document" class="img-fluid rounded shadow-lg" style="max-height: 85vh; border: 4px solid white; display: inline-block;">
+                    </div>
                 </div>
             </div>
         </div>
