@@ -42,90 +42,118 @@ session_start();
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                         
-                    <div class="alert alert-warning text-center fade show" role="alert">
-                    <h6 class="text-danger"> <strong>🔔<br /> 
-    
-                    <!--<br />Last Date to Apply for MBBS 29th December, 2026 (3:00 PM)<br />-->
-                    <!-- <br />Apply now against MBBS Vacant Sets as per Punjab Govt. Notification -->
-                    <br />Register now for BDS. MBBS registration has been closed.    
-                    </strong> </h6>
-                    <br />Session 2026-27
-				    <br />Apply NOW 
-                    <br />Complete Your Online Application !<br />
-                    <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                    <!--    <span aria-hidden="true">Ã—</span>-->
-                    <!--        </button>-->
+                    <div class="alert alert-warning text-center fade show border-left-warning shadow-sm m-3 mb-0" role="alert">
+                        <h6 class="text-danger mb-1">
+                            <strong>🔔<br />Register now for BDS. MBBS registration has been closed.</strong>
+                        </h6>
+                        <span class="small font-weight-bold text-dark">Session 2026-27 | Apply NOW</span><br />
+                        <span class="small text-muted">Complete Your Online Application !</span>
                     </div>
-                            <div class="text-center">
-<!--                                <a class="btn btn-info btn-sm right" href="login.php" role="button">Already have an account? Login!</a>-->
-<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-  <a button type="button" class="btn btn-danger" href="login.php">Already have an account ? Login</button></a>
-  <a button type="button" class="btn btn-success" href="#">Registration Page</button></a>
-</div>                                 
-                            </div>
+
+                    <?php if (isset($_GET['error'])): ?>
+                        <div class="px-3 pt-3 mb-0">
+                            <?php if ($_GET['error'] == 'already_registered'): ?>
+                                <div class="alert alert-danger border-left-danger shadow-sm alert-dismissible fade show mb-0" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
+                                        </div>
+                                        <div>
+                                            <strong class="font-weight-bold d-block text-danger">Registration Failed!</strong>
+                                            <span class="small">You have already registered against this CNIC or Email. Please login instead.</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php elseif ($_GET['error'] == 'missing_fields'): ?>
+                                <div class="alert alert-warning border-left-warning shadow-sm alert-dismissible fade show mb-0" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <i class="fas fa-exclamation-circle fa-2x text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <strong class="font-weight-bold d-block text-warning">Incomplete Form!</strong>
+                                            <span class="small">Please fill in all required fields to register.</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="text-center my-3 px-3">
+                        <a class="btn btn-danger btn-block btn-user font-weight-bold py-2 shadow-sm" href="login.php">
+                            Already have an account? Login Here
+                        </a>
+                    </div>
                            
 
-                        <div class="p-3">
+                        <div class="p-3 p-sm-4">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Create an Account!</h1>
                             </div>
-                            <form class="user" action="studentreg.php" >
+                            <form class="user" action="register-back.php">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="exampleFirstName" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                            Full Name <span class="text-muted font-weight-normal">(as per Matric Certificate)</span> <span class="text-danger">*</span>
+                                        </label>
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="Full name as per Matric Certificate" name = "logname" required>
-                                            <!-- <br/> -->
-                                            <!-- <span class="help-block">Full name as per Matric certificate</span> -->
+                                            placeholder="Full name as per Matric Certificate" name="logname" required>
                                     </div>
                                     <div class="col-sm-6">
+                                        <label for="exampleLastName" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                            Father / Guardian Name <span class="text-danger">*</span>
+                                        </label>
                                         <input type="text" class="form-control form-control-user" id="exampleLastName"
                                             placeholder="Father / Guardian Name" name="fname" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                        Email Address <span class="text-danger">*</span>
+                                    </label>
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail"
                                         placeholder="Email Address" name="email" required>
                                 </div>
                                 
-                                  <div class="form-group">
-                                       <input type="text"   class="form-control form-control-user" 
-                                        placeholder="CNIC Number Without Dashes (3040570401050)" name="cnic" maxlength="13" minlength="13" required >
-                                    <!--<input type="tel" id="telle" maxlength="15"  class="form-control form-control-user" -->
-                                    <!--    placeholder="CNIC" name="cnic" maxlength="15"  >-->
-                                        <!-- <a id="txt">Result</a>  -->
-                                    </div>
+                                <div class="form-group">
+                                    <label for="exampleCnic" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                        CNIC Number <span class="text-muted font-weight-normal">(Without Dashes e.g. 3040570401050)</span> <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control form-control-user" id="exampleCnic"
+                                        placeholder="CNIC Number Without Dashes (3040570401050)" name="cnic" maxlength="13" minlength="13" required>
+                                </div>
                                 
-                                  <div class="form-group">
-                                    <!--<input type="text" class="form-control form-control-user" id="exampleInputEmail"-->
-                                    <!--    placeholder="Phone Number" name="stdPhone"-->
-                                    <!--     oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" >-->
-                                    
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                <div class="form-group">
+                                    <label for="exampleStdPhone" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                        Student Mobile Number <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control form-control-user" id="exampleStdPhone"
                                         placeholder="Student Mobile Number" name="stdPhone"
-                                         maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="11" required>
+                                        maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="11" required>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="col-sm-12">
+                                        <label for="exampleInputPassword" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                            Password <span class="text-danger">*</span>
+                                        </label>
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password" name = "password" required>
+                                            id="exampleInputPassword" placeholder="Password" name="password" required>
                                     </div>
-                                    <!--<div class="col-sm-6">-->
-                                    <!--    <input type="password" class="form-control form-control-user"-->
-                                    <!--        id="exampleRepeatPassword" placeholder="Repeat Password">-->
-                                    <!--</div>-->
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block font-weight-bold py-2 shadow">
                                     Register Account
                                 </button>
                                 <hr>
-                               
                             </form>
-                            <hr>
                             <div class="text-center">
-                                <!-- <a class="small" href="forgot-password.html">Forgot Password?</a> -->
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.php">Already have an account? Login!</a>
+                                <a class="small font-weight-bold" href="login.php">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

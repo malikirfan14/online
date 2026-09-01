@@ -147,42 +147,17 @@ require('configure.php');
         }
 
       else if($count == 0)
-
       {
-
-          
-
-           echo "<script>alert('Login Failed! Please make sure that you enter the correct details');
-
-        window.location.href='login.php';</script>";
-
-         
-
-      
-
-            //  $error = "Your Login Name or Password is invalid";
-
-          // echo "<script>alert('Combination of cnic and password doesn't match');
-
-          // window.location.href='http://www.watim.com.pk';</script>";
-
-    
-
+          header("Location: login.php?error=login_failed");
+          echo "<script>window.location.href='login.php?error=login_failed';</script>";
+          exit();
       }
-
-      
-
-      
-
       else
-
-  {
-
-      echo "ERROR: Hush! Sorry fill all required fields ";
-
-
-
-}
+      {
+          header("Location: login.php?error=missing_fields");
+          echo "<script>window.location.href='login.php?error=missing_fields';</script>";
+          exit();
+      }
 
 
 

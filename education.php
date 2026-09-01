@@ -84,13 +84,14 @@ if (isset($_SESSION['logname'])) {
                                                     <option name="visaStatus" <?php echo $row['visaStatus'] == 'Expired' ? 'selected' : ''; ?>>Expired</option>
                                                 </select>
                                             </div>
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <div class="col-sm-6 mb-3 mb-sm-0" id="testTypeDiv" style="display: none;">
+                                                <label class="form-label-custom">Entry Test Type</label>
                                                 <select class="form-control form-control-lg" onchange="testTypeChange(this.value);"
-                                                 name="testType" id="testType" style="display: none;">
-                                                    <option selected disabled value=""> -- Select Test Type -- </option>
-                                                    <option name="testType" <?php echo $row['testType'] == 'MDCAT' ? 'selected' : ''; ?>>MDCAT</option>
-                                                    <option name="testType" <?php echo $row['testType'] == 'UCAT' ? 'selected' : ''; ?>>UCAT</option>
-                                                    <option name="testType" <?php echo $row['testType'] == 'MCAT' ? 'selected' : ''; ?>>MCAT</option>
+                                                 name="testType" id="testType">
+                                                    <option selected disabled value=""> -- Select Entry Test Type -- </option>
+                                                    <option value="MDCAT" <?php echo $row['testType'] == 'MDCAT' ? 'selected' : ''; ?>>MDCAT</option>
+                                                    <option value="UCAT" <?php echo $row['testType'] == 'UCAT' ? 'selected' : ''; ?>>UCAT</option>
+                                                    <option value="MCAT" <?php echo $row['testType'] == 'MCAT' ? 'selected' : ''; ?>>MCAT</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -453,6 +454,9 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("instituteCity").style.display = "block";
             document.getElementById("residentialCountry").style.display = "block";
             document.getElementById("visaStatus").style.display = "block";
+            if (document.getElementById("testTypeDiv")) {
+                document.getElementById("testTypeDiv").style.display = "block";
+            }
             document.getElementById("testType").style.display = "block";
 
             if (document.getElementById("passIqamaNo1").value == "") {
@@ -502,6 +506,9 @@ if (isset($_SESSION['logname'])) {
             document.getElementById("residentialCountry").style.display = "none";
 
             document.getElementById("visaStatus").style.display = "none";
+            if (document.getElementById("testTypeDiv")) {
+                document.getElementById("testTypeDiv").style.display = "none";
+            }
             document.getElementById("testType").style.display = "none";
 
             document.getElementById("mdcatDiv").style.display = "block";

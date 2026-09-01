@@ -58,55 +58,71 @@ if ($conn === false) {
     .wizard-container {
         max-width: 100%;
         margin: 0 auto;
-        padding: 20px;
+        padding: 24px;
         background-color: #ffffff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
+        border: 0;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     /* Progress bar layout */
     .wizard-progress-bar {
-        height: 20px;
-        background-color: #e0e0e0;
-        margin-bottom: 20px;
-        border-radius: 5px;
+        height: 12px;
+        background-color: #e9ecef;
+        margin-bottom: 24px;
+        border-radius: 10px;
         overflow: hidden;
     }
 
     .wizard-progress {
         height: 100%;
         width: 0;
-        background-color: #4caf50;
-        transition: width 0.3s ease-in-out;
+        background: linear-gradient(90deg, #1cc88a 0%, #20c997 100%);
+        transition: width 0.4s ease-in-out;
+        border-radius: 10px;
     }
 
     /* Wizard steps navigation nodes */
     .wizard-steps {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        gap: 10px;
     }
 
     .step {
         flex: 1;
         text-align: center;
-        padding: 10px;
-        background-color: #ccc;
+        padding: 12px 15px;
+        background-color: #f8f9fc;
+        color: #5a5c69;
+        font-weight: 700;
         cursor: pointer;
-        border-radius: 25px;
-        margin: 0 5px;
+        border-radius: 30px;
+        border: 2px solid #e3e6f0;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .step.active {
+        background-color: #4e73df;
+        color: #ffffff;
+        border-color: #4e73df;
+        box-shadow: 0 4px 10px rgba(78, 115, 223, 0.25);
     }
 
     .step.completed {
-        background-color: #4caf50;
-        color: #fff;
+        background-color: #1cc88a;
+        color: #ffffff;
+        border-color: #1cc88a;
     }
 
     /* Wizard content frame */
     .wizard-content {
-        border: 1px solid #ddd;
-        padding: 20px;
-        border-radius: 5px;
+        border: 1px solid #e3e6f0;
+        padding: 24px;
+        border-radius: 12px;
+        background-color: #ffffff;
     }
 
     .step-content {
@@ -118,7 +134,7 @@ if ($conn === false) {
     }
 
     .step.disabled {
-        background-color: #f0f0f0;
+        background-color: #f8f9fc;
         opacity: 0.6;
         cursor: not-allowed;
     }
@@ -128,19 +144,24 @@ if ($conn === false) {
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<div style="padding:20px">
+<div class="py-3">
     <div class="wizard-container">
         <!-- Progress Bar Indicator -->
-        Pre-Registration Completed: <span id="progressPercentage">0</span>%
+        <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="font-weight-bold text-gray-800"><i class="fas fa-tasks text-primary mr-2"></i>Pre-Registration Progress</span>
+            <span class="badge badge-success px-3 py-2 font-weight-bold shadow-sm" style="font-size: 0.9rem;">
+                <span id="progressPercentage">0</span>% Completed
+            </span>
+        </div>
         <div class="wizard-progress-bar">
             <div class="wizard-progress" style="width: 0%;"></div>
         </div>
 
         <!-- Wizard Navigation Steps -->
         <div class="wizard-steps">
-            <div class="step active">Personal Info</div>
-            <div class="step">Education</div>
-            <div class="step">Upload Documents</div>
+            <div class="step active"><i class="fas fa-user-edit mr-1"></i> Personal Info</div>
+            <div class="step"><i class="fas fa-graduation-cap mr-1"></i> Education</div>
+            <div class="step"><i class="fas fa-cloud-upload-alt mr-1"></i> Upload Documents</div>
         </div>
 
         <!-- Wizard Panel Contents -->

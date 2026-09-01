@@ -9,340 +9,102 @@ if (!isset($_SESSION['logname'])) {
 if (isset($_SESSION['logname'])) {
 
     ?>
-    <!-- Page Wrapper -->
+<style>
+    .bg-gradient-primary {
+        background-color: #1e3a8a !important;
+        background-image: linear-gradient(180deg, #1e3a8a 0%, #2563eb 100%) !important;
+    }
+    .sidebar .sidebar-brand {
+        height: 4.5rem;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 800;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        letter-spacing: 0.05rem;
+    }
+    .sidebar .nav-item .nav-link {
+        font-weight: 600;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        margin: 0.25rem 0.75rem;
+        width: auto;
+        transition: all 0.2s ease-in-out;
+    }
+    .sidebar .nav-item.active .nav-link {
+        background: rgba(255, 255, 255, 0.22) !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        color: #ffffff !important;
+        font-weight: 700;
+    }
+    .sidebar .nav-item .nav-link:hover {
+        background: rgba(255, 255, 255, 0.14) !important;
+        color: #ffffff !important;
+    }
+    .sidebar-heading {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08rem;
+        text-transform: uppercase;
+        opacity: 0.75;
+        padding: 0 1rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+</style>
 
+    <!-- Page Wrapper -->
     <div id="wrapper">
 
-
-
-        <!-- Sidebar -->
-
+        <!-- Sidebar Navigation Menu -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-
-
-            <!-- Sidebar - Brand -->
-
-            <!-- <a class="sidebar-brand d-flex align-items-center justify-content-center" href="registration.php">
-
-                <div class="sidebar-brand-icon rotate-n-15 ">
-
-                    <i class='fas fa-user-md' style='font-size:40px'></i>
-
+            <!-- Sidebar Brand Header -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center my-2" href="profile.php">
+                <div class="sidebar-brand-icon">
+                    <i class="fas fa-university" style="font-size: 24px;"></i>
                 </div>
-
-                <div class="sidebar-brand-text mx-3">WMDC Dashboard<sup></sup></div>
-
-            </a> -->
-
-
-
-            <!-- Divider -->
+                <div class="sidebar-brand-text mx-2">WMDC Portal</div>
+            </a>
 
             <hr class="sidebar-divider my-0">
 
+            <?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
 
-
-            <!-- Nav Item - Dashboard -->
-
-            <li class="nav-item active">
-
-                <a class="nav-link" href="registration.php">
-
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-
-                    <span>Dashboard</span></a>
-
-            </li> 
-
-
-
-            <!-- Divider -->
-
-            <hr class="sidebar-divider">
-
-
-
-            <!-- Heading -->
-
-            <div class="sidebar-heading">
-
-                Interface
-
-            </div>
-
-
-
-         
-
-            <!-- <li class="nav-item">
-
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-
-                aria-expanded="true" aria-controls="collapseThree">
-
-                <i class="fa fa-upload"></i>
-
-                <span>Challan</span>
-
-            </a>
-
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-
-                <div class="bg-white py-2 collapse-inner rounded">
-
-                    <h6 class="collapse-header">Challan Components:</h6>
-
-                  
-
-
-
-
-
-                     <a class="collapse-item" href="uploadChallan.php">Upload Challan</a> 
-
-                     <a class="collapse-item" href="downloadChallan.php">Download Challan</a> 
-
-                </div>
-
-            </div>
-
-        </li>
-
-         -->
-
-
-
-
-
-
-
-            <li class="nav-item">
-
+            <!-- Nav Item - Student Profile -->
+            <li class="nav-item <?php echo ($currentPage == 'profile.php') ? 'active' : ''; ?>">
                 <a class="nav-link" href="profile.php">
-
-                    <i class="fa fa-user"></i>
-
-                    <span>Student Profile</span></a>
-
+                    <i class="fas fa-fw fa-id-card"></i>
+                    <span>Student Profile</span>
+                </a>
             </li>
 
-
-
-         
-
-
-
- 
-
-
-
-            
-
-
-
-
-
-            <!--<li class="nav-item">-->
-
-            <!--    <a class="nav-link" href="multiple.php">-->
-
-            <!--        <i class="fa fa-wrench"></i>-->
-
-            <!--        <span>Up-Load Documents</span></a>-->
-
-            <!--</li>-->
-
-
-
-
-
-            <!--<li class="nav-item">-->
-
-            <!--    <a class="nav-link" href="profile.php">-->
-
-            <!--        <i class="fa fa-download"></i>-->
-
-            <!--        <span>Download Challan</span></a>-->
-
-            <!--</li>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-
-            <!-- <li class="nav-item">
-
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-
-                aria-expanded="true" aria-controls="collapseUtilities">
-
-                <i class="fas fa-fw fa-wrench"></i>
-
-                <span>student Profile</span>
-
-            </a>
-
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-
-                data-parent="#accordionSidebar">
-
-                <div class="bg-white py-2 collapse-inner rounded">
-
-                    <h6 class="collapse-header">Student Profile:</h6>
-
-                    <a class="collapse-item" href="getChallanForm.php">Get challan Form
-
-                    <a class="collapse-item" href="profile.php">Profile</a>
-
-                    <a class="collapse-item" href="profile.php">Download Challan</a>
-
-                    <a class="collapse-item" href="updateResult.php">Update Record</a>
-
-                    <a class="collapse-item" href="multiple.php">Upload Document</a>
-
-                    <a class="collapse-item" href="#">Other</a>
-
-                </div>
-
-            </div>
-
-        </li> -->
-
-
-
-            <!-- Divider -->
+            <!-- Nav Item - Admission Form -->
+            <li class="nav-item <?php echo ($currentPage == 'registration.php') ? 'active' : ''; ?>">
+                <a class="nav-link" href="registration.php">
+                    <i class="fas fa-fw fa-edit"></i>
+                    <span>Admission Form</span>
+                </a>
+            </li>
 
             <hr class="sidebar-divider">
 
-
-
-            <!-- Heading -->
-
-            <div class="sidebar-heading">
-
-                Addons
-
-            </div>
-
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <!-- <li class="nav-item">
-
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-
-                aria-expanded="true" aria-controls="collapsePages">
-
-                <i class="fas fa-fw fa-folder"></i>
-
-                <span>Account</span>
-
-            </a>
-
-            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-
-                <div class="bg-white py-2 collapse-inner rounded">
-
-                    <h6 class="collapse-header">Login:</h6>
-
-                    <a class="collapse-item" href="login.php">Login</a>
-
-                    <a class="collapse-item" href="register.php">Register</a>
-
-                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-
-                    <div class="collapse-divider"></div>
-
-                    <h6 class="collapse-header">Other Pages:</h6>
-
-                    <a class="collapse-item" href="404.html">404 Page</a>
-
-                    <a class="collapse-item" href="details.php">Student Details</a>
-
-                </div>
-
-            </div>
-
-        </li> -->
-
-
-
-            <!-- Nav Item - Charts -->
-
+            <!-- Nav Item - Logout -->
             <li class="nav-item">
-
                 <a class="nav-link" href="logout.php">
-
-                    <i class="fa fa-sign-out"></i>
-
-                    <span>Logout</span></a>
-
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
             </li>
-
-
-
-            <!-- Nav Item - Tables -->
-
-            <!--<li class="nav-item">-->
-
-            <!--    <a class="nav-link" href="tables.html">-->
-
-            <!--        <i class="fas fa-fw fa-table"></i>-->
-
-            <!--        <span>Tables</span></a>-->
-
-            <!--</li>-->
-
-
-
-            <!-- Divider -->
 
             <hr class="sidebar-divider d-none d-md-block">
 
-
-
-            <!-- Sidebar Toggler (Sidebar) -->
-
+            <!-- Sidebar Toggler -->
             <div class="text-center d-none d-md-inline">
-
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-
             </div>
-
-
-
-            <!-- Sidebar Message -->
-
-            <div class="sidebar-card d-none d-lg-flex">
-
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="...">
-
-                <!--<p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>-->
-
-                <a class="btn btn-success btn-sm"></a>
-
-            </div>
-
-
 
         </ul>
-
         <!-- End of Sidebar -->
 
 
@@ -456,59 +218,34 @@ if (isset($_SESSION['logname'])) {
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <?php
-
-
-
-
-
                         $logname = $_SESSION['logname'];
+                        $stdName = 'Student';
+                        $topbarPic = "img/undraw_profile.svg";
 
-
-
-
-
-                        if ($conn === false) {
-
-                            die("ERROR: Could not connect. " . mysqli_connect_error());
-
-                        } else {
-
-                            if (isset($_SESSION['logname']) != "") {
-
-
-
-                                $query = "SELECT * FROM `student_reg_26to27` WHERE `cnic` = '$logname'";
-
-                                $result = mysqli_query($conn, $query);
-
-                                if (mysqli_num_rows($result) > 0) {
-
-                                    while ($row = mysqli_fetch_array($result)) {
-
-                                        ?>
-
-                                        <!-- Nav Item - User Information -->
-                                       <ul>
-                                        <li class="nav-item dropdown no-arrow">
-
-                                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                                    <?php echo $row['name'];
-
-                                    }
-
+                        if ($conn !== false && !empty($_SESSION['logname'])) {
+                            $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname'";
+                            $result = mysqli_query($conn, $query);
+                            if ($result && mysqli_num_rows($result) > 0) {
+                                $row = mysqli_fetch_array($result);
+                                $stdName = !empty($row['name']) ? $row['name'] : 'Student';
+                                $picName = isset($row['profilePicture']) ? $row['profilePicture'] : '';
+                                if (!empty($picName) && file_exists("uploads_26to27/profiles/$logname/$picName")) {
+                                    $topbarPic = "uploads_26to27/profiles/$logname/$picName";
+                                } elseif (!empty($picName) && file_exists("uploads/$picName")) {
+                                    $topbarPic = "uploads/$picName";
                                 }
-
                             }
+                        }
+                        ?>
 
-                        } ?>
-
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 font-weight-bold small">
+                                    <?php echo htmlspecialchars($stdName); ?>
                                 </span>
-
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" style="margin-right:30px;">
-
+                                <img class="img-profile rounded-circle" src="<?php echo htmlspecialchars($topbarPic); ?>" style="width: 32px; height: 32px; object-fit: cover; margin-right: 15px;">
                             </a>
 
                             <!-- Dropdown - User Information -->

@@ -1,40 +1,71 @@
 <?php
 session_start();
-// session_start();
+
 if (!isset($_SESSION['logname'])) {
     header("location:login.php");
-
+    exit();
 }
-if (isset($_SESSION['logname'])) {
-    error_reporting(0);
-// require('configure.php');
-// include('linkss.php');
-// include('header.php');
 
-    $logname = $_SESSION['logname'];
+error_reporting(0);
+require('configure.php');
+include('linkss.php');
 
-    if ($conn === false) {
-        die("ERROR: Could not connect. " . mysqli_connect_error());
-    } else {
-        if (isset($_SESSION['logname']) != "") {
-            $query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname' LIMIT 1";
-            $result = mysqli_query($conn, $query);
-            if (mysqli_num_rows($result) > 0) {
-                while ($row = mysqli_fetch_array($result)) {
-                    ?>
-                    <div class="container-fluid mb-4">
-                    <!--<h1 class="h2 mb-4 text-gray-800">Summary</h1>-->
-                                        <h1 class="h5 mb-4 text-gray-800"><?php echo $row['name']; ?> !</h1>
-                                        <p><b class="mb-4 text-gray-800 text-success">Your Pre-Registration Submitted Successfuly.</b></p>
-                                        <p><b class="mb-4 text-gray-800 text-danger">Check & verify all your details / credentials given below.</b></p>
-                                        <p><b class="mb-4 text-gray-800 text-danger">In case of any mistake, you can update the details / credentials in the relevant section.</b></p>
+$logname = $_SESSION['logname'];
 
-                                        <p><br /></p>
-                        <div class="shadow mb-4">                                                                      
-                                <div class="table-responsive">
-                                    <table id="dataTable" width="80%" cellspacing="0"
-                                        class="table table-hover table-striped table-bordered">                                    
-                                        <tbody>
+if ($conn === false) {
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM `registration_26to27` WHERE `cnic` = '$logname' LIMIT 1";
+$result = mysqli_query($conn, $query);
+
+if (!$result || mysqli_num_rows($result) <= 0) {
+    $query = "SELECT * FROM `student_reg_26to27` WHERE `cnic` = '$logname' LIMIT 1";
+    $result = mysqli_query($conn, $query);
+}
+
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+?>
+<style>
+    @media print {
+        .no-print {
+            display: none !important;
+        }
+        body {
+            background-color: #fff !important;
+        }
+        .container-fluid {
+            padding: 0 !important;
+        }
+    }
+</style>
+<div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-4 no-print">
+        <a href="profile.php" class="btn btn-secondary btn-sm rounded-pill px-3">
+            <i class="fas fa-arrow-left mr-1"></i> Back to Dashboard
+        </a>
+        <button onclick="window.print()" class="btn btn-primary btn-sm rounded-pill px-4 shadow-sm">
+            <i class="fas fa-print mr-1"></i> Print / Save as PDF
+        </button>
+    </div>
+
+    <div class="card shadow border-0">
+        <div class="card-body p-4">
+            <div class="text-center mb-4">
+                <h2 class="h4 font-weight-bold text-gray-900 mb-1">WATIM MEDICAL & DENTAL COLLEGE</h2>
+                <h5 class="h6 text-primary font-weight-bold">Student Online Pre-Registration Summary</h5>
+                <hr />
+            </div>
+
+            <div class="alert alert-success border-left-success no-print" role="alert">
+                <strong><i class="fas fa-check-circle mr-1"></i> Pre-Registration Submitted Successfully!</strong><br />
+                <span class="small">Check & verify all your details/credentials given below. In case of any mistake, you can update details in the relevant section.</span>
+            </div>
+
+            <div class="table-responsive mt-3">
+                <table id="dataTable" class="table table-hover table-striped table-bordered">
+                    <tbody>
                                             <tr>
                                                 <td class="bg-dark text-white text-left"><b>Approximate Aggregate</b> </td>
                                                 <td class="bg-dark text-white text-left"> <b>
@@ -134,9 +165,9 @@ if (isset($_SESSION['logname'])) {
                                             </tr>
                                             <tr>
                                                 <td> <b>F.Sc / A-Level Marks</b> </td>
-                                                <td>
-                                                    <?php echo $row['fscmarks']; ?> / 1100
-                                                </td>
+                                                 <td>
+                                                     <?php echo $row['fscmarks']; ?> / <?php echo !empty($row['fscMarksOutOf']) ? $row['fscMarksOutOf'] : '1100'; ?>
+                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td><b>Physics (Only 2021 F.Sc / A-Level Students)</b> </td>
@@ -177,25 +208,19 @@ if (isset($_SESSION['logname'])) {
                                         </tbody>
                                     </table>
                                 </div>                        
-                        </div>
                     </div>
-                    <!-- /.container-fluid -->
-                    <!-- Bootstrap core JavaScript-->
-                    <script src="vendor/jquery/jquery.min.js"></script>
-                    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-                    <!-- Core plugin JavaScript-->
-                    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-                    <!-- Custom scripts for all pages-->
-                    <script src="js/sb-admin-2.min.js"></script>
-                    <!-- Page level plugins -->
-                    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-                    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-                    <!-- Page level custom scripts -->
-                    <script src="js/demo/datatables-demo.js"></script>
-                    <?php
-                }
-            }
-        }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
+<?php
     }
 }
 ?>

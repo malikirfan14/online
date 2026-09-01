@@ -45,67 +45,107 @@ session_start();
                             <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
                             <div class="col-lg-6">
                     
-                    <div class="alert alert-warning text-center fade show" role="alert">
-                    <h6 class="text-danger"> <strong>🔔
-                    <!--<br /> Complete Your Application & Upload Your Challan / Documents!<br />-->
-                    <!--<br />Last Date to Apply for MBBS 29th December, 2026 (3:00 PM)<br />-->
-                    <!--<br />Last Date to Apply for BDS 1st February, 2027 (3:00 PM)<br />-->
-                    <!-- <br />Apply now against MBBS Vacant Sets as per Punjab Govt. Notification<br /> -->
-                     <br />Register now for BDS. MBBS registration has been closed.<br />
-                    <br /><a class="small" href="/online/register.php">Register Now for Session 2026-2027 </a>
-                    </strong> </h6>
-
-                    <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
-                    <!--    <span aria-hidden="true">Ã—</span>-->
-                    <!--        </button>-->
+                    <div class="alert alert-warning text-center fade show border-left-warning shadow-sm m-3 mb-0" role="alert">
+                        <h6 class="text-danger mb-1">
+                            <strong>🔔<br />Register now for BDS. MBBS registration has been closed.</strong>
+                        </h6>
+                        <a class="small font-weight-bold text-primary" href="register.php">Register Now for Session 2026-2027</a>
                     </div>
-                            <div class="text-center">
-<!--                                <a class="btn btn-info btn-sm right" href="login.php" role="button">Already have an account? Login!</a>-->
-<div class="btn-group" role="group" aria-label="Basic mixed styles example">
-  <a button type="button" class="btn btn-danger" href="#">Login Page</button></a>
-  <a button type="button" class="btn btn-success" href="register.php">Register Now</button></a>
-</div>                      
-                                
-                                <div class="p-3">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
-                                    </div>
-                                    <form class="user" action="studentloginback.php">
-                                        <div class="form-group">
-                                            <input type="tel" id="telle" maxlength="15" class="form-control form-control-user"
-                                                 aria-describedby="emailHelp"
-                                                placeholder="CNIC NUMBER (30405-7040105-0)" name="logname"  required>
+
+                    <?php if (isset($_GET['error'])): ?>
+                        <div class="px-3 pt-3 mb-0">
+                            <?php if ($_GET['error'] == 'login_failed'): ?>
+                                <div class="alert alert-danger border-left-danger shadow-sm alert-dismissible fade show mb-0" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
                                         </div>
-                                        <div class="form-group">
+                                        <div>
+                                            <strong class="font-weight-bold d-block text-danger">Login Failed!</strong>
+                                            <span class="small">Please make sure that you enter the correct details.</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php elseif ($_GET['error'] == 'missing_fields'): ?>
+                                <div class="alert alert-warning border-left-warning shadow-sm alert-dismissible fade show mb-0" role="alert">
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <i class="fas fa-exclamation-circle fa-2x text-warning"></i>
+                                        </div>
+                                        <div>
+                                            <strong class="font-weight-bold d-block text-warning">Required Fields Missing!</strong>
+                                            <span class="small">Please enter your CNIC and Password to login.</span>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_GET['success']) && $_GET['success'] == 'registered'): ?>
+                        <div class="px-3 pt-3 mb-0">
+                            <div class="alert alert-success border-left-success shadow-sm alert-dismissible fade show mb-0" role="alert">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <i class="fas fa-check-circle fa-2x text-success"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="font-weight-bold d-block text-success">Registration Successful!</strong>
+                                        <span class="small">Pre-Registration form submitted. Check your email for login details.</span>
+                                    </div>
+                                </div>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="text-center my-3 px-3">
+                        <a class="btn btn-success btn-block btn-user font-weight-bold py-2 shadow-sm" href="register.php">
+                            <i class="fas fa-user-plus mr-1"></i> New Student? Register Now
+                        </a>
+                    </div>
+                                
+                                <div class="p-3 p-sm-4">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4 font-weight-bold">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user" action="login-back.php">
+                                        <div class="form-group text-left">
+                                            <label for="telle" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                                CNIC Number <span class="text-danger">*</span>
+                                            </label>
+                                            <input type="tel" id="telle" maxlength="15" class="form-control form-control-user"
+                                                aria-describedby="emailHelp"
+                                                placeholder="CNIC NUMBER (30405-7040105-0)" name="logname" required>
+                                        </div>
+                                        <div class="form-group text-left">
+                                            <label for="exampleInputPassword" class="form-label font-weight-bold text-gray-700 small mb-1 ml-1 d-block">
+                                                Password <span class="text-danger">*</span>
+                                            </label>
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="PASSWORD" name = "password" required>
+                                                id="exampleInputPassword" placeholder="PASSWORD" name="password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
+                                                <label class="custom-control-label" for="customCheck">Remember Me</label>
                                             </div>
                                         </div>
-                                         <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                        <!--<a href="index.html" class="btn btn-primary btn-user btn-block">-->
-                                        <!--    Login-->
-                                        <!--</a>-->
+                                        <button type="submit" class="btn btn-primary btn-user btn-block font-weight-bold py-2 shadow">
+                                            Login
+                                        </button>
                                         <hr>
-                                        <!--<a href="index.html" class="btn btn-google btn-user btn-block">-->
-                                        <!--    <i class="fab fa-google fa-fw"></i> Login with Google-->
-                                        <!--</a>-->
-                                        <!--<a href="index.html" class="btn btn-facebook btn-user btn-block">-->
-                                        <!--    <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook-->
-                                        <!--</a>-->
                                     </form>
-                                    <hr>
-                                    <!-- <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div> -->
                                     <div class="text-center">
-                                        <!--<a class="small" href="register.php">Create an Account!</a>-->
-                                        <!--<a class="small" href="/online/register.php">Apply Now for Registration</a>                                        -->
+                                        <a class="small font-weight-bold" href="register.php">Don't have an account? Register Now!</a>
                                     </div>
                                 </div>
                             </div>
