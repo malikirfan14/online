@@ -98,13 +98,13 @@ if (isset($_REQUEST['cnic'])) {
         );
 
         if (mysqli_stmt_execute($stmt)) {
-            echo "<script>alert('Record Updated Successfully'); window.location.href='pending.php';</script>";
+            echo "<script>alert('Record Updated Successfully'); window.location.href='unverified.php';</script>";
         } else {
             echo "ERROR: Failed to update student record. " . mysqli_error($conn);
         }
         mysqli_stmt_close($stmt);
     }
 } else {
-    echo "<script>window.location.href='pending.php';</script>";
+    echo "<script>window.location.href='unverified.php';</script>";
 }
 ?>

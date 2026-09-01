@@ -22,13 +22,13 @@ if (isset($_REQUEST['cnic']) && isset($_REQUEST['id'])) {
         mysqli_stmt_bind_param($stmt, "ss", $cnic, $id);
         
         if (mysqli_stmt_execute($stmt)) {
-            echo "<script>alert('Record Deleted'); window.location.href='pending.php';</script>";
+            echo "<script>alert('Record Deleted'); window.location.href='unverified.php';</script>";
         } else {
             echo "ERROR: Could not complete deletion request. " . mysqli_error($conn);
         }
         mysqli_stmt_close($stmt);
     }
 } else {
-    echo "<script>window.location.href='pending.php';</script>";
+    echo "<script>window.location.href='unverified.php';</script>";
 }
 ?>
