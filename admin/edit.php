@@ -142,6 +142,12 @@ if ($student && isset($_POST['verifyStudent'])) {
                                 <label for="emergencyPhone" class="form-label font-weight-bold">Emergency Phone</label>
                                 <input type="text" id="emergencyPhone" name="emergencyPhone" value="<?php echo htmlspecialchars($student['emergencyPhone'] ?? ''); ?>" class="form-control">
                             </div>
+                            <div class="col-12 mt-2" id="adminPhoneErrorBox" style="display: none;">
+                                <div class="alert alert-danger py-2 px-3 mb-0" style="font-size: 13px;">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                                    Student, Father, and Emergency numbers cannot all be identical. Please provide at least 2 different numbers.
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <label for="program" class="form-label font-weight-bold">Applied For Program</label>
                                 <select id="program" name="program" class="form-select">
@@ -423,7 +429,50 @@ if ($student && isset($_POST['verifyStudent'])) {
             </div>
         </div>
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var editForm = document.querySelector("form[action='update-backend.php']");
+        var errorBox = document.getElementById("adminPhoneErrorBox");
 
+        ['stdPhone', 'fatPhone', 'emergencyPhone'].forEach(function(id) {
+            var el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('input', function() {
+                    var std = (document.getElementById("stdPhone") ? document.getElementById("stdPhone").value : '').trim();
+                    var fat = (document.getElementById("fatPhone") ? document.getElementById("fatPhone").value : '').trim();
+                    var emg = (document.getElementById("emergencyPhone") ? document.getElementById("emergencyPhone").value : '').trim();
+                    if (errorBox && !(std !== '' && std === fat && fat === emg)) {
+                        errorBox.style.display = "none";
+                    }
+                });
+            }
+        });
+
+        if (editForm) {
+            editForm.addEventListener("submit", function (e) {
+                var std = (document.getElementById("stdPhone") ? document.getElementById("stdPhone").value : '').trim();
+                var fat = (document.getElementById("fatPhone") ? document.getElementById("fatPhone").value : '').trim();
+                var emg = (document.getElementById("emergencyPhone") ? document.getElementById("emergencyPhone").value : '').trim();
+
+                if (std !== "" && fat !== "" && emg !== "") {
+                    if (std === fat && fat === emg) {
+                        e.preventDefault();
+                        if (errorBox) {
+                            errorBox.style.display = "block";
+                            errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        var emgInput = document.getElementById("emergencyPhone");
+                        if (emgInput) emgInput.focus();
+                        return false;
+                    }
+                }
+                if (errorBox) {
+                    errorBox.style.display = "none";
+                }
+            });
+        }
+    });
+    </script>
 
     <?php endif; ?>
 </div>

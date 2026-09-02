@@ -100,9 +100,9 @@ if ($conn === false) {
 
     $fname = $_REQUEST['fname'];
 
-    $stdPhone = $_REQUEST['stdPhone'];
+    $stdPhone = trim($_REQUEST['stdPhone'] ?? '');
 
-    $fatPhone = $_REQUEST['fatPhone'];
+    $fatPhone = trim($_REQUEST['fatPhone'] ?? '');
 
     $city = $_REQUEST['city'];
 
@@ -110,7 +110,7 @@ if ($conn === false) {
 
     $address = $_REQUEST['address'];
 
-    $emergencyPhone = $_REQUEST['emergencyPhone'];
+    $emergencyPhone = trim($_REQUEST['emergencyPhone'] ?? '');
 
     $program = $_REQUEST['program'];
 
@@ -130,7 +130,15 @@ if ($conn === false) {
     $issueDate = date(" d-m-Y ");
 
     $dueDate = "03-12-2024";
-    // 	echo $stdPhone;
+
+    // Validation: Student Phone, Father Phone, and Emergency Phone cannot all be identical (at least 2 must be different)
+    if (!empty($stdPhone) && !empty($fatPhone) && !empty($emergencyPhone)) {
+      if ($stdPhone === $fatPhone && $fatPhone === $emergencyPhone) {
+        $editParam = (isset($_REQUEST['edit']) && $_REQUEST['edit'] == '1') ? '?edit=1' : '';
+        echo "<script>window.location.href='registration.php" . $editParam . "';</script>";
+        exit();
+      }
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (!empty($_FILES["profilePicture"]["name"])) {
@@ -204,7 +212,7 @@ if ($conn === false) {
                 cnic_issue_date, address, issueDate, dueDate, emergencyPhone, stdType, isPersonalInfoDone,gender)
                 VALUES
                 ('$name', '$fname', '$stdPhone', '$fatPhone', '$city', '$email', '$program', '$appId', '$cnic', '$dob',
-                '$cnic_issue_date', '$address', '$issueDate', '$dueDate', '$emergencyPhone', '$stdType', 1,,'$gender')";
+                '$cnic_issue_date', '$address', '$issueDate', '$dueDate', '$emergencyPhone', '$stdType', 1, '$gender')";
       }
 
     }

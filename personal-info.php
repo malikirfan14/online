@@ -184,13 +184,14 @@ if (isset($_SESSION['logname'])) {
                                 <label class="form-label-custom">Student Phone Number</label>
                                 <input
                                     value="<?php echo $row['stdPhone']; ?>"
-                                    type="number" class="form-control form-control-user" id="exampleInputPassword"
-                                    placeholder="Student number" name="stdPhone" required>
+                                    type="text" class="form-control form-control-user" id="stdPhone"
+                                    placeholder="Student Mobile Number" name="stdPhone" maxlength="11" minlength="11"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label-custom">City</label>
                                 <input value="<?php echo $row['city']; ?>" type="text"
-                                    class="form-control form-control-user" id="exampleInputPassword" placeholder="City"
+                                    class="form-control form-control-user" id="city" placeholder="City"
                                     name="city" required>
                             </div>
 
@@ -200,19 +201,26 @@ if (isset($_SESSION['logname'])) {
 
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label class="form-label-custom">Father Phone Number</label>
-                                <input value="<?php echo $row['fatPhone']; ?>" type="TYPE"
-                                    class="form-control form-control-user" id="exampleRepeatPassword"
-                                    placeholder="Father Phone number" name="fatPhone" maxlength="11"
-                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                <input value="<?php echo $row['fatPhone']; ?>" type="text"
+                                    class="form-control form-control-user" id="fatPhone"
+                                    placeholder="Father Phone number" name="fatPhone" maxlength="11" minlength="11"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                                     required>
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label-custom">Emergency Phone Number</label>
-                                <input value="<?php echo $row['emergencyPhone']; ?>" type="TYPE"
-                                    class="form-control form-control-user" id="exampleRepeatPassword"
-                                    placeholder="Emergency Phone number" name="emergencyPhone" maxlength="11"
-                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                <input value="<?php echo $row['emergencyPhone']; ?>" type="text"
+                                    class="form-control form-control-user" id="emergencyPhone"
+                                    placeholder="Emergency Phone number" name="emergencyPhone" maxlength="11" minlength="11"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                                     required>
+                            </div>
+
+                            <div class="col-12 mt-2" id="phoneErrorBox" style="display: none;">
+                                <div class="alert alert-danger py-2 px-3 mb-0" style="font-size: 13px;">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                                    Student, Father, and Emergency numbers cannot all be identical. Please provide at least 2 different numbers.
+                                </div>
                             </div>
 
                         </div>
@@ -416,27 +424,87 @@ if (isset($_SESSION['logname'])) {
 
 <script>
 
-    document.getElementById("submitButton").addEventListener("click", function(event) {
+    function validatePhoneNumbers() {
+        var stdPhoneInput = document.getElementById("stdPhone") || document.querySelector('input[name="stdPhone"]');
+        var fatPhoneInput = document.getElementById("fatPhone") || document.querySelector('input[name="fatPhone"]');
+        var emergencyPhoneInput = document.getElementById("emergencyPhone") || document.querySelector('input[name="emergencyPhone"]');
+        var errorBox = document.getElementById("phoneErrorBox");
 
-        var fileInput = document.getElementById("profilePicture");
-
-        var requiredMessage = document.querySelector(".required-message");
-
-        var profilePicture = "<?php echo $profilePicture; ?>";
-
-        if (!profilePicture &&  fileInput.files.length === 0 ) {
-
-            requiredMessage.style.display = "block";
-
-            event.preventDefault(); // Prevent form submission
-
-        } else {
-
-            requiredMessage.style.display = "none";
-
+        if (!stdPhoneInput || !fatPhoneInput || !emergencyPhoneInput) {
+            return true;
         }
 
+        var stdPhone = stdPhoneInput.value.trim();
+        var fatPhone = fatPhoneInput.value.trim();
+        var emergencyPhone = emergencyPhoneInput.value.trim();
+
+        // Check if all 3 fields are filled and are identical
+        if (stdPhone !== "" && fatPhone !== "" && emergencyPhone !== "") {
+            if (stdPhone === fatPhone && fatPhone === emergencyPhone) {
+                if (errorBox) {
+                    errorBox.style.display = "block";
+                    errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                emergencyPhoneInput.focus();
+                return false;
+            }
+        }
+
+        if (errorBox) {
+            errorBox.style.display = "none";
+        }
+        return true;
+    }
+
+    // Live validation listener on phone inputs
+    ['stdPhone', 'fatPhone', 'emergencyPhone'].forEach(function(name) {
+        var el = document.querySelector('input[name="' + name + '"]');
+        if (el) {
+            el.addEventListener('input', function() {
+                var std = (document.querySelector('input[name="stdPhone"]') || {}).value || '';
+                var fat = (document.querySelector('input[name="fatPhone"]') || {}).value || '';
+                var emg = (document.querySelector('input[name="emergencyPhone"]') || {}).value || '';
+                var errorBox = document.getElementById("phoneErrorBox");
+                if (errorBox && !(std.trim() !== '' && std.trim() === fat.trim() && fat.trim() === emg.trim())) {
+                    errorBox.style.display = "none";
+                }
+            });
+        }
     });
+
+    var submitBtn = document.getElementById("submitButton");
+    if (submitBtn) {
+        submitBtn.addEventListener("click", function(event) {
+            var fileInput = document.getElementById("profilePicture");
+            var requiredMessage = document.querySelector(".required-message");
+            var profilePicture = "<?php echo $profilePicture; ?>";
+
+            if (fileInput && !profilePicture && fileInput.files.length === 0) {
+                if (requiredMessage) {
+                    requiredMessage.style.display = "block";
+                }
+                event.preventDefault(); // Prevent form submission
+                return false;
+            } else if (requiredMessage) {
+                requiredMessage.style.display = "none";
+            }
+
+            if (!validatePhoneNumbers()) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    }
+
+    var rform = document.getElementById("rform");
+    if (rform) {
+        rform.addEventListener("submit", function(event) {
+            if (!validatePhoneNumbers()) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    }
 
 </script>
 

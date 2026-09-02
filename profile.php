@@ -52,8 +52,14 @@ $comYear        = isset($student['comYear']) ? $student['comYear'] : '';
 $testType       = isset($student['testType']) && !empty($student['testType']) ? $student['testType'] : 'MDCAT';
 $mcat           = isset($student['mcat']) ? $student['mcat'] : '';
 $mcatr          = isset($student['mcatr']) ? $student['mcatr'] : '';
-$total_marks    = isset($student['total_marks']) && !empty($student['total_marks']) ? $student['total_marks'] : '200';
 $mcatYear       = isset($student['mcat_passing_year']) ? $student['mcat_passing_year'] : '';
+
+// MDCAT total marks: 200 for 2024 or earlier, 180 for 2025, 2026 and above
+if (!empty($mcatYear) && intval($mcatYear) <= 2024) {
+    $total_marks = '200';
+} else {
+    $total_marks = '180';
+}
 $biology        = isset($student['biology']) ? $student['biology'] : '';
 $chemistry      = isset($student['chemistry']) ? $student['chemistry'] : '';
 $physics        = isset($student['physics']) ? $student['physics'] : '';

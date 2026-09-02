@@ -39,6 +39,18 @@ if (isset($_REQUEST['cnic'])) {
     $emergencyPhone = $_REQUEST['emergencyPhone'] ?? '';
     $address = $_REQUEST['address'] ?? '';
 
+    // Validation: Check that stdPhone, fatPhone, emergencyPhone are not all identical (at least 2 must be different)
+    $cleanStdPhone = trim($stdPhone);
+    $cleanFatPhone = trim($fatPhone);
+    $cleanEmergencyPhone = trim($emergencyPhone);
+
+    if (!empty($cleanStdPhone) && !empty($cleanFatPhone) && !empty($cleanEmergencyPhone)) {
+        if ($cleanStdPhone === $cleanFatPhone && $cleanFatPhone === $cleanEmergencyPhone) {
+            echo "<script>alert('Student, Father, and Emergency numbers cannot all be identical. Please provide at least 2 different numbers.'); window.history.back();</script>";
+            exit();
+        }
+    }
+
     // Prepared statement UPDATE
     $select = "UPDATE `registration_26to27` SET 
             `fname` = ? ,
