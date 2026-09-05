@@ -104,11 +104,11 @@ if ($student && isset($_POST['verifyStudent'])) {
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="name" class="form-label font-weight-bold">Student Name</label>
-                                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars(trim($student['name'] ?? '')); ?>" class="form-control" required>
+                                <input type="text" id="name" name="name" value="<?php echo htmlspecialchars(trim($student['name'] ?? '')); ?>" class="form-control" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                             </div>
                             <div class="col-md-6">
                                 <label for="fname" class="form-label font-weight-bold">Father Name</label>
-                                <input type="text" id="fname" name="fname" value="<?php echo htmlspecialchars(trim($student['fname'] ?? '')); ?>" class="form-control" required>
+                                <input type="text" id="fname" name="fname" value="<?php echo htmlspecialchars(trim($student['fname'] ?? '')); ?>" class="form-control" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label font-weight-bold">Email Address</label>
@@ -120,11 +120,11 @@ if ($student && isset($_POST['verifyStudent'])) {
                             </div>
                             <div class="col-md-6">
                                 <label for="stdPhone" class="form-label font-weight-bold">Student Phone Number</label>
-                                <input type="text" id="stdPhone" name="stdPhone" value="<?php echo htmlspecialchars($student['stdPhone'] ?? ''); ?>" class="form-control">
+                                <input type="text" id="stdPhone" name="stdPhone" value="<?php echo htmlspecialchars($student['stdPhone'] ?? ''); ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                             <div class="col-md-6">
                                 <label for="fatPhone" class="form-label font-weight-bold">Father Phone Number</label>
-                                <input type="text" id="fatPhone" name="fatPhone" value="<?php echo htmlspecialchars($student['fatPhone'] ?? ''); ?>" class="form-control">
+                                <input type="text" id="fatPhone" name="fatPhone" value="<?php echo htmlspecialchars($student['fatPhone'] ?? ''); ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                             <div class="col-md-6">
                                 <label for="gender" class="form-label font-weight-bold">Gender</label>
@@ -140,7 +140,7 @@ if ($student && isset($_POST['verifyStudent'])) {
                             </div>
                             <div class="col-md-6">
                                 <label for="emergencyPhone" class="form-label font-weight-bold">Emergency Phone</label>
-                                <input type="text" id="emergencyPhone" name="emergencyPhone" value="<?php echo htmlspecialchars($student['emergencyPhone'] ?? ''); ?>" class="form-control">
+                                <input type="text" id="emergencyPhone" name="emergencyPhone" value="<?php echo htmlspecialchars($student['emergencyPhone'] ?? ''); ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                             <div class="col-12 mt-2" id="adminPhoneErrorBox" style="display: none;">
                                 <div class="alert alert-danger py-2 px-3 mb-0" style="font-size: 13px;">
@@ -173,23 +173,23 @@ if ($student && isset($_POST['verifyStudent'])) {
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="matricMarks" class="form-label font-weight-bold">Matric Obtained Marks</label>
-                                <input type="number" id="matricMarks" name="matricMarks" value="<?php echo (int)($student['matricMarks'] ?: 0); ?>" class="form-control">
+                                <input type="text" id="matricMarks" name="matricMarks" value="<?php echo (int)($student['matricMarks'] ?: 0); ?>" class="form-control" oninput="validateMatricMarks()">
                             </div>
                             <div class="col-md-4">
                                 <label for="marksOutOf" class="form-label font-weight-bold">Matric Total Marks</label>
-                                <input type="number" id="marksOutOf" name="marksOutOf" value="<?php echo (int)($student['marksOutOf'] ?: 0); ?>" class="form-control">
+                                <input type="text" id="marksOutOf" name="marksOutOf" value="<?php echo (int)($student['marksOutOf'] ?: 0); ?>" class="form-control" oninput="validateMatricMarks()">
                             </div>
                             <div class="col-md-4">
                                 <label for="comYear" class="form-label font-weight-bold">F.Sc Completion Year</label>
-                                <input type="text" id="comYear" name="comYear" value="<?php echo htmlspecialchars($student['comYear'] ?: '0000'); ?>" class="form-control">
+                                <input type="text" id="comYear" name="comYear" value="<?php echo htmlspecialchars($student['comYear'] ?: '0000'); ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                             <div class="col-md-4">
                                 <label for="fscmarks" class="form-label font-weight-bold">F.Sc Obtained Marks</label>
-                                <input type="number" id="fscmarks" name="fscmarks" value="<?php echo (int)($student['fscmarks'] ?: 0); ?>" class="form-control">
+                                <input type="text" id="fscmarks" name="fscmarks" value="<?php echo (int)($student['fscmarks'] ?: 0); ?>" class="form-control" oninput="validateFscMarks()">
                             </div>
                             <div class="col-md-4">
                                 <label for="fscMarksOutOf" class="form-label font-weight-bold">F.Sc Total Marks</label>
-                                <input type="number" id="fscMarksOutOf" name="fscMarksOutOf" value="<?php echo (int)($student['fscMarksOutOf'] ?: 0); ?>" class="form-control">
+                                <input type="text" id="fscMarksOutOf" name="fscMarksOutOf" value="<?php echo (int)($student['fscMarksOutOf'] ?: 0); ?>" class="form-control" oninput="validateFscMarks()">
                             </div>
                             <div class="col-md-4">
                                 <label for="aggregatePer" class="form-label font-weight-bold">Aggregate Percentage (%)</label>
@@ -209,25 +209,25 @@ if ($student && isset($_POST['verifyStudent'])) {
                             <!-- MDCAT details -->
                             <div class="col-md-4">
                                 <label for="mcat" class="form-label font-weight-bold">MDCAT Roll Number</label>
-                                <input type="text" id="mcat" name="mcat" value="<?php echo htmlspecialchars($student['mcat'] ?? ''); ?>" class="form-control">
+                                <input type="text" id="mcat" name="mcat" value="<?php echo htmlspecialchars($student['mcat'] ?? ''); ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                             <div class="col-md-4">
                                 <label for="mcatr" class="form-label font-weight-bold">MDCAT Obtained Marks</label>
-                                <input type="text" id="mcatr" name="mcatr" value="<?php echo htmlspecialchars($student['mcatr'] ?: '0'); ?>" class="form-control">
+                                <input type="text" id="mcatr" name="mcatr" value="<?php echo htmlspecialchars($student['mcatr'] ?: '0'); ?>" class="form-control" oninput="validateMcatrInput(this)">
                             </div>
                             <div class="col-md-4">
                                 <label for="mcat_passing_year" class="form-label font-weight-bold">MDCAT Year</label>
-                                <input type="text" id="mcat_passing_year" name="mcat_passing_year" value="<?php echo htmlspecialchars($student['mcat_passing_year'] ?: '0000'); ?>" class="form-control">
+                                <input type="text" id="mcat_passing_year" name="mcat_passing_year" value="<?php echo htmlspecialchars($student['mcat_passing_year'] ?: '0000'); ?>" class="form-control" oninput="validateMcatYearInput(this)">
                             </div>
 
                             <!-- MCAT details -->
                             <div class="col-md-6">
                                 <label for="mcatObtainedMarks" class="form-label font-weight-bold">MCAT Obtained Marks</label>
-                                <input type="text" id="mcatObtainedMarks" name="mcatObtainedMarks" value="<?php echo htmlspecialchars($student['mcatObtainedMarks'] ?: '0'); ?>" class="form-control">
+                                <input type="text" id="mcatObtainedMarks" name="mcatObtainedMarks" value="<?php echo htmlspecialchars($student['mcatObtainedMarks'] ?: '0'); ?>" class="form-control" oninput="validateMcatMarks()">
                             </div>
                             <div class="col-md-6">
                                 <label for="mcatTotalMarks" class="form-label font-weight-bold">MCAT Total Marks</label>
-                                <input type="text" id="mcatTotalMarks" name="mcatTotalMarks" value="<?php echo htmlspecialchars($student['mcatTotalMarks'] ?: '0'); ?>" class="form-control">
+                                <input type="text" id="mcatTotalMarks" name="mcatTotalMarks" value="<?php echo htmlspecialchars($student['mcatTotalMarks'] ?: '0'); ?>" class="form-control" oninput="validateMcatMarks()">
                             </div>
                             <div class="col-md-4" style="display:none;">
                                 <input type="text" name="mcatYear" value="<?php echo htmlspecialchars($student['mcatYear'] ?: '0'); ?>">
@@ -236,15 +236,15 @@ if ($student && isset($_POST['verifyStudent'])) {
                             <!-- UCAT details -->
                             <div class="col-md-4">
                                 <label for="ucatObtainedMarks" class="form-label font-weight-bold">UCAT Obtained Marks</label>
-                                <input type="text" id="ucatObtainedMarks" name="ucatObtainedMarks" value="<?php echo htmlspecialchars($student['ucatObtainedMarks'] ?: '0'); ?>" class="form-control">
+                                <input type="text" id="ucatObtainedMarks" name="ucatObtainedMarks" value="<?php echo htmlspecialchars($student['ucatObtainedMarks'] ?: '0'); ?>" class="form-control" oninput="validateUcatMarks()">
                             </div>
                             <div class="col-md-4">
                                 <label for="ucatTotalMarks" class="form-label font-weight-bold">UCAT Total Marks</label>
-                                <input type="text" id="ucatTotalMarks" name="ucatTotalMarks" value="<?php echo htmlspecialchars($student['ucatTotalMarks'] ?: '0'); ?>" class="form-control">
+                                <input type="text" id="ucatTotalMarks" name="ucatTotalMarks" value="<?php echo htmlspecialchars($student['ucatTotalMarks'] ?: '0'); ?>" class="form-control" oninput="validateUcatMarks()">
                             </div>
                             <div class="col-md-4">
                                 <label for="ucatYear" class="form-label font-weight-bold">UCAT Year</label>
-                                <input type="text" id="ucatYear" name="ucatYear" value="<?php echo htmlspecialchars($student['ucatYear'] ?: '0'); ?>" class="form-control">
+                                <input type="text" id="ucatYear" name="ucatYear" value="<?php echo htmlspecialchars($student['ucatYear'] ?: '0'); ?>" class="form-control" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                             </div>
                         </div>
                     </div>
@@ -430,7 +430,96 @@ if ($student && isset($_POST['verifyStudent'])) {
         </div>
 
     <script>
+    function validateMcatrInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        var yearInput = document.getElementById('mcat_passing_year');
+        var yearVal = yearInput ? yearInput.value.trim() : '';
+        var maxMarks = (yearVal === '2025' || yearVal === '2026') ? 180 : 200;
+        if (input.value !== '' && parseInt(input.value) > maxMarks) {
+            input.value = maxMarks;
+        }
+    }
+
+    function validateMcatYearInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        var mcatrInput = document.getElementById('mcatr');
+        if (mcatrInput) {
+            validateMcatrInput(mcatrInput);
+        }
+    }
+
+    function validateMatricMarks() {
+        var matricInput = document.getElementById('matricMarks');
+        var totalInput = document.getElementById('marksOutOf');
+        if (!matricInput) return;
+        matricInput.value = matricInput.value.replace(/[^0-9]/g, '');
+        if (totalInput) {
+            totalInput.value = totalInput.value.replace(/[^0-9]/g, '');
+            if (totalInput.value !== '' && parseInt(totalInput.value) > 0) {
+                var total = parseInt(totalInput.value);
+                if (matricInput.value !== '' && parseInt(matricInput.value) > total) {
+                    matricInput.value = total;
+                }
+            }
+        }
+    }
+
+    function validateFscMarks() {
+        var fscInput = document.getElementById('fscmarks');
+        var totalInput = document.getElementById('fscMarksOutOf');
+        if (!fscInput) return;
+        fscInput.value = fscInput.value.replace(/[^0-9]/g, '');
+        if (totalInput) {
+            totalInput.value = totalInput.value.replace(/[^0-9]/g, '');
+            if (totalInput.value !== '' && parseInt(totalInput.value) > 0) {
+                var total = parseInt(totalInput.value);
+                if (fscInput.value !== '' && parseInt(fscInput.value) > total) {
+                    fscInput.value = total;
+                }
+            }
+        }
+    }
+
+    function validateUcatMarks() {
+        var ucatObtained = document.getElementById('ucatObtainedMarks');
+        var ucatTotal = document.getElementById('ucatTotalMarks');
+        if (!ucatObtained) return;
+        ucatObtained.value = ucatObtained.value.replace(/[^0-9]/g, '');
+        if (ucatTotal) {
+            ucatTotal.value = ucatTotal.value.replace(/[^0-9]/g, '');
+            if (ucatTotal.value !== '' && parseInt(ucatTotal.value) > 0) {
+                var total = parseInt(ucatTotal.value);
+                if (ucatObtained.value !== '' && parseInt(ucatObtained.value) > total) {
+                    ucatObtained.value = total;
+                }
+            }
+        }
+    }
+
+    function validateMcatMarks() {
+        var mcatObtained = document.getElementById('mcatObtainedMarks');
+        var mcatTotal = document.getElementById('mcatTotalMarks');
+        if (!mcatObtained) return;
+        mcatObtained.value = mcatObtained.value.replace(/[^0-9]/g, '');
+        if (mcatTotal) {
+            mcatTotal.value = mcatTotal.value.replace(/[^0-9]/g, '');
+            if (mcatTotal.value !== '' && parseInt(mcatTotal.value) > 0) {
+                var total = parseInt(mcatTotal.value);
+                if (mcatObtained.value !== '' && parseInt(mcatObtained.value) > total) {
+                    mcatObtained.value = total;
+                }
+            }
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
+        var mcatrInput = document.getElementById('mcatr');
+        if (mcatrInput) validateMcatrInput(mcatrInput);
+        validateMatricMarks();
+        validateFscMarks();
+        validateUcatMarks();
+        validateMcatMarks();
+
         var editForm = document.querySelector("form[action='update-backend.php']");
         var errorBox = document.getElementById("adminPhoneErrorBox");
 
@@ -450,6 +539,11 @@ if ($student && isset($_POST['verifyStudent'])) {
 
         if (editForm) {
             editForm.addEventListener("submit", function (e) {
+                validateMatricMarks();
+                validateFscMarks();
+                validateUcatMarks();
+                validateMcatMarks();
+
                 var std = (document.getElementById("stdPhone") ? document.getElementById("stdPhone").value : '').trim();
                 var fat = (document.getElementById("fatPhone") ? document.getElementById("fatPhone").value : '').trim();
                 var emg = (document.getElementById("emergencyPhone") ? document.getElementById("emergencyPhone").value : '').trim();

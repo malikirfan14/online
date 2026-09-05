@@ -57,7 +57,8 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="instituteName" style="display: none;">
                                                 <label class="form-label-custom">F.Sc / A Level's Institute Full Name</label>
                                                 <input value="<?php echo $row['instituteName']; ?>" type="text" class="form-control form-control-user" id="instituteName1"
-                                                    placeholder="F.Sc / A Level's Institute Full Name" name="instituteName">
+                                                    placeholder="F.Sc / A Level's Institute Full Name" name="instituteName"
+                                                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                                             </div>
                                         </div>
 
@@ -66,13 +67,15 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="instituteCity" style="display: none;">
                                                 <label class="form-label-custom">F.Sc / A Level's Study Institute Country Name</label>
                                                 <input value="<?php echo $row['instituteCity']; ?>" type="text" class="form-control form-control-user" id="instituteCity1"
-                                                    placeholder="F.Sc / A Level's Study Institute Country Name" name="instituteCity">
+                                                    placeholder="F.Sc / A Level's Study Institute Country Name" name="instituteCity"
+                                                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                                             </div>
 
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="residentialCountry" style="display: none;">
                                                 <label class="form-label-custom">Residential Country  / Country of Stay</label>
                                                 <input value="<?php echo $row['residentialCountry']; ?>" type="text" class="form-control form-control-user" id="residentialCountry1"
-                                                    placeholder="Residential Country  / Country of Stay" name="residentialCountry">
+                                                    placeholder="Residential Country  / Country of Stay" name="residentialCountry"
+                                                    oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '');">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -123,13 +126,15 @@ if (isset($_SESSION['logname'])) {
                                                     <label class="form-label-custom">MDCAT Roll Number</label>
                                                     <input value="<?php echo $row['mcat']; ?>" type="text"
                                                          class="form-control form-control-user" id="mcat" placeholder="MDCAT Roll Number "
-                                                         name="mcat" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
+                                                         name="mcat" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>
+                                                         oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label class="form-label-custom">MDCAT Marks</label>
                                                     <input value="<?php echo $row['mcatr']; ?>" type="number"
                                                          class="form-control form-control-user" id="mcatr" placeholder="MDCAT Marks" min="72"
-                                                         max="200" name="mcatr" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>>
+                                                         max="200" name="mcatr" <?php echo ($row['mcat_passing_year'] == '2026') ? '' : 'required'; ?>
+                                                         oninput="validateMcatrInput(this)">
                                                 </div>
                                             </div>
                                         </div>
@@ -160,13 +165,15 @@ if (isset($_SESSION['logname'])) {
                                                 <label class="form-label-custom">UCAT Obtained Marks</label>
                                                 <input value="<?php echo $row['ucatObtainedMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="ucatObtainedMarks" placeholder="UCAT Obtained Marks"
-                                                    name="ucatObtainedMarks">
+                                                    name="ucatObtainedMarks"
+                                                    oninput="validateUcatMarks()">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label class="form-label-custom">UCAT Total Marks</label>
                                                 <input value="<?php echo $row['ucatTotalMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="ucatTotalMarks" placeholder="UCAT Total Marks"
-                                                    name="ucatTotalMarks">
+                                                    name="ucatTotalMarks"
+                                                    oninput="validateUcatMarks()">
                                             </div>
                                         </div>
                                     </div>
@@ -196,13 +203,15 @@ if (isset($_SESSION['logname'])) {
                                                 <label class="form-label-custom">MCAT Obtained Marks</label>
                                                 <input value="<?php echo $row['mcatObtainedMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="mcatObtainedMarks" placeholder="MCAT Obtained Marks"
-                                                    name="mcatObtainedMarks" >
+                                                    name="mcatObtainedMarks"
+                                                    oninput="validateMcatMarks()">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label class="form-label-custom">MCAT Total Marks</label>
                                                 <input value="<?php echo $row['mcatTotalMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="mcatTotalMarks" placeholder="MCAT Total Marks"
-                                                    name="mcatTotalMarks" >
+                                                    name="mcatTotalMarks"
+                                                    oninput="validateMcatMarks()">
                                             </div>
                                         </div>
                                     </div>
@@ -212,11 +221,12 @@ if (isset($_SESSION['logname'])) {
                                                 <label class="form-label-custom">Matric / O Level's Obtained Marks</label>
                                                 <input value="<?php echo $row['matricMarks']; ?>" type="text"
                                                     class="form-control form-control-user" id="matricMarks" placeholder="Matric / O Level's Obtained Marks"
-                                                    name="matricMarks" required>
+                                                    name="matricMarks" required
+                                                    oninput="validateMatricMarks()">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label class="form-label-custom">Matric / O Level's Total Marks</label>
-                                                <select class="form-control form-control-lg" id="marksOutOf" name="marksOutOf" required>
+                                                <select class="form-control form-control-lg" id="marksOutOf" name="marksOutOf" required onchange="validateMatricMarks()">
                                                     <option selected disabled value="">-- Matric / O Level's Total Marks-- </option>
                                                     <option name="marksOutOf" <?php echo $row['marksOutOf'] == '850' ? 'selected' : ''; ?> >850</option>
                                                     <option name="marksOutOf" <?php echo $row['marksOutOf'] == '900' ? 'selected' : ''; ?> >900</option>
@@ -257,11 +267,12 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-6 mb-3  mb-sm-0" id="ifYes" style="display: none;">
                                                 <label class="form-label-custom">F.Sc / A Level's Obtained Marks</label>
                                                 <input value="<?php echo $row['fscmarks']; ?>" type="text" class="form-control form-control-user" id="fscmarks"
-                                                    placeholder="F.Sc / A Level's Obtained Marks" name="fscmarks">
+                                                    placeholder="F.Sc / A Level's Obtained Marks" name="fscmarks"
+                                                    oninput="validateFscMarks()">
                                             </div>
                                             <div class="col-sm-6 mb-3 mb-sm-0" id="ifFScYes" style="display: none;">
                                                 <label class="form-label-custom">F.Sc / A Level's Total Marks</label>
-                                                <select class="form-control form-control-lg" id="fscMarksOutOf" name="fscMarksOutOf">
+                                                <select class="form-control form-control-lg" id="fscMarksOutOf" name="fscMarksOutOf" onchange="validateFscMarks()">
                                                     <option selected disabled value="">-- F.Sc / A Level's Total Marks-- </option>
                                                     <option name="fscMarksOutOf" <?php echo $row['fscMarksOutOf'] == '1200' ? 'selected' : ''; ?> >1200</option>
                                                     <option name="fscMarksOutOf" <?php echo $row['fscMarksOutOf'] == '1100' ? 'selected' : ''; ?> >1100</option>
@@ -272,17 +283,20 @@ if (isset($_SESSION['logname'])) {
                                             <div class="col-sm-4 mb-3  mb-sm-0" id="show1" style="display: none;">
                                                 <label class="form-label-custom">Biology Marks</label>
                                                 <input type="text" value="<?php echo $row['biology']; ?>" class="form-control form-control-user" id="biology"
-                                                    placeholder="Biology marks" name="biology">
+                                                    placeholder="Biology marks" name="biology"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                             </div>
                                             <div class="col-sm-4 mb-3  mb-sm-0" id="show2" style="display: none;">
                                                 <label class="form-label-custom">Chemistry Marks</label>
                                                 <input type="text" value="<?php echo $row['chemistry']; ?>" class="form-control form-control-user" id="chemistry"
-                                                    placeholder="Chemistry marks" name="chemistry">
+                                                    placeholder="Chemistry marks" name="chemistry"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                             </div>
                                             <div class="col-sm-4 mb-3  mb-sm-0" id="show3" style="display: none;">
                                                 <label class="form-label-custom">Physics Marks</label>
                                                 <input type="text" value="<?php echo $row['physics']; ?>" class="form-control form-control-user" id="physics"
-                                                    placeholder="Physics marks" name="physics">
+                                                    placeholder="Physics marks" name="physics"
+                                                    oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                                             </div>
                                         </div>
 
@@ -723,25 +737,109 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //    }
 
-   const yearSelect = document.getElementById('mcat_passing_year');
+    function validateMcatrInput(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+        const yearSelect = document.getElementById('mcat_passing_year');
+        let maxMarks = 200;
+        if (yearSelect && (yearSelect.value === '2025' || yearSelect.value === '2026')) {
+            maxMarks = 180;
+        }
+        if (input.value !== '' && parseInt(input.value) > maxMarks) {
+            input.value = maxMarks;
+        }
+    }
+
+    const yearSelect = document.getElementById('mcat_passing_year');
     const marksInput = document.getElementById('total_marks');
 
     // function to set marks based on year
     function updateTotalMarks() {
-        if (yearSelect.value === '2025' || yearSelect.value === '2026') {
-            marksInput.value = '180';
-        } else if (yearSelect.value === '2024' || yearSelect.value === '2023') {
-            marksInput.value = '200';
+        const mcatrInput = document.getElementById('mcatr');
+        let maxMarks = 200;
+        if (yearSelect && (yearSelect.value === '2025' || yearSelect.value === '2026')) {
+            if (marksInput) marksInput.value = '180';
+            maxMarks = 180;
+        } else if (yearSelect && (yearSelect.value === '2024' || yearSelect.value === '2023')) {
+            if (marksInput) marksInput.value = '200';
+            maxMarks = 200;
         } else {
-            marksInput.value = '';
+            if (marksInput) marksInput.value = '';
+            maxMarks = 200;
+        }
+
+        if (mcatrInput) {
+            mcatrInput.setAttribute('max', maxMarks);
+            if (mcatrInput.value !== '' && parseInt(mcatrInput.value) > maxMarks) {
+                mcatrInput.value = maxMarks;
+            }
         }
     }
 
-    // Update marks when year changes
-    yearSelect.addEventListener('change', updateTotalMarks);
+    if (yearSelect) {
+        yearSelect.addEventListener('change', updateTotalMarks);
+    }
+    
+    function validateMatricMarks() {
+        const matricInput = document.getElementById('matricMarks');
+        const totalSelect = document.getElementById('marksOutOf');
+        if (!matricInput) return;
+        matricInput.value = matricInput.value.replace(/[^0-9]/g, '');
+        if (totalSelect && totalSelect.value) {
+            const total = parseInt(totalSelect.value);
+            if (matricInput.value !== '' && parseInt(matricInput.value) > total) {
+                matricInput.value = total;
+            }
+        }
+    }
 
-    // ✅ Set marks automatically when page loads (for edit/update case)
-    window.addEventListener('DOMContentLoaded', updateTotalMarks);
+    function validateFscMarks() {
+        const fscInput = document.getElementById('fscmarks');
+        const totalSelect = document.getElementById('fscMarksOutOf');
+        if (!fscInput) return;
+        fscInput.value = fscInput.value.replace(/[^0-9]/g, '');
+        if (totalSelect && totalSelect.value) {
+            const total = parseInt(totalSelect.value);
+            if (fscInput.value !== '' && parseInt(fscInput.value) > total) {
+                fscInput.value = total;
+            }
+        }
+    }
+
+    function validateUcatMarks() {
+        const ucatObtained = document.getElementById('ucatObtainedMarks');
+        const ucatTotal = document.getElementById('ucatTotalMarks');
+        if (!ucatObtained) return;
+        ucatObtained.value = ucatObtained.value.replace(/[^0-9]/g, '');
+        if (ucatTotal && ucatTotal.value !== '') {
+            ucatTotal.value = ucatTotal.value.replace(/[^0-9]/g, '');
+            const total = parseInt(ucatTotal.value);
+            if (ucatObtained.value !== '' && parseInt(ucatObtained.value) > total) {
+                ucatObtained.value = total;
+            }
+        }
+    }
+
+    function validateMcatMarks() {
+        const mcatObtained = document.getElementById('mcatObtainedMarks');
+        const mcatTotal = document.getElementById('mcatTotalMarks');
+        if (!mcatObtained) return;
+        mcatObtained.value = mcatObtained.value.replace(/[^0-9]/g, '');
+        if (mcatTotal && mcatTotal.value !== '') {
+            mcatTotal.value = mcatTotal.value.replace(/[^0-9]/g, '');
+            const total = parseInt(mcatTotal.value);
+            if (mcatObtained.value !== '' && parseInt(mcatObtained.value) > total) {
+                mcatObtained.value = total;
+            }
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        updateTotalMarks();
+        validateMatricMarks();
+        validateFscMarks();
+        validateUcatMarks();
+        validateMcatMarks();
+    });
 </script>
 
 <script>
